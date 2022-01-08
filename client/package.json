@@ -142,5 +142,6 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
