@@ -10,7 +10,6 @@
 /coverage
 
 # production
-/client/build
 /client/package-lock.json
 
 # misc
