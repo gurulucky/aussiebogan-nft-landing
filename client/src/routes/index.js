@@ -47,8 +47,7 @@ export default function Router() {
       children: [
         { path: '/', element: <LandingPage /> } 
       ]
-    },
-    { path: '*', element: <Navigate to="/404" replace /> }
+    }
   ]);
 }
 

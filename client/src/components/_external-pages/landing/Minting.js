@@ -4,6 +4,7 @@ import { alpha, useTheme, styled } from '@material-ui/core/styles';
 import { Box, Grid, Card, Container, Typography, useMediaQuery, Stack, TextField, Button, InputBase } from '@material-ui/core';
 //
 import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
+import useCountdown from '../../../hooks/useCountdown';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +27,11 @@ const ButtonStyle = styled(Button)(({ theme }) => (
 const ConnectButton = styled(Button)(({ theme }) => ({
   borderRadius: 0,
   width: '200px'
+}));
+
+const TimerStyle = styled(Typography)(({ theme }) => ({
+  fontFamily: 'VT323, monospace',
+  fontSize: '64px',
 }))
 
 // ----------------------------------------------------------------------
@@ -34,6 +40,7 @@ export default function Minting() {
   const theme = useTheme();
   const isLight = theme.palette.mode === 'light';
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const countdown = useCountdown(new Date('03/07/2022 21:30'));
 
   return (
     <RootStyle>
@@ -58,6 +65,15 @@ export default function Minting() {
                 <Typography variant='h6' color='primary.main'>3200 / 10000</Typography>
               </Stack>
             </Stack>
+            <Stack direction='column'>
+              <Typography variant='h4' textAlign='center' color='primary.main'>
+                Presale will be start after.
+              </Typography>
+              <TimerStyle textAlign='center' color='primary.main'>
+                {`${countdown.days}:${countdown.hours}:${countdown.minutes}:${countdown.seconds}`}
+              </TimerStyle>
+            </Stack>
+
             <Stack direction='column'>
               <Typography variant='h6' color='common.white' textAlign='center'>0.05 Eth + Gas fee</Typography>
               <Typography variant='h6' color='common.white' textAlign='center'>Max 20 ABCs per transactions</Typography>
