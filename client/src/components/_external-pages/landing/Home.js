@@ -30,7 +30,6 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
 
 const ContentStyle = styled((props) => <Stack spacing={5} {...props} />)(({ theme }) => ({
   zIndex: 10,
-  maxWidth: 520,
   margin: 'auto',
   textAlign: 'center',
   position: 'relative',
@@ -38,7 +37,7 @@ const ContentStyle = styled((props) => <Stack spacing={5} {...props} />)(({ them
   paddingBottom: theme.spacing(15),
   [theme.breakpoints.up('md')]: {
     margin: 'unset',
-    textAlign: 'left'
+    textAlign: 'center'
   }
 }));
 
@@ -78,12 +77,12 @@ export default function Home() {
       <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
         {/* <HeroOverlayStyle alt="overlay" src="/static/overlay.svg" variants={varFadeIn} /> */}
 
-        <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} />
+        {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}
 
         <Container maxWidth="lg">
           <ContentStyle>
             <motion.div variants={varFadeInRight}>
-              <Typography variant='h1' className='flux'>Aussie Bogan Club</Typography>
+              <Typography variant='h5' className='flux'>Aussie Bogan Club</Typography>
             </motion.div>
 
           </ContentStyle>

@@ -7,39 +7,39 @@ import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-    paddingTop: theme.spacing(15),
+    padding: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
-        paddingBottom: theme.spacing(15)
+        padding: theme.spacing(15)
     }
 }));
 
 // ----------------------------------------------------------------------
 const Scroll = styled(Box)(() => ({
-    height: 235,
-    background: 'url(/static/ss1.png)',
-    backgroundSize: '2262px 235px',
-    animation: 'mosaic 10s linear infinite',
+    height: 256,
+    background: 'url(/static/ss1.jpg)',
+    backgroundSize: '5120px 256px',
+    animation: 'mosaic 40s linear infinite',
     '@keyframes mosaic': {
         '0%': {
             backgroundPosition: '0 0'
         },
         '100%': {
-            backgroundPosition: '-2262px 0'
+            backgroundPosition: '-5120px 0'
         }
     }
 }));
 
 const Scroll_2 = styled(Box)(() => ({
-    height: 237,
-    background: 'url(/static/ss2.png)',
-    backgroundSize: '2259px 237px',
-    animation: 'mosaic 10s linear infinite',
+    height: 256,
+    background: 'url(/static/ss2.jpg)',
+    backgroundSize: '5120px 256px',
+    animation: 'mosaic 40s linear infinite',
     '@keyframes mosaic': {
         '0%': {
             backgroundPosition: '0 0'
         },
         '100%': {
-            backgroundPosition: '-2259px 0'
+            backgroundPosition: '-5120px 0'
         }
     }
 }));
@@ -53,7 +53,6 @@ export default function LandingMinimalHelps() {
 
     return (
         <RootStyle>
-            <Container maxWidth="lg">
                 <Box sx={{ mb: { xs: 3, md: 8 } }}>
                     <MotionInView variants={varFadeInDown}>
                         <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
@@ -66,7 +65,6 @@ export default function LandingMinimalHelps() {
                 </Box>
                 <Scroll />
                 <Scroll_2 />
-            </Container>
         </RootStyle>
     );
 }

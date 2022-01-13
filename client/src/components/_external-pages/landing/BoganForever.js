@@ -13,7 +13,10 @@ import { varFadeInUp, MotionInView } from '../../animate';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(15, 0),
+  padding: theme.spacing(3),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(15)
+  },
   backgroundImage:
     theme.palette.mode === 'light'
       ? `linear-gradient(180deg, ${alpha(theme.palette.grey[300], 0)} 0%, ${theme.palette.grey[300]} 100%)`
@@ -85,7 +88,6 @@ export default function BoganForever() {
 
   return (
     <RootStyle>
-      <Container maxWidth="lg">
         <Grid container spacing={5} justifyContent="center">
           <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center' }}>
             <ContentStyle>
@@ -114,7 +116,6 @@ export default function BoganForever() {
             </ContentStyle>
           </Grid>
         </Grid>
-      </Container>
     </RootStyle>
   );
 }

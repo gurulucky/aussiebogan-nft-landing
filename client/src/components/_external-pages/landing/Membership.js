@@ -13,11 +13,10 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(15, 0),
-  backgroundImage:
-    theme.palette.mode === 'light'
-      ? `linear-gradient(180deg, ${alpha(theme.palette.grey[300], 0)} 0%, ${theme.palette.grey[300]} 100%)`
-      : 'none'
+  padding: theme.spacing(3),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(15)
+  }
 }));
 
 const ContentStyle = styled('div')(({ theme }) => ({
@@ -99,7 +98,6 @@ export default function Membership() {
 
   return (
     <RootStyle>
-      <Container maxWidth="lg">
         <Grid container spacing={5} justifyContent="center">
           <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center' }}>
             <ContentStyle>
@@ -129,7 +127,6 @@ export default function Membership() {
             </ContentStyle>
           </Grid>
         </Grid>
-      </Container>
     </RootStyle>
   );
 }

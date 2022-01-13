@@ -38,9 +38,9 @@ const FAQ_DATA = [
 ];
 
 const RootStyle = styled('div')(({ theme }) => ({
-  paddingTop: theme.spacing(15),
+  padding: theme.spacing(3),
   [theme.breakpoints.up('md')]: {
-    paddingBottom: theme.spacing(15)
+    padding: theme.spacing(15)
   }
 }));
 
@@ -53,7 +53,6 @@ export default function Faq() {
 
   return (
     <RootStyle>
-      <Container maxWidth="lg">
         <Box sx={{ mb: 5 }}>
           <MotionInView variants={varFadeInDown}>
             <Typography className='flux_title' variant="h2" textAlign='center' color='primary.main' sx={{ mb: 3 }}>
@@ -86,7 +85,6 @@ export default function Faq() {
             }
           </MotionInView>
         </Box>
-      </Container>
     </RootStyle>
   );
 }

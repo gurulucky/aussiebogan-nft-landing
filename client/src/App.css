@@ -47,16 +47,14 @@
 .flux {
   font-family: neon;
   color: #426DFB;
-  font-size: 9vw;
-  line-height: 9vw;
+  font-size: 6vw;
+  line-height: 6vw;
   text-shadow: 0 0 3vw #2356FF;
 }
 
 .flux_title {
   font-family: neon;
   color: #426DFB;
-  font-size: 3vw;
-  line-height: 3vw;
   text-shadow: 0 0 1vw #2356FF;
 }
 

@@ -20,12 +20,12 @@ const MEMBERS = [
 ];
 
 const IMAGES = [
-  '/static/chief_nft.png',
-  '/static/chief_nft.png',
-  '/static/chief_nft.png',
-  '/static/chief_nft.png',
-  '/static/chief_nft.png',
-  '/static/chief_nft.png'
+  '/static/team/chief.png',
+  '/static/team/technical.png',
+  '/static/team/blockchain.png',
+  '/static/team/creative.png',
+  '/static/team/artist.png',
+  '/static/team/marketing.png'
 ]
 
 const PLANS = [...Array(6)].map((_, index) => ({
@@ -34,9 +34,9 @@ const PLANS = [...Array(6)].map((_, index) => ({
 }));
 
 const RootStyle = styled('div')(({ theme }) => ({
-  paddingTop: theme.spacing(15),
+  padding: theme.spacing(3),
   [theme.breakpoints.up('md')]: {
-    paddingBottom: theme.spacing(15)
+    padding: theme.spacing(15)
   }
 }));
 
@@ -71,7 +71,6 @@ function PlanCard({ plan, cardIndex }) {
 export default function Team() {
   return (
     <RootStyle>
-      <Container maxWidth="lg">
         <Box sx={{ mb: 5, textAlign: 'center' }}>
           <MotionInView variants={varFadeInDown}>
             <Typography className='flux_title' variant="h2" color='primary.main' sx={{ mb: 3 }}>
@@ -89,7 +88,6 @@ export default function Team() {
             </Grid>
           ))}
         </Grid>
-      </Container>
     </RootStyle>
   );
 }
