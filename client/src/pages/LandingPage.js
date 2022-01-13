@@ -31,7 +31,10 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function LandingPage() {
   return (
     <RootStyle title="Aussie Bogan" id="move_top">
-      <Home />
+      <Stack id='home'>
+        <Home />
+
+      </Stack>
       <ContentStyle>
         <Stack id='mint'>
           <Minting />

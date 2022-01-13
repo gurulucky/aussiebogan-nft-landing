@@ -67,9 +67,13 @@ export default function MainNavbar() {
             justifyContent: 'space-between'
           }}
         >
-          <RouterLink to="/">
+          <Box component={ScrollLink}
+            spy={true}
+            smooth={true}
+            to='home'
+            sx={{cursor:'pointer'}}>
             <Logo />
-          </RouterLink>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
 
           <MHidden width="mdDown">
