@@ -6,6 +6,7 @@ import Page from '../components/Page';
 import {
   Home,
   Minting,
+  KeyInfo,
   BoganForever,
   Collection,
   Membership,
@@ -39,6 +40,9 @@ export default function LandingPage() {
         <Stack id='mint'>
           <Minting />
 
+        </Stack>
+        <Stack id='key'>
+          <KeyInfo />
         </Stack>
         <Stack id='about'>
 

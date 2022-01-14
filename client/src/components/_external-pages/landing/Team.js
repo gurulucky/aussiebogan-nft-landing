@@ -12,7 +12,7 @@ import { varFadeIn, varFadeInUp, MotionInView, varFadeInDown } from '../../anima
 
 const MEMBERS = [
   'Chief Bogan',
-  'Techinical Wiz',
+  'Technical Wiz',
   'Blockchain/NFT Geek',
   'Creative Type',
   'Artist Extraordinaire',

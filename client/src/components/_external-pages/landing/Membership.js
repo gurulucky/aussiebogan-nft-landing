@@ -103,7 +103,7 @@ export default function Membership() {
             <ContentStyle>
               <MotionInView variants={varFadeInUp}>
                 <Typography className='flux_title' variant="h2" color='primary.main' sx={{ mb: 3 }}>
-                  Membership to the Aussie Bogan Club
+                  Aussie Bogan Values
                 </Typography>
                 <List dense={false}>
                   {
