@@ -16,6 +16,6 @@ export default function Logo({ sx }) {
   const PRIMARY_DARK = theme.palette.primary.dark;
 
   return (
-    <Box component='img' src='/static/logo.png' sx={{ width: 128, height: 128, ...sx }}/>
+    <Box component='img' src='/static/logo.png' sx={{ width: 64, height: 64, ...sx }}/>
   );
 }

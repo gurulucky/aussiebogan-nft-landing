@@ -1,7 +1,11 @@
-import { NavLink as RouterLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, NavLink as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@material-ui/core/styles';
-import { Box, Button, AppBar, Toolbar, Container, Typography } from '@material-ui/core';
+import { Box, Button, AppBar, Toolbar, Container, Typography, Stack, IconButton } from '@material-ui/core';
+import { Icon } from '@iconify/react';
+import discordFill from '@iconify/icons-akar-icons/discord-fill';
+import twitterFill from '@iconify/icons-akar-icons/twitter-fill';
+import instagramFill from '@iconify/icons-akar-icons/instagram-fill';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
@@ -71,17 +75,52 @@ export default function MainNavbar() {
             spy={true}
             smooth={true}
             to='home'
-            sx={{cursor:'pointer'}}>
+            sx={{ cursor: 'pointer' }}>
             <Logo />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
 
           <MHidden width="mdDown">
-            <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
+            <Stack direction='row' spacing={1} alignItems='center'>
+              <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
+              <a href='https://discord.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={discordFill} />
+                </IconButton>
+              </a>
+              <a href='https://twitter.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={twitterFill} />
+                </IconButton>
+              </a>
+              <a href='https://instagram.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={instagramFill} />
+                </IconButton>
+              </a>
+            </Stack>
+
           </MHidden>
 
           <MHidden width="mdUp">
-            <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
+            <Stack direction='row' spacing={1}>
+              <a href='https://discord.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={discordFill} />
+                </IconButton>
+              </a>
+              <a href='https://twitter.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={twitterFill} />
+                </IconButton>
+              </a>
+              <a href='https://instagram.com' target='_blank'>
+                <IconButton color='primary'>
+                  <Icon icon={instagramFill} />
+                </IconButton>
+              </a>
+              <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
+            </Stack>
           </MHidden>
         </Container>
       </ToolbarStyle>

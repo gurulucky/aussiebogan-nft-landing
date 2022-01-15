@@ -45,6 +45,7 @@
     "@fullcalendar/react": "^5.9.0",
     "@fullcalendar/timegrid": "^5.9.0",
     "@fullcalendar/timeline": "^5.9.0",
+    "@iconify/icons-akar-icons": "^1.1.30",
     "@iconify/icons-ant-design": "^1.1.0",
     "@iconify/icons-bi": "^1.1.12",
     "@iconify/icons-eva": "^1.1.0",

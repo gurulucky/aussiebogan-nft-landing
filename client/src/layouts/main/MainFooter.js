@@ -1,8 +1,7 @@
 import { Icon } from '@iconify/react';
-import googleFill from '@iconify/icons-eva/google-fill';
-import twitterFill from '@iconify/icons-eva/twitter-fill';
-import facebookFill from '@iconify/icons-eva/facebook-fill';
-import linkedinFill from '@iconify/icons-eva/linkedin-fill';
+import discordFill from '@iconify/icons-akar-icons/discord-fill';
+import twitterFill from '@iconify/icons-akar-icons/twitter-fill';
+import instagramFill from '@iconify/icons-akar-icons/instagram-fill';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -16,10 +15,9 @@ import Logo from '../../components/Logo';
 // ----------------------------------------------------------------------
 
 const SOCIALS = [
-  { name: 'FaceBook', icon: facebookFill },
-  { name: 'Google', icon: googleFill },
-  { name: 'Linkedin', icon: linkedinFill },
-  { name: 'Twitter', icon: twitterFill }
+  { name: 'Discord', icon: discordFill },
+  { name: 'Twitter', icon: twitterFill },
+  { name: 'Instagram', icon: instagramFill }
 ];
 
 const LINKS = [

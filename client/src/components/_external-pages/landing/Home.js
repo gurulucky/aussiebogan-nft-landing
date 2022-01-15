@@ -20,7 +20,7 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
   backgroundRepeat: 'no-repeat',
   marginTop: "60px",
   [theme.breakpoints.up('md')]: {
-    backgroundSize: '100% 100%',
+    backgroundSize: '100% auto',
     // top: 0,
     left: 0,
     width: '100%',
