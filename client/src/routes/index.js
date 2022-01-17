@@ -45,7 +45,9 @@ export default function Router() {
       path: '/',
       element: <MainLayout />,
       children: [
-        { path: '/', element: <LandingPage /> } 
+        { path: '/', element: <LandingPage /> },
+        { path: '/terms', element: <TermsPage /> },
+        { path: '/privacy', element: <PrivacyPage /> }
       ]
     }
   ]);
@@ -55,3 +57,5 @@ export default function Router() {
 
 // Main
 const LandingPage = Loadable(lazy(() => import('../pages/LandingPage')));
+const TermsPage = Loadable(lazy(() => import('../pages/TermsPage.js')));
+const PrivacyPage = Loadable(lazy(() => import('../pages/Privacy.js')));

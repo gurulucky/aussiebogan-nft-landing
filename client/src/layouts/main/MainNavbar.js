@@ -76,7 +76,7 @@ export default function MainNavbar() {
             smooth={true}
             to='home'
             sx={{ cursor: 'pointer' }}>
-            <Logo />
+            <Logo header={true} />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
 

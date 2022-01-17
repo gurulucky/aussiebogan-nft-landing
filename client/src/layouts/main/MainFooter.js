@@ -24,21 +24,21 @@ const LINKS = [
   {
     headline: 'Minimal',
     children: [
-      { name: 'About us', href: 'about'},
+      { name: 'About us', href: 'about' },
       { name: 'FAQs', href: 'faq' }
     ]
   },
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' }
+      { name: 'Terms and Condition', href: '/terms' },
+      { name: 'Privacy Policy', href: '/privacy' }
     ]
   },
   {
     headline: 'Smart Contract',
     children: [
-      {name:'Smart contract', href:'#'}
+      { name: 'Smart contract', href: '#' }
     ]
   }
 ];
@@ -67,7 +67,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-            In celebration of the contribution of your fellow bogan The Right Honourable Chief Justice Bogan AC QC ABC Esq. has officially launched the Aussie Bogan Club (ABC).
+              In celebration of the contribution of your fellow bogan The Right Honourable Chief Justice Bogan AC QC ABC Esq. has officially launched the Aussie Bogan Club (ABC).
             </Typography>
 
             <Stack
@@ -90,21 +90,38 @@ export default function MainFooter() {
                 const { headline, children } = list;
                 return (
                   <Stack key={headline} spacing={2}>
-                    
-                    {children.map((link) => (
-                      <Typography
-                        to={link.href}
-                        key={link.name}
-                        color="inherit"
-                        variant="body2"
-                        component={ScrollLink}
-                        spy={true}
-                        smooth={true}
-                        sx={{ display: 'block', cursor:'pointer' }}
-                      >
-                        {link.name}
-                      </Typography>
-                    ))}
+
+                    {children.map((link) => {
+                      if (link.href.includes('/')) {
+                        return <Typography
+                          to={link.href}
+                          key={link.name}
+                          color="inherit"
+                          variant="body2"
+                          component={RouterLink}
+                          spy={true}
+                          smooth={true}
+                          sx={{ display: 'block', cursor: 'pointer' }}
+                        >
+                          {link.name}
+                        </Typography>
+                      } else {
+                        return <Typography
+                          to={link.href}
+                          key={link.name}
+                          color="inherit"
+                          variant="body2"
+                          component={ScrollLink}
+                          spy={true}
+                          smooth={true}
+                          sx={{ display: 'block', cursor: 'pointer' }}
+                        >
+                          {link.name}
+                        </Typography>
+
+                      }
+                    }
+                    )}
                   </Stack>
                 );
               })}

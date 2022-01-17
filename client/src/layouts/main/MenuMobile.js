@@ -24,7 +24,7 @@ const ICON_SIZE = 22;
 const ITEM_SIZE = 48;
 const PADDING = 2.5;
 
-const ListItemStyle = styled(Typography)(({ theme }) => ({
+const ListItemStyle = styled(Link)(({ theme }) => ({
   ...theme.typography.body2,
   height: ITEM_SIZE,
   textTransform: 'capitalize',
@@ -48,7 +48,7 @@ function MenuMobileItem({ item, isOpen, isActive, onOpen, onClose }) {
   return (
     <ListItemStyle
       to={path}
-      component={ScrollLink}
+      component={RouterLink}
       spy={true}
       smooth={true}
       sx={{

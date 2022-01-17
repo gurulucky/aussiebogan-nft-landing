@@ -12,7 +12,7 @@ import { Box, Link, Grid, List, Stack, Popover, ListItem, ListSubheader, CardAct
 
 // ----------------------------------------------------------------------
 
-const LinkStyle = styled(Typography)(({ theme }) => ({
+const LinkStyle = styled(Link)(({ theme }) => ({
   ...theme.typography.subtitle2,
   cursor: 'pointer',
   color: theme.palette.text.primary,
@@ -34,7 +34,7 @@ function MenuDesktopItem({ item, pathname, isHome, isOpen, isOffset, onOpen, onC
 
   return (
     <LinkStyle
-      component={ScrollLink}
+      component={RouterLink}
       spy={true}
       smooth={true}
       to={path}

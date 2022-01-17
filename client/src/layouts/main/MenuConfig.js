@@ -18,32 +18,32 @@ const menuConfig = [
   {
     title: 'MINT',
     icon: <Icon icon={spadeIcon} {...ICON_SIZE} />,
-    path: 'mint'
+    path: '/#mint'
   },
   {
     title: 'ABOUT',
     icon: <Icon icon={infoSquareFill} {...ICON_SIZE} />,
-    path: 'about'
+    path: '/#about'
   },
   {
     title: 'COLLECTION',
     icon: <Icon icon={collectionFolderImage} {...ICON_SIZE} />,
-    path: "collection"
+    path: "/#collection"
   },
   {
     title: 'TEAM',
     icon: <Icon icon={teamFill} {...ICON_SIZE} />,
-    path: "team"
+    path: "/#team"
   },
   {
     title: 'ROADMAP',
     icon: <Icon icon={roadmapIcon} {...ICON_SIZE} />,
-    path: "roadmap"
+    path: "/#roadmap"
   },
   {
     title: 'FAQ',
     icon: <Icon icon={faqIcon} {...ICON_SIZE} />,
-    path: "faq"
+    path: "/#faq"
   }
 ];
 

@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
+import {scroller} from 'react-scroll';
 // material
 import { styled } from '@material-ui/core/styles';
 import { Stack } from '@material-ui/core';
@@ -30,6 +33,15 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LandingPage() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    console.log(hash);
+    scroller.scrollTo(hash.replace('#',''), {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    })
+  })
   return (
     <RootStyle title="Aussie Bogan" id="move_top">
       <Stack id='home'>
