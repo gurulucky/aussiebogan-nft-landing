@@ -77,7 +77,7 @@ export default function Minting() {
         }
         conMetamask();
       });
-      setTotalMinted(getTotalMinted());
+      setTotal()
       // conMetamask();
     }
     // getRyoshiBalance(account, zksyncWallet);
@@ -114,7 +114,7 @@ export default function Minting() {
           if (await hasEnoughEth(accounts[0], quantity)) {
             if (await mint(accounts[0], quantity)) {
               dispatch(setAlert(true, `Minting ${quantity} NFTs succeed`));
-              setTotalMinted(getTotalMinted());
+              setTotal();
             }
           } else {
             dispatch(setAlert(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
@@ -127,6 +127,11 @@ export default function Minting() {
     } else {
       dispatch(setAlert(true, "Install web3 wallet"));
     }
+  }
+
+  const setTotal = async () => {
+    let total = await getTotalMinted();
+    setTotalMinted(total);
   }
 
   const changeQuantity = (e) => {

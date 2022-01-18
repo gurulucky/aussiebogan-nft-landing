@@ -16,7 +16,7 @@ export const mint = async (account, amount) => {
 export const getTotalMinted = async () => {
     let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
-    return Number(tokenCounter);
+    return tokenCounter;
 }
 
 export const hasEnoughEth = async (account, amount) => {
