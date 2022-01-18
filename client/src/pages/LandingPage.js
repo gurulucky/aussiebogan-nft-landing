@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import {scroller} from 'react-scroll';
+import { scroller } from 'react-scroll';
 // material
 import { styled } from '@material-ui/core/styles';
 import { Stack } from '@material-ui/core';
@@ -17,7 +17,7 @@ import {
   Roadmap,
   Faq
 } from '../components/_external-pages/landing';
-
+import AlertDialog from './AlertDialog'
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)({
@@ -36,7 +36,7 @@ export default function LandingPage() {
   const { hash } = useLocation();
   useEffect(() => {
     console.log(hash);
-    scroller.scrollTo(hash.replace('#',''), {
+    scroller.scrollTo(hash.replace('#', ''), {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart'
@@ -76,6 +76,7 @@ export default function LandingPage() {
           <Faq />
 
         </Stack>
+        <AlertDialog />
       </ContentStyle>
     </RootStyle>
   );

@@ -15,9 +15,9 @@ import Logo from '../../components/Logo';
 // ----------------------------------------------------------------------
 
 const SOCIALS = [
-  { name: 'Discord', icon: discordFill },
-  { name: 'Twitter', icon: twitterFill },
-  { name: 'Instagram', icon: instagramFill }
+  { name: 'Discord', icon: discordFill, href:'https://discord.com' },
+  { name: 'Twitter', icon: twitterFill, href:'https://twitter.com' },
+  { name: 'Instagram', icon: instagramFill, href:'https://instagram.com' }
 ];
 
 const LINKS = [
@@ -33,12 +33,6 @@ const LINKS = [
     children: [
       { name: 'Terms and Condition', href: '/terms' },
       { name: 'Privacy Policy', href: '/privacy' }
-    ]
-  },
-  {
-    headline: 'Smart Contract',
-    children: [
-      { name: 'Smart contract', href: '#' }
     ]
   }
 ];

@@ -1,13 +1,20 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Web3 from 'web3'
 // material
 import { alpha, useTheme, styled } from '@material-ui/core/styles';
 import { Box, Grid, Card, Container, Typography, useMediaQuery, Stack, TextField, Button, InputBase } from '@material-ui/core';
+import { LoadingButton } from '@material-ui/lab';
 //
 import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
 import useCountdown from '../../../hooks/useCountdown';
-
+import { setAlert } from 'src/actions/manager';
+import { hasEnoughEth, mint, getTotalMinted } from '../../../lib/mint';
 // ----------------------------------------------------------------------
-
+const NETWORK = 'rinkeby';
+const RINKEBY_CHAINID = 4;
+const MAINNET_CHAINID = 1;
 
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
@@ -25,7 +32,7 @@ const ButtonStyle = styled(Button)(({ theme }) => (
   }
 ));
 
-const ConnectButton = styled(Button)(({ theme }) => ({
+const ConnectButton = styled(LoadingButton)(({ theme }) => ({
   borderRadius: 0,
   width: '200px'
 }));
@@ -45,6 +52,89 @@ export default function Minting() {
   const isLight = theme.palette.mode === 'light';
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const countdown = useCountdown(new Date('03/07/2022 21:30'));
+  const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState(1);
+  const [account, setAccount] = useState('');
+  const [initWeb3, setInitWeb3] = useState(false);
+  const [minting, setMinting] = useState(false);
+  const [totalMinted, setTotalMinted] = useState(0);
+
+  useEffect(() => {
+    if (window.ethereum && !initWeb3) {
+      setInitWeb3(true);
+      window.web3 = new Web3(window.ethereum);
+      window.ethereum.on('accountsChanged', function (accounts) {
+        // if (accounts[0] !== account) {
+        console.log("change", accounts[0]);
+        conMetamask();
+        // }
+      });
+      window.ethereum.on('networkChanged', function (networkId) {
+        if (Number(networkId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+          setAccount("");
+          return;
+        }
+        conMetamask();
+      });
+      setTotalMinted(getTotalMinted());
+      // conMetamask();
+    }
+    // getRyoshiBalance(account, zksyncWallet);
+  }, []);
+  /// window.ethereum used to get addrss
+  const conMetamask = async (e) => {
+    // console.log(e);
+    if (e && account) {
+      setAccount("");
+      return;
+    }
+    console.log('changed');
+    if (window.ethereum) {
+      try {
+        // const addressArray = await window.ethereum.request({
+        //   method: "eth_requestAccounts",
+        // });
+        // window.web3 = new Web3(window.ethereum);
+        //   console.log("account",addressArray[0]);
+        const chainId = await window.ethereum.request({
+          method: "eth_chainId"
+        });
+        if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+          dispatch(setAlert(true, `Connect to ${NETWORK} network on metamask.`));
+          setAccount("");
+          return;
+        }
+        const accounts = await window.ethereum.enable();
+        console.log(accounts);
+        // console.log(await window.web3.eth.getBalance(accounts[0]));
+        setAccount(accounts[0] !== undefined ? accounts[0] : "");
+        if (accounts[0]) {
+          setMinting(true);
+          if (await hasEnoughEth(accounts[0], quantity)) {
+            if (await mint(accounts[0], quantity)) {
+              dispatch(setAlert(true, `Minting ${quantity} NFTs succeed`));
+              setTotalMinted(getTotalMinted());
+            }
+          } else {
+            dispatch(setAlert(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+          }
+          setMinting(false);
+        }
+      } catch (err) {
+        setMinting(false);
+      }
+    } else {
+      dispatch(setAlert(true, "Install web3 wallet"));
+    }
+  }
+
+  const changeQuantity = (e) => {
+    if (e.target.value > 10) {
+      return;
+    }
+    setQuantity(e.target.value);
+  }
 
   return (
     <RootStyle>
@@ -65,7 +155,7 @@ export default function Minting() {
               <Typography variant="h6" color='common.white'>
                 Total minted:
               </Typography>
-              <Typography variant='h6' color='primary.main'>3200 / 10000</Typography>
+              <Typography variant='h6' color='primary.main'>{`${totalMinted} / 10000`}</Typography>
             </Stack>
           </Stack>
           <Stack direction='column'>
@@ -79,29 +169,31 @@ export default function Minting() {
 
           <Stack direction='column'>
             <Typography variant='h6' color='common.white' textAlign='center'>0.05 Eth + Gas fee</Typography>
-            <Typography variant='h6' color='common.white' textAlign='center'>Max 20 ABCs per transactions</Typography>
+            <Typography variant='h6' color='common.white' textAlign='center'>Max 10 ABCs per transactions</Typography>
           </Stack>
-          <Stack direction={isDesktop?'row':'column'} justifyContent='center' spacing={1}>
+          <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
             <Stack direction='row' sx={{ border: '1px solid #0E77B7', p: '5px', backgroundColor: '#0f2938' }}>
-              <ButtonStyle variant='outlined'>-</ButtonStyle>
+              <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1)}>-</ButtonStyle>
               <InputBase variant='outlined' type='number'
                 fullWidth={true}
                 inputProps={{
-                  min: 1, max: 20,
+                  min: 1, max: 10,
                   sx: { textAlign: 'center' },
                 }}
+                value={quantity}
+                onChange={changeQuantity}
               />
-              <ButtonStyle variant='outlined'>+</ButtonStyle>
+              <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity + 1 <= 10 ? quantity + 1 : 10)}>+</ButtonStyle>
             </Stack>
             <Stack direction='row' spacing={1}>
 
-              <ButtonStyle variant='outlined'>10</ButtonStyle>
-              <ButtonStyle variant='outlined'>15</ButtonStyle>
-              <ButtonStyle variant='outlined'>20</ButtonStyle>
+              <ButtonStyle variant='outlined' onClick={() => setQuantity(3)}>3</ButtonStyle>
+              <ButtonStyle variant='outlined' onClick={() => setQuantity(5)}>5</ButtonStyle>
+              <ButtonStyle variant='outlined' onClick={() => setQuantity(10)}>10</ButtonStyle>
             </Stack>
           </Stack>
-          <ConnectButton variant='contained' size='large'>CONNECT WALLET</ConnectButton>
-          <Link to='#'><Typography variant='body1'>View Contract</Typography> </Link>
+          <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT ABC`}</ConnectButton>
+          <a href='https://rinkeby.etherscan.io/address/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c' target='_blank'><Typography variant='body1'>View Contract</Typography> </a>
         </Stack>
       </MotionInView>
     </RootStyle >
