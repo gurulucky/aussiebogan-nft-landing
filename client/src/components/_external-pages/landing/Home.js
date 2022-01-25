@@ -13,31 +13,40 @@ import { varFadeIn, varFadeInUp, varWrapEnter, varFadeInRight } from '../../anim
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(motion.div)(({ theme }) => ({
+  // position: 'relative',
+  // // backgroundColor: theme.palette.grey[400],
+  // backgroundImage: "url('/static/bg.jpg')",
+  // backgroundSize: '100% auto',
+  // backgroundRepeat: 'no-repeat',
+  // marginTop: "60px",
+  // [theme.breakpoints.up('lg')]: {
+  //   backgroundSize: '100% auto',
+  //   // top: 0,
+  //   left: 0,
+  //   width: '100%',
+  //   height: '100vh',
+  //   // display: 'flex',
+  //   position: 'fixed',
+  //   // alignItems: 'flex-start',
+  //   // justifyContent:'center'
+  // }
   position: 'relative',
-  // backgroundColor: theme.palette.grey[400],
-  backgroundImage: "url('/static/bg.jpg')",
-  backgroundSize: '100% auto',
-  backgroundRepeat: 'no-repeat',
-  marginTop: "60px",
+  backgroundColor: theme.palette.grey[400],
   [theme.breakpoints.up('md')]: {
-    backgroundSize: '100% auto',
-    // top: 0,
+    top: 0,
     left: 0,
     width: '100%',
-    height: '100vh',
     // display: 'flex',
-    position: 'fixed',
-    // alignItems: 'flex-start',
-    // justifyContent:'center'
+    // alignItems: 'center'
   }
 }));
 
-const ContentStyle = styled((props) => <Stack spacing={5} {...props} />)(({ theme }) => ({
+const ContentStyle = styled((props) => <Stack sx={{ width: 1 }} alignItems='center' spacing={5} {...props} />)(({ theme }) => ({
   zIndex: 10,
   margin: 'auto',
-  // marginTop:'0px',
+  top: '20px',
   textAlign: 'center',
-  position: 'relative',
+  position: 'absolute',
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(15),
   [theme.breakpoints.up('md')]: {
@@ -87,15 +96,18 @@ export default function Home() {
         {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}
 
         {/* <Container maxWidth="lg"> */}
+        <Box component="img" src='/static/bg.jpg'>
+
+        </Box>
         <ContentStyle>
           <motion.div variants={varFadeInRight}>
-            <Typography variant={matches ? 'h1' : 'h2'} className='flux'>Aussie Bogan<br />Club</Typography>
+            <Typography variant={matches ? 'h2' : 'h3'} className='flux'>Aussie Bogan<br />Club</Typography>
           </motion.div>
 
         </ContentStyle>
         {/* </Container> */}
       </RootStyle>
-      <Box sx={{ height: { md: '100vh' } }} />
+      {/* <Box sx={{ height: { md: '100vh' } }} /> */}
     </>
   );
 }

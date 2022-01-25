@@ -71,10 +71,10 @@ export default function MainNavbar() {
             justifyContent: 'space-between'
           }}
         >
-          <Box component={ScrollLink}
+          <Box component={RouterLink}
             spy={true}
             smooth={true}
-            to='home'
+            to='/#home'
             sx={{ cursor: 'pointer' }}>
             <Logo header={true} />
           </Box>
