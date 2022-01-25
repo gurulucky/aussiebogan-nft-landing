@@ -60,7 +60,7 @@ export default function MainNavbar() {
         disableGutters
         sx={{
           bgcolor: 'background.default',
-          height: { md: APP_BAR_DESKTOP - 16 }
+          height: { md: APP_BAR_DESKTOP - 16, xs: APP_BAR_MOBILE - 16 }
         }}
       >
         <Container
@@ -124,7 +124,6 @@ export default function MainNavbar() {
           </MHidden>
         </Container>
       </ToolbarStyle>
-
       {isOffset && <ToolbarShadowStyle />}
     </AppBar>
   );

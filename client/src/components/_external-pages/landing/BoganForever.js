@@ -109,13 +109,25 @@ export default function BoganForever() {
               </Typography>
               <Typography
                 variant='h6'
+                paragraph
               >
-                In celebration of the contribution of your fellow bogan The Right Honourable Chief Justice Bogan AC QC ABC Esq. has officially launched the Aussie Bogan Club (ABC). <br /> The Aussie Bogan Club is a collection of 10,000 exclusive NFTs cohabiting in the shire of Boganville and the Ethereum blockchain being secured by a fearless smart contract that can never be altered or changed. <br /> Each ABC NFT is completely unique, randomly generated from a selection of over 220 hand drawn bogan traits.  Ownership of an ABC NFT doubles as your membership to the highly exclusively Aussie Bogan Club, which on its own brings bragging rights, a society of like-minded bogan socialites.
+                In celebration of the contribution of your fellow bogan The Right Honourable Chief Justice Bogan AC QC ABC Esq. has officially launched the Aussie Bogan Club (ABC).
+              </Typography>
+              <Typography
+                variant='h6'
+                paragraph
+              >
+                The Aussie Bogan Club is a collection of 10,000 exclusive NFTs cohabiting in the shire of Boganville and the Ethereum blockchain being secured by a fearless smart contract that can never be altered or changed.
+              </Typography>
+              <Typography
+                variant='h6'
+                paragraph
+              > Each ABC NFT is completely unique, randomly generated from a selection of over 220 hand drawn bogan traits.  Ownership of an ABC NFT doubles as your membership to the highly exclusively Aussie Bogan Club, which on its own brings bragging rights, a society of like-minded bogan socialites.
               </Typography>
             </MotionInView>
           </ContentStyle>
         </Grid>
       </Grid>
-    </RootStyle>
+    </RootStyle >
   );
 }

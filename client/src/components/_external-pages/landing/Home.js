@@ -32,19 +32,20 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
   // }
   position: 'relative',
   backgroundColor: theme.palette.grey[400],
-  [theme.breakpoints.up('md')]: {
-    top: 0,
-    left: 0,
+  marginTop: '64px',
+  // [theme.breakpoints.up('md')]: {
+    // top: 0,
+    // left: 0,
     width: '100%',
     // display: 'flex',
     // alignItems: 'center'
-  }
+  // }
 }));
 
 const ContentStyle = styled((props) => <Stack sx={{ width: 1 }} alignItems='center' spacing={5} {...props} />)(({ theme }) => ({
   zIndex: 10,
   margin: 'auto',
-  top: '20px',
+  top: '0px',
   textAlign: 'center',
   position: 'absolute',
   paddingTop: theme.spacing(2),

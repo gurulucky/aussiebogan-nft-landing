@@ -18,7 +18,7 @@ const MAINNET_CHAINID = 1;
 
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
-  padding: theme.spacing(3),
+  padding: theme.spacing(1),
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(15)
   }

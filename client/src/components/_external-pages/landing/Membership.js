@@ -81,7 +81,7 @@ const MEMBERSHIP_TEXT = [
   "Tolerance",
   "Compassion for those in need",
   "Equality of opportunity for all",
-  "Boganship(mateship)",
+  "Boganship (mateship)",
   "Easy - going and informal",
   "Common sense",
   "Humility"
