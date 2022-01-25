@@ -15,9 +15,9 @@ import Logo from '../../components/Logo';
 // ----------------------------------------------------------------------
 
 const SOCIALS = [
-  { name: 'Discord', icon: discordFill, href:'https://discord.com' },
-  { name: 'Twitter', icon: twitterFill, href:'https://twitter.com' },
-  { name: 'Instagram', icon: instagramFill, href:'https://instagram.com' }
+  { name: 'Discord', icon: discordFill, href: 'https://discord.com/invite/dHSKjeGr' },
+  { name: 'Twitter', icon: twitterFill, href: 'https://twitter.com/boganclub' },
+  { name: 'Instagram', icon: instagramFill, href: 'https://www.instagram.com/aussie_bogan_club/' }
 ];
 
 const LINKS = [
@@ -71,9 +71,11 @@ export default function MainFooter() {
               sx={{ mt: 5, mb: { xs: 5, md: 0 } }}
             >
               {SOCIALS.map((social) => (
-                <IconButton key={social.name} color="primary" sx={{ p: 1 }}>
-                  <Icon icon={social.icon} width={16} height={16} />
-                </IconButton>
+                <a href={`${social.href}`} target='_blank'>
+                  <IconButton color='primary' size='small'>
+                    <Icon icon={social.icon} />
+                  </IconButton>
+                </a>
               ))}
             </Stack>
           </Grid>

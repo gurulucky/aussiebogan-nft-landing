@@ -78,7 +78,7 @@ export default function KeyInfo() {
   return (
     <RootStyle>
       <MotionInView variants={varFadeInDown}>
-        <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
+        <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center', mb:3 }}>
           Key Info
         </Typography>
       </MotionInView>

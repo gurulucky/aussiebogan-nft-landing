@@ -8,9 +8,9 @@ import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
 
 const RootStyle = styled('div')(({ theme }) => ({
     // padding: theme.spacing(3),
-    // [theme.breakpoints.up('md')]: {
-    //     padding: theme.spacing(15)
-    // }
+    [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacing(7)
+    },
 }));
 
 // ----------------------------------------------------------------------
@@ -53,18 +53,18 @@ export default function LandingMinimalHelps() {
 
     return (
         <RootStyle>
-                <Box sx={{ mb: { xs: 3, md: 8 } }}>
-                    <MotionInView variants={varFadeInDown}>
-                        <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
-                            Collections
-                        </Typography>
-                        <Typography variant='h6' textAlign='center'>
-                            The price of each ABC NFT card is 0.05 Ether, they are distributed on the Ethereum network, and there is a total of 10000 cards.
-                        </Typography>
-                    </MotionInView>
-                </Box>
-                <Scroll />
-                <Scroll_2 />
+            <Box sx={{ mb: { xs: 3, md: 8 } }}>
+                <MotionInView variants={varFadeInDown}>
+                    <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center', mb: 3 }}>
+                        Collections
+                    </Typography>
+                    <Typography variant='h6' textAlign='center'>
+                        The price of each ABC NFT card is 0.05 Ether, they are distributed on the Ethereum network, and there is a total of 10000 cards.
+                    </Typography>
+                </MotionInView>
+            </Box>
+            <Scroll />
+            <Scroll_2 />
         </RootStyle>
     );
 }

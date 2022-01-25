@@ -15,7 +15,7 @@ import { varFadeInUp, MotionInView } from '../../animate';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(3),
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(15)
+    padding: theme.spacing(7,15)
   },
   backgroundImage:
     theme.palette.mode === 'light'
@@ -26,7 +26,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
   textAlign: 'center',
-  marginBottom: theme.spacing(10),
+  marginBottom: theme.spacing(7),
   [theme.breakpoints.up('md')]: {
     textAlign: 'left',
     marginBottom: 0
@@ -104,7 +104,7 @@ export default function BoganForever() {
           <ContentStyle>
 
             <MotionInView variants={varFadeInUp}>
-              <Typography variant="h2" color='primary.main' className='flux_title' sx={{ mb: 3 }}>
+              <Typography variant="h2" color='primary.main' className='flux_title' sx={{ mb: 3, mt: { md: 8 } }}>
                 Bogans Forever
               </Typography>
               <Typography

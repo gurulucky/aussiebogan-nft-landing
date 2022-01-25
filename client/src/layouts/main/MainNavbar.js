@@ -83,17 +83,17 @@ export default function MainNavbar() {
           <MHidden width="mdDown">
             <Stack direction='row' spacing={1} alignItems='center'>
               <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
-              <a href='https://discord.com' target='_blank'>
+              <a href='https://discord.com/invite/dHSKjeGr' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={discordFill} />
                 </IconButton>
               </a>
-              <a href='https://twitter.com' target='_blank'>
+              <a href='https://twitter.com/boganclub' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={twitterFill} />
                 </IconButton>
               </a>
-              <a href='https://instagram.com' target='_blank'>
+              <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={instagramFill} />
                 </IconButton>
@@ -104,17 +104,17 @@ export default function MainNavbar() {
 
           <MHidden width="mdUp">
             <Stack direction='row' spacing={1}>
-              <a href='https://discord.com' target='_blank'>
+              <a href='https://discord.com/invite/dHSKjeGr' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={discordFill} />
                 </IconButton>
               </a>
-              <a href='https://twitter.com' target='_blank'>
+              <a href='https://twitter.com/boganclub' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={twitterFill} />
                 </IconButton>
               </a>
-              <a href='https://instagram.com' target='_blank'>
+              <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
                 <IconButton color='primary'>
                   <Icon icon={instagramFill} />
                 </IconButton>

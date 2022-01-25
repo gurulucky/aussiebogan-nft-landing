@@ -103,7 +103,7 @@ const FAQ_DATA = [
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(3),
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(15)
+    padding: theme.spacing(7,15)
   }
 }));
 

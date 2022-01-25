@@ -53,9 +53,6 @@ export default function LandingPage() {
           <Minting />
 
         </Stack>
-        <Stack id='key'>
-          <KeyInfo />
-        </Stack>
         <Stack id='about'>
 
           <BoganForever />
@@ -68,6 +65,9 @@ export default function LandingPage() {
         <Stack id='team'>
 
           <Team />
+        </Stack>
+        <Stack id='key'>
+          <KeyInfo />
         </Stack>
         <Stack id="roadmap">
           <Roadmap />
