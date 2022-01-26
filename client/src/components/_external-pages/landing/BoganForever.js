@@ -13,7 +13,7 @@ import { varFadeInUp, MotionInView } from '../../animate';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(3),
+  padding: theme.spacing(10,3),
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(7,15)
   },

@@ -38,17 +38,20 @@ const Root = styled(Box)`
 `;
 
 const TableStyle = styled('table')(({ theme }) => ({
-  borderCollapse:'collapse',
+  borderCollapse: 'collapse',
   // width:'100%',
-  maxWidth:'800px',
+  maxWidth: '800px',
   [theme.breakpoints.up('md')]: {
-    margin:'auto',
-    width:'100%'
+    margin: 'auto',
+    width: '100%'
   }
 }));
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(3),
+  padding: theme.spacing(10,3),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(10,15)
+  },
   backgroundImage:
     theme.palette.mode === 'light'
       ? `linear-gradient(180deg, ${alpha(theme.palette.grey[300], 0)} 0%, ${theme.palette.grey[300]} 100%)`
@@ -76,7 +79,7 @@ export default function KeyInfo() {
   return (
     <RootStyle>
       <MotionInView variants={varFadeInDown}>
-        <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center', mb:3 }}>
+        <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center', mb: 3 }}>
           Key Info
         </Typography>
       </MotionInView>
