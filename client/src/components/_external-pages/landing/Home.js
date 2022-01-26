@@ -97,7 +97,7 @@ export default function Home() {
         {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}
 
         {/* <Container maxWidth="lg"> */}
-        <Box component="img" src='/static/bg.jpg'>
+        <Box component="img" src='/static/bg.jpg' sx={{width:'100%'}}>
 
         </Box>
         <ContentStyle>

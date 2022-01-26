@@ -6,6 +6,7 @@ import collectionFolderImage from '@iconify/icons-zmdi/collection-folder-image';
 import teamFill from '@iconify/icons-ri/team-fill';
 import roadmapIcon from '@iconify/icons-raphael/roadmap';
 import faqIcon from '@iconify/icons-wpf/faq';
+import keyIcon from '@iconify/icons-akar-icons/key';
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +35,11 @@ const menuConfig = [
     title: 'TEAM',
     icon: <Icon icon={teamFill} {...ICON_SIZE} />,
     path: "/#team"
+  },
+  {
+    title: 'KEY INFO',
+    icon: <Icon icon={keyIcon} {...ICON_SIZE} />,
+    path: "/#key"
   },
   {
     title: 'ROADMAP',

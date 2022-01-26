@@ -56,10 +56,7 @@ export default function LandingMinimalHelps() {
             <Box sx={{ mb: { xs: 3, md: 8 } }}>
                 <MotionInView variants={varFadeInDown}>
                     <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center', mb: 3 }}>
-                        Collections
-                    </Typography>
-                    <Typography variant='h6' textAlign='center'>
-                        The price of each ABC NFT card is 0.05 Ether, they are distributed on the Ethereum network, and there is a total of 10000 cards.
+                        The Collection
                     </Typography>
                 </MotionInView>
             </Box>
