@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 // hooks
 import useLocalStorage from '../hooks/useLocalStorage';
 // theme
@@ -120,7 +120,7 @@ SettingsProvider.propTypes = {
 };
 
 function SettingsProvider({ children }) {
-  const [settings, setSettings] = useLocalStorage('settings', {
+  const [settings, setSettings] = useState({
     themeMode: 'dark',
     themeDirection: 'ltr',
     themeColor: 'cyan',
