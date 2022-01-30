@@ -35,15 +35,23 @@ const IMAGES = [
 ]
 
 const DESCRIPTION = [
-  "Experienced entrepreneur, with a strong technical background, having grown a start-up tech company to a multinational enterprise and listed on the ASX (Australian Securities Exchange).  Subsequently listed property focused, company on the ASX.  Extensive experience in leading start-up, small and large private and public organisations. Actively involved in a variety of businesses including a number of blockchain-based, technology businesses. Providing funding, vision, leadership, and ideas to Aussie Bogan Club. Passionate about bring ideas to life.",
-  "The Team could not operate without Bogan PM and there would be no Aussie Bogan Club without her. She is the glue that keeps everyone working harmoniously together and focused on the job at hand. You can count of Bogan PM to grease the Bogan wheels of the project.  She also does things like scoping, scheduling, risk management, contingency planning, quality control and resourcing.  Sounds impressive?  She is impressive, and we’re glad she’s part of the Team.",
-  "Highly qualified software engineer with over 5 years’ international, industry experience including extensive blockchain, web3, smart contract, tokens and fiat payment systems experience. Jointly responsible for UI, backend, minting engine, smart contract development and deployment of Aussie Bogan Club platform, including on-going technology management and enhancement.",
-  "Master’s qualified in computer science with over 8 years’ international experience in all things blockchain, NFTs, smart contracts, random programmatic image generation, including development frameworks such as MEVN, MEAN, Laravel, node.js, and others (all the technical stuff required for our project). Jointly responsible for UI, backend, minting engine, smart contract development and deployment of Aussie Bogan Club, including on-going platform management and enhancement.",
-  "Experienced international artist with raw talent and significant formal training in all things artist.  With over 15 years of experience in converting ideas and thoughts from concept drawings to final art including digital art.  Responsible for the conventionalisation, design and creation of the Aussie Bogan Club NFTs with collaboration and vision of the Team.",
-  "Extremely experienced in his own right with over 10 years experience in the creation of digital art and digital design.  Responsible for aiding the Artist Extraordinaire including contributing to design thoughts and creative ideas, drawing style and techniques with the creation of the Aussie Bogan Club NFT artwork.",
-  "All things social media including Discord, Instagram, Facebook, YouTube and Twitter.  Obsessed in social media, has no life, spends his awake-time on social media – poor guy.  Responsible for all things social media for Aussie Bogan Club, with assistance, input and guidance from the Team. ",
-  "Former stockbroker and financial adviser, commercial and marketing savvy, with strong local and multinational network of contacts in a broad cross-section of industries and disciplines.  Able to speak underwater with gravel in his mouth (figuratively speaking), he can’t in reality.  Responsible for expanding the reach and exposure of Aussie Bogan Club including on-boarding specialist marketeers, on-going utility expansion and partner recruitment and engagement.",
-  "Qualified accountant with over 4 years’ industry experience with start-up, small and large organisations.  Keen interest in all things blockchain, NFT and crypto generally.  Fervid (always wanted to use that word – means “passionate”) listed company share and cryptocurrency trader (including NFTs) and investor.  Providing financial management including cash-flow management, company compliance and formality to Aussie Bogan Club.  Always debates expense claim reimbursements!  Can’t I claim my recent NTF purchase as a business expense? "
+  "Experienced entrepreneur and seagan (pescatarian who doesn’t eat dairy and eggs), with a strong technical background, having grown a start-up tech company to a multinational enterprise and listed on the ASX (Australian Securities Exchange).  Subsequently listed property focused company on the ASX.  Extensive experience in leading start-up, small and large private and public organisations. Actively involved in a variety of businesses including a number of blockchain-based, technology businesses. Providing funding, vision, leadership, and ideas to Aussie Bogan Club. Passionate about bringing ideas to life and rewarding those who provide support along the journey.",
+
+  "The Team could not operate without our Bogan PM (proudly pansexual, fitness fanatic and social butterfly),  frankly there would be no Aussie Bogan Club without her! She is the glue that keeps everyone working harmoniously and focused. Our Bogan PM adds grease to the Bogan wheels of the project; from scoping, scheduling, risk management, contingency planning, quality control and resourcing.  Impressive hey?  Well, she is impressive, and we’re glad she’s part of the Team.",
+
+  "Highly qualified software engineer (whose taste in music is questionable) with over 5 years’ international, industry experience including extensive blockchain, web3, smart contract, tokens and fiat payment systems domain expertise. Jointly responsible for UI, backend, minting engine, smart contract development and deployment of Aussie Bogan Club platform, including on-going technology management and enhancement.",
+
+  "Master’s qualified computer science engineer (nerdy and we love him, also a gamer) with over 8 years’ international experience in all things blockchain, NFTs, smart contracts, random programmatic image generation, including development frameworks such as MEVN, MEAN, Laravel, node.js, and others (all the technical stuff required for our project). Jointly responsible for UI, backend, minting engine, smart contract development and deployment of Aussie Bogan Club, including on-going platform management and enhancement.",
+
+  "Experienced international artist who has an incurable sweet tooth and bends over backwards for everyone. With over 15 years of experience in converting ideas and thoughts from concept drawings to final art (including digital art), she has raw talent and significant formal training in all things artistic and creative.  Responsible for the conceptualisation, design and creation of the Aussie Bogan Club NFT artwork with collaboration and vision of the Team.",
+
+  "Extremely accomplished in his own right with over 10 years’ experience in the creation of digital art and digital design and a junk food addict (we’ll convert him yet).  Responsible for aiding our Artist Extraordinaire including contributing to design thoughts and creative ideas, drawing styles and techniques with the creation of the Aussie Bogan Club NFT artwork.  Oh, and a sports fanatic!",
+
+  "Omnivore, with nut allergies and competent in all things social media including Discord, Instagram, Facebook and Twitter.  Obsessed in social media, has no life, spends his awake-time on social media (with a bit of jiu jitsu and a little 4WD in between) – poor guy?  Responsible for all things social media for Aussie Bogan Club, with assistance, input and guidance from the Team. ",
+
+  "Former stockbroker and financial adviser, extreme carnivore, heavy coffee consumer, reformed smoker, commercially and marketing savvy, with strong local and multinational network of contacts in a broad cross-section of industries and disciplines.  Able to speak underwater with gravel in his mouth (figuratively speaking - he can’t in reality).  Responsible for expanding the reach and exposure of Aussie Bogan Club including on-boarding specialist marketeers, on-going utility expansion and partner recruitment and engagement.",
+
+  "Qualified accountant with over 4 years’ industry experience within start-up, small and large organisations.  Keen interest in healthy living (veganism and pilates), music and art, but mostly all things blockchain, NFT and crypto.  Fervid (always wanted to use that word – means “passionate”) listed company share and cryptocurrency trader (including NFTs) and investor.  Providing financial guidance, management including cash-flow management, company compliance and formality to Aussie Bogan Club.  Always debates expense claim reimbursements!  Why can’t I claim my recent NTF purchase as a business expense? "
 ]
 
 const PLANS = [...Array(9)].map((_, index) => ({
@@ -100,6 +108,18 @@ export default function Team() {
         <MotionInView variants={varFadeInDown}>
           <Typography className='flux_title' variant="h2" color='primary.main' sx={{ mb: 3 }}>
             Team
+          </Typography>
+          <Typography
+            variant='h6'
+            paragraph
+          >
+            The Aussie Bogan Club Team is comprised of real Australians who’s knowledge spans a wide variety of disciplines (and vices).
+          </Typography>
+          <Typography
+            variant='h6'
+            paragraph
+          >
+            Our vision is of a diverse Club of Aussie Bogans who respect the ABC values and join together to genuinely support each other in all areas of life including mental and physical health, education, personal development, career, business, special interests, socially entertainment and enjoyment.  To this end, all our utility, including future utility, will be based upon our pursuit to the fulfilment of our vision.
           </Typography>
         </MotionInView>
       </Box>
