@@ -4,19 +4,8 @@ import './utils/highlight';
 // scroll bar
 import 'simplebar/src/simplebar.css';
 
-// map
-import 'mapbox-gl/dist/mapbox-gl.css';
-
 // lightbox
 import 'react-image-lightbox/style.css';
-
-// editor
-import 'react-quill/dist/quill.snow.css';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
-// slick-carousel
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 // lazy image
 import 'lazysizes';

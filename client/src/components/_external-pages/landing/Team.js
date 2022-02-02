@@ -1,7 +1,4 @@
-import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
-import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
-import chevronRightFill from '@iconify/icons-eva/chevron-right-fill';
+import { useState } from 'react'
 // material
 import { useTheme, styled, alpha } from '@material-ui/core/styles';
 import { Box, Grid, Card, Link, Stack, Button, Divider, Container, Typography, Avatar, Paper } from '@material-ui/core';
@@ -68,6 +65,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 function PlanCard({ plan, cardIndex }) {
+  const [more, setMore] = useState(false)
   const theme = useTheme();
   const { name, image, description } = plan;
 
@@ -95,7 +93,18 @@ function PlanCard({ plan, cardIndex }) {
           })
         }}
       >
-        <Typography sx={{ mt: 2 }}>{`${description}`} </Typography>
+        {
+          more ?
+            <>
+              <Typography sx={{ mt: 2 }}>{`${description}`} </Typography>
+              <Typography color='primary.main' sx={{ cursor: 'pointer' }} onClick={() => setMore(false)}>less</Typography>
+            </>
+            :
+            <>
+              <Typography sx={{ mt: 2 }}>{`${description.slice(0, 200)}...`} </Typography>
+              <Typography color='primary.main' sx={{ cursor: 'pointer' }} onClick={() => setMore(true)}>more</Typography>
+            </>
+        }
       </Paper>
     </>
   );

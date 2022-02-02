@@ -3,7 +3,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import { alpha, useTheme, styled } from '@material-ui/core/styles';
 import { Box, Grid, Button, Container, Typography, Stack, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Icon } from '@iconify/react';
-import allInclusiveBoxOutline from '@iconify/icons-mdi/all-inclusive-box-outline';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 //

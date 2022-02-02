@@ -1,12 +1,5 @@
-import { Link as RouterLink } from 'react-router-dom';
-// material
 import { alpha, useTheme, styled } from '@material-ui/core/styles';
 import { Box, Grid, Button, Container, Typography, Stack } from '@material-ui/core';
-import { Icon } from '@iconify/react';
-import allInclusiveBoxOutline from '@iconify/icons-mdi/all-inclusive-box-outline';
-// routes
-import { PATH_PAGE } from '../../../routes/paths';
-import { MHidden } from '../../@material-extend';
 //
 import { varFadeInUp, MotionInView } from '../../animate';
 
