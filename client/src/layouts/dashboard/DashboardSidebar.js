@@ -17,7 +17,6 @@ import NavSection from '../../components/NavSection';
 import { MHidden } from '../../components/@material-extend';
 //
 import sidebarConfig from './SidebarConfig';
-import { DocIllustration } from '../../assets';
 
 // ----------------------------------------------------------------------
 
@@ -162,7 +161,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
       {!isCollapse && (
         <Stack spacing={3} alignItems="center" sx={{ px: 5, pb: 5, mt: 10, width: 1, textAlign: 'center' }}>
-          <DocIllustration sx={{ width: 1 }} />
 
           <div>
             <Typography gutterBottom variant="subtitle1">

@@ -23,15 +23,15 @@ const MEMBERS = [
 ];
 
 const IMAGES = [
-  '/static/team/chief.png',
-  '/static/team/project.png',
-  '/static/team/technical.png',
-  '/static/team/blockchain.png',
-  '/static/team/artist.png',
-  '/static/team/support.png',
-  '/static/team/creative.png',
-  '/static/team/marketing.png',
-  '/static/team/accounting.png'
+  '/static/team/chief.jpg',
+  '/static/team/project.jpg',
+  '/static/team/technical.jpg',
+  '/static/team/blockchain.jpg',
+  '/static/team/artist.jpg',
+  '/static/team/support.jpg',
+  '/static/team/creative.jpg',
+  '/static/team/marketing.jpg',
+  '/static/team/accounting.jpg'
 ]
 
 const DESCRIPTION = [

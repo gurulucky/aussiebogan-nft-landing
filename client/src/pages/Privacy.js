@@ -6,7 +6,6 @@ import { Box, Button, Typography, Container, ListItem } from '@material-ui/core'
 // components
 import { MotionContainer, varBounceIn, varFadeInRight } from '../components/animate';
 import Page from '../components/Page';
-import { PageNotFoundIllustration } from '../assets';
 
 // ----------------------------------------------------------------------
 

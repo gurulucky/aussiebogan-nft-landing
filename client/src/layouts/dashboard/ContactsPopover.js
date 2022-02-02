@@ -12,7 +12,6 @@ import { fToNow } from '../../utils/formatTime';
 // components
 import Scrollbar from '../../components/Scrollbar';
 import MenuPopover from '../../components/MenuPopover';
-import BadgeStatus from '../../components/BadgeStatus';
 import { MIconButton } from '../../components/@material-extend';
 
 // ----------------------------------------------------------------------
@@ -78,7 +77,6 @@ export default function ContactsPopover() {
               <ListItemButton disableGutters key={id} sx={{ px: PADDING_ITEM, height: ITEM_HEIGHT }}>
                 <ListItemAvatar sx={{ position: 'relative' }}>
                   <Avatar src={avatar} />
-                  <BadgeStatus status={status} sx={{ position: 'absolute', right: 1, bottom: 1 }} />
                 </ListItemAvatar>
                 <ListItemText
                   primaryTypographyProps={{ typography: 'subtitle2', mb: 0.25 }}
