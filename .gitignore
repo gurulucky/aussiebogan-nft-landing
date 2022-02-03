@@ -11,6 +11,7 @@
 
 # production
 /client/package-lock.json
+#/client/build
 
 # misc
 .DS_Store

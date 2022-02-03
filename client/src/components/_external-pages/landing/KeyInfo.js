@@ -1,8 +1,9 @@
+/* eslint-disable */
 // material
 import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Grid, Button, Container, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 //
-import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
+import {MotionInView, varFadeInDown } from '../../animate';
 
 // ----------------------------------------------------------------------
 const KEY_INFO = [

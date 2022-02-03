@@ -2,11 +2,6 @@ import { SvgIcon } from '@material-ui/core'
 
 // ----------------------------------------------------------------------
 
-const ICON_SIZE = {
-  width: 22,
-  height: 22
-};
-
 const menuConfig = [
   {
     title: 'MINT',

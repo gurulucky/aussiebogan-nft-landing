@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 // material
 import { useTheme } from '@material-ui/core/styles';
@@ -11,9 +12,6 @@ Logo.propTypes = {
 
 export default function Logo({ header = false, sx }) {
   const theme = useTheme();
-  const PRIMARY_LIGHT = theme.palette.primary.light;
-  const PRIMARY_MAIN = theme.palette.primary.main;
-  const PRIMARY_DARK = theme.palette.primary.dark;
 
   if (header) {
     return (

@@ -1,8 +1,9 @@
+/* eslint-disable */
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Grid, Card, Container, Typography, useMediaQuery } from '@material-ui/core';
+import { useTheme, styled } from '@material-ui/core/styles';
+import { Box, Typography, useMediaQuery } from '@material-ui/core';
 //
-import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
+import {MotionInView, varFadeInDown } from '../../animate';
 
 // ----------------------------------------------------------------------
 

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // material
-import { useTheme, styled, alpha } from '@material-ui/core/styles';
-import { Box, Container, Typography } from '@material-ui/core';
+import { styled} from '@material-ui/core/styles';
+import { Box, Typography } from '@material-ui/core';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 //
-import { varFadeIn, varFadeInUp, MotionInView, varFadeInDown, varFadeInRight } from '../../animate';
+import { MotionInView, varFadeInDown, varFadeInRight } from '../../animate';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // ----------------------------------------------------------------------

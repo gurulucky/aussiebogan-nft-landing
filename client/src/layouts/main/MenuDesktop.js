@@ -1,14 +1,9 @@
-import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
+
 import { useState, useEffect } from 'react';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
-import arrowIosUpwardFill from '@iconify/icons-eva/arrow-ios-upward-fill';
-import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
 import { styled } from '@material-ui/core/styles';
-import { Box, Link, Grid, List, Stack, Popover, ListItem, ListSubheader, CardActionArea, Typography } from '@material-ui/core';
+import {Link,Stack} from '@material-ui/core';
 
 // ----------------------------------------------------------------------
 
@@ -27,8 +22,8 @@ const LinkStyle = styled(Link)(({ theme }) => ({
 }));
 
 
-function MenuDesktopItem({ item, pathname, isHome, isOpen, isOffset, onOpen, onClose }) {
-  const { title, path, children } = item;
+function MenuDesktopItem({ item, pathname, isHome,isOffset }) {
+  const { title, path } = item;
   const isActive = pathname === path;
 
 

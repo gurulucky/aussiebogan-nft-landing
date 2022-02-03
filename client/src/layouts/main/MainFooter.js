@@ -1,7 +1,4 @@
-// import { Icon } from '@iconify/react';
-// import discordFill from '@iconify/icons-akar-icons/discord-fill';
-// import twitterFill from '@iconify/icons-akar-icons/twitter-fill';
-// import instagramFill from '@iconify/icons-akar-icons/instagram-fill';
+/* eslint-disable */
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 // material

@@ -1,10 +1,10 @@
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Web3 from 'web3'
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Grid, Card, Container, Typography, useMediaQuery, Stack, TextField, Button, InputBase } from '@material-ui/core';
+import { useTheme, styled } from '@material-ui/core/styles';
+import { Typography, useMediaQuery, Stack,Button, InputBase } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 //
 import { setAlert } from 'src/actions/manager';
@@ -35,19 +35,11 @@ const ConnectButton = styled(LoadingButton)(({ theme }) => ({
   width: '200px'
 }));
 
-const TimerStyle = styled(Typography)(({ theme }) => ({
-  fontFamily: 'VT323, monospace',
-  fontSize: '48px',
-  [theme.breakpoints.up('md')]: {
-    fontSize: '64px'
-  }
-}))
 
 // ----------------------------------------------------------------------
 
 export default function Test() {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const dispatch = useDispatch();
 

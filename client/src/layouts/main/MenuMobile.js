@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
