@@ -50,7 +50,7 @@ const Scroll_2 = styled(Box)(() => ({
 
 export default function LandingMinimalHelps() {
     const theme = useTheme();
-    const isLight = theme.palette.mode === 'light';
+    const isLight = theme.palette?.mode === 'light';
     const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (

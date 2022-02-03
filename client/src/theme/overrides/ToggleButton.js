@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------
 
 export default function ToggleButton(theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
 
   return {
     MuiToggleButton: {

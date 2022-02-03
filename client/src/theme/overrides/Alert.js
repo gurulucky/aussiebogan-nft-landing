@@ -7,7 +7,7 @@ import checkmarkCircle2Fill from '@iconify/icons-eva/checkmark-circle-2-fill';
 // ----------------------------------------------------------------------
 
 export default function Alert(theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
 
   const standardStyle = (color) => ({
     color: theme.palette[color][isLight ? 'darker' : 'lighter'],

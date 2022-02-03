@@ -5,7 +5,7 @@ import { alpha, styled } from '@material-ui/core/styles';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('span')(({ theme, styleProps }) => {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
   const { color, variant } = styleProps;
 
   const styleFilled = (color) => ({

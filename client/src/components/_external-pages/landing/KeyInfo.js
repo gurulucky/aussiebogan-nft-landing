@@ -49,7 +49,7 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(10,15)
   },
   backgroundImage:
-    theme.palette.mode === 'light'
+    theme.palette?.mode === 'light'
       ? `linear-gradient(180deg, ${alpha(theme.palette.grey[300], 0)} 0%, ${theme.palette.grey[300]} 100%)`
       : 'none'
 }));
@@ -69,7 +69,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function KeyInfo() {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
   const isRTL = theme.direction === 'rtl';
 
   return (

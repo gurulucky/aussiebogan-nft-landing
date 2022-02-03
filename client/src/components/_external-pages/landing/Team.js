@@ -70,7 +70,7 @@ function PlanCard({ plan, cardIndex }) {
   const theme = useTheme();
   const { name, image, description } = plan;
 
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
 
   return (
     <>

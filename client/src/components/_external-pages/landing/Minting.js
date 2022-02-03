@@ -50,7 +50,7 @@ const TimerStyle = styled(Typography)(({ theme }) => ({
 
 export default function Minting() {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const countdown = useCountdown(new Date('03/07/2022 21:30'));
   const dispatch = useDispatch();

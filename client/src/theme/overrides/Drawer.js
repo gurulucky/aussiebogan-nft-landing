@@ -3,7 +3,7 @@ import { alpha } from '@material-ui/core';
 // ----------------------------------------------------------------------
 
 export default function Drawer(theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
 
   return {
     MuiDrawer: {

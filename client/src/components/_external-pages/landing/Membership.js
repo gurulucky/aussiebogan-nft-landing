@@ -34,7 +34,7 @@ const ScreenStyle = styled(MotionInView)(({ theme }) => ({
   paddingBottom: 1,
   maxWidth: 160,
   borderRadius: 8,
-  backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 300 : 800],
+  backgroundColor: theme.palette.grey[theme.palette?.mode === 'light' ? 300 : 800],
   [theme.breakpoints.up('sm')]: {
     maxWidth: 320,
     paddingRight: 4,
@@ -89,7 +89,7 @@ const MEMBERSHIP_TEXT = [
 
 export default function Membership() {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
   const isRTL = theme.direction === 'rtl';
 
   const screenLeftAnimate = variantScreenLeft;

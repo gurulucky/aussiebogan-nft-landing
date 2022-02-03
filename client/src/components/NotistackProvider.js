@@ -13,7 +13,7 @@ import { Box } from '@material-ui/core';
 // ----------------------------------------------------------------------
 
 const useStyles = makeStyles((theme) => {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette?.mode === 'light';
 
   const createStyle = {
     color: `${theme.palette.text.primary} !important`,
