@@ -94,9 +94,5 @@
     "worker-loader": "^3.0.8",
     "yup": "^0.32.9"
   },
-  "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/eslint-parser": "^7.15.0"
-  },
   "proxy": "http://localhost:5000"
 }
