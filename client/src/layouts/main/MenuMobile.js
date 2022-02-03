@@ -2,14 +2,11 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
 import menu2Fill from '@iconify/icons-eva/menu-2-fill';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
-import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
-import { Box, List, Drawer, Link, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
+import { List, Drawer, Link,ListItemText, ListItemIcon} from '@material-ui/core';
 // components
 import Logo from '../../components/Logo';
 import NavSection from '../../components/NavSection';
@@ -17,7 +14,7 @@ import Scrollbar from '../../components/Scrollbar';
 import { MIconButton } from '../../components/@material-extend';
 //
 import menuConfig from './MenuConfig';
-import { Stack, Typography } from '@material-ui/core';
+import { Stack} from '@material-ui/core';
 
 // ----------------------------------------------------------------------
 
