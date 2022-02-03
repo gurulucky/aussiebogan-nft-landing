@@ -50,7 +50,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
   backgroundImage:
     theme.palette?.mode === 'light'
-      ? `linear-gradient(180deg, ${alpha(theme.palette.grey[300], 0)} 0%, ${theme.palette.grey[300]} 100%)`
+      ? `linear-gradient(180deg, ${alpha(theme.palette?.grey[300], 0)} 0%, ${theme.palette?.grey[300]} 100%)`
       : 'none'
 }));
 

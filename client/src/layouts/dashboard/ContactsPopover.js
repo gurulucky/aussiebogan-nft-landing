@@ -57,7 +57,7 @@ export default function ContactsPopover() {
         onClick={handleOpen}
         sx={{
           ...(open && {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)
+            bgcolor: (theme) => alpha(theme.palette?.primary.main, theme.palette?.action.focusOpacity)
           })
         }}
       >

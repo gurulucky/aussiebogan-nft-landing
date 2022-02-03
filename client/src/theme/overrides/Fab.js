@@ -13,7 +13,7 @@ export default function Fab(theme) {
           style: {
             boxShadow: theme.customShadows.primary,
             '&:hover': {
-              backgroundColor: theme.palette.primary.dark
+              backgroundColor: theme.palette?.primary.dark
             }
           }
         }
@@ -24,7 +24,7 @@ export default function Fab(theme) {
           boxShadow: theme.customShadows.z8,
           '&:hover': {
             boxShadow: 'none',
-            backgroundColor: theme.palette.grey[400]
+            backgroundColor: theme.palette?.grey[400]
           }
         },
         primary: {},

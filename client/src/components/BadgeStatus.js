@@ -15,7 +15,7 @@ const RootStyle = styled('span')(({ theme, styleProps }) => {
     '&:before, &:after': {
       content: "''",
       borderRadius: 1,
-      backgroundColor: theme.palette.common.white
+      backgroundColor: theme.palette?.common.white
     },
 
     ...(size === 'small'
@@ -27,7 +27,7 @@ const RootStyle = styled('span')(({ theme, styleProps }) => {
     }),
 
     ...(status === 'away' && {
-      backgroundColor: theme.palette.warning.main,
+      backgroundColor: theme.palette?.warning.main,
       '&:before': {
         width: 2,
         height: 4,
@@ -41,16 +41,16 @@ const RootStyle = styled('span')(({ theme, styleProps }) => {
     }),
 
     ...(status === 'busy' && {
-      backgroundColor: theme.palette.error.main,
+      backgroundColor: theme.palette?.error.main,
       '&:before': { width: 6, height: 2 }
     }),
 
     ...(status === 'online' && {
-      backgroundColor: theme.palette.success.main
+      backgroundColor: theme.palette?.success.main
     }),
 
     ...(status === 'invisible' && {
-      backgroundColor: theme.palette.text.disabled,
+      backgroundColor: theme.palette?.text.disabled,
       '&:before': {
         width: 6,
         height: 6,
@@ -59,7 +59,7 @@ const RootStyle = styled('span')(({ theme, styleProps }) => {
     }),
 
     ...(status === 'unread' && {
-      backgroundColor: theme.palette.info.main
+      backgroundColor: theme.palette?.info.main
     })
   };
 });

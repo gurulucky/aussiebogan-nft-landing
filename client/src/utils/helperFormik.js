@@ -16,8 +16,8 @@ const RootStyle = styled('pre')(({ theme }) => ({
   WebkitBackdropFilter: 'blur(8px)', // Fix on Mobile
   paddingLeft: theme.spacing(3),
   boxShadow: theme.customShadows.z24,
-  color: theme.palette.primary.light,
-  background: alpha(theme.palette.grey[900], 0.96),
+  color: theme.palette?.primary.light,
+  background: alpha(theme.palette?.grey[900], 0.96),
   '& code': {
     ...theme.typography.body1
   }
@@ -27,13 +27,13 @@ const LabelStyle = styled('div')(({ theme }) => ({
   ...theme.typography.subtitle1,
   minWidth: 160,
   margin: theme.spacing(1, 0),
-  color: theme.palette.primary.lighter
+  color: theme.palette?.primary.lighter
 }));
 
 const BoolStyle = styled('div')(({ theme }) => ({
   '& code': {
-    color: theme.palette.warning.contrastText,
-    backgroundColor: theme.palette.warning.main
+    color: theme.palette?.warning.contrastText,
+    backgroundColor: theme.palette?.warning.main
   }
 }));
 

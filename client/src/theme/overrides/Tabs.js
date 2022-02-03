@@ -10,7 +10,7 @@ export default function Tabs(theme) {
           borderTopLeftRadius: theme.shape.borderRadius,
           borderTopRightRadius: theme.shape.borderRadius,
           '&.Mui-selected': {
-            color: theme.palette.text.primary
+            color: theme.palette?.text.primary
           },
           '&:not(:last-child)': {
             marginRight: theme.spacing(5)
@@ -33,7 +33,7 @@ export default function Tabs(theme) {
         },
         textColorInherit: {
           opacity: 1,
-          color: theme.palette.text.secondary
+          color: theme.palette?.text.secondary
         }
       }
     },

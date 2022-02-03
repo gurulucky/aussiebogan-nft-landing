@@ -28,7 +28,7 @@ export default function Rating(theme) {
             opacity: 0.48
           }
         },
-        iconEmpty: { color: theme.palette.grey[500_48] },
+        iconEmpty: { color: theme.palette?.grey[500_48] },
         sizeSmall: { '& svg': { ...ICON_SMALL } },
         sizeLarge: { '& svg': { ...ICON_LARGE } }
       }

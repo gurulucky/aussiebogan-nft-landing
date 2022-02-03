@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => {
     backgroundSize: '24px 24px',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: alpha(theme.palette.grey[900], 0.8),
+    backgroundColor: alpha(theme.palette?.grey[900], 0.8),
     backgroundImage: `url("/static/icons/controls/${iconName}.svg")`
   });
 
   return createStyles({
     root: {
       backdropFilter: 'blur(8px)',
-      backgroundColor: alpha(theme.palette.grey[900], 0.88),
+      backgroundColor: alpha(theme.palette?.grey[900], 0.88),
 
       // Toolbar
       '& .ril__toolbar': {

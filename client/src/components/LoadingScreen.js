@@ -45,7 +45,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: theme.palette.background?.default
+  backgroundColor: theme.palette?.background?.default
 }));
 
 // ----------------------------------------------------------------------
@@ -96,7 +96,7 @@ export default function LoadingScreen({ ...other }) {
           height: 100,
           borderRadius: '25%',
           position: 'absolute',
-          border: (theme) => `solid 3px ${alpha(theme.palette.primary.dark, 0.24)}`
+          border: (theme) => `solid 3px ${alpha(theme.palette?.primary.dark, 0.24)}`
         }}
       />
 
@@ -118,7 +118,7 @@ export default function LoadingScreen({ ...other }) {
           height: 120,
           borderRadius: '25%',
           position: 'absolute',
-          border: (theme) => `solid 8px ${alpha(theme.palette.primary.dark, 0.24)}`
+          border: (theme) => `solid 8px ${alpha(theme.palette?.primary.dark, 0.24)}`
         }}
       />
     </RootStyle>

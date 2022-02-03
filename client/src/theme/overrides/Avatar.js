@@ -5,8 +5,8 @@ export default function Avatar(theme) {
     MuiAvatar: {
       styleOverrides: {
         colorDefault: {
-          color: theme.palette.text.secondary,
-          backgroundColor: theme.palette.grey[400]
+          color: theme.palette?.text.secondary,
+          backgroundColor: theme.palette?.grey[400]
         }
       }
     },
@@ -17,8 +17,8 @@ export default function Avatar(theme) {
           fontWeight: theme.typography.fontWeightMedium,
           '&:first-of-type': {
             fontSize: 14,
-            color: theme.palette.primary.main,
-            backgroundColor: theme.palette.primary.lighter
+            color: theme.palette?.primary.main,
+            backgroundColor: theme.palette?.primary.lighter
           }
         }
       }

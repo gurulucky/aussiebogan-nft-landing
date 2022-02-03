@@ -10,7 +10,7 @@ import {Link,Stack} from '@material-ui/core';
 const LinkStyle = styled(Link)(({ theme }) => ({
   ...theme.typography.subtitle2,
   cursor: 'pointer',
-  color: theme.palette.text.primary,
+  color: theme.palette?.text.primary,
   marginRight: theme.spacing(5),
   transition: theme.transitions.create('opacity', {
     duration: theme.transitions.duration.shortest

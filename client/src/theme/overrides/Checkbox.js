@@ -39,7 +39,7 @@ export default function Checkbox(theme) {
         root: {
           padding: theme.spacing(1),
           '&.Mui-checked.Mui-disabled, &.Mui-disabled': {
-            color: theme.palette.action.disabled
+            color: theme.palette?.action.disabled
           },
           '& .MuiSvgIcon-fontSizeMedium': {
             width: 24,

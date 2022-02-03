@@ -16,9 +16,9 @@ const ArrowStyle = styled('span')(({ theme }) => ({
     position: 'absolute',
     borderRadius: '0 0 4px 0',
     transform: 'rotate(-135deg)',
-    background: theme.palette.background.paper,
-    borderRight: `solid 1px ${alpha(theme.palette.grey[500], 0.12)}`,
-    borderBottom: `solid 1px ${alpha(theme.palette.grey[500], 0.12)}`
+    background: theme.palette?.background.paper,
+    borderRight: `solid 1px ${alpha(theme.palette?.grey[500], 0.12)}`,
+    borderBottom: `solid 1px ${alpha(theme.palette?.grey[500], 0.12)}`
   }
 }));
 
@@ -40,7 +40,7 @@ export default function MenuPopover({ children, sx, ...other }) {
           ml: 0.5,
           overflow: 'inherit',
           boxShadow: (theme) => theme.customShadows.z20,
-          border: (theme) => `solid 1px ${theme.palette.grey[500_8]}`,
+          border: (theme) => `solid 1px ${theme.palette?.grey[500_8]}`,
           width: 200,
           ...sx
         }

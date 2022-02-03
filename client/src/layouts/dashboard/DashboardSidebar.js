@@ -37,7 +37,7 @@ const AccountStyle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
   borderRadius: theme.shape.borderRadiusSm,
-  backgroundColor: theme.palette.grey[500_12]
+  backgroundColor: theme.palette?.grey[500_12]
 }));
 
 // ----------------------------------------------------------------------
@@ -220,7 +220,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
                 backdropFilter: 'blur(6px)',
                 WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
                 boxShadow: (theme) => theme.customShadows.z20,
-                bgcolor: (theme) => alpha(theme.palette.background.default, 0.88)
+                bgcolor: (theme) => alpha(theme.palette?.background.default, 0.88)
               })
             }
           }}

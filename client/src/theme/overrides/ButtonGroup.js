@@ -25,10 +25,10 @@ export default function ButtonGroup(theme) {
           style: {
             boxShadow: 'none',
             '& .MuiButtonGroup-grouped.Mui-disabled': {
-              color: theme.palette.action.disabled,
-              borderColor: `${theme.palette.action.disabledBackground} !important`,
+              color: theme.palette?.action.disabled,
+              borderColor: `${theme.palette?.action.disabledBackground} !important`,
               '&.MuiButton-contained': {
-                backgroundColor: theme.palette.action.disabledBackground
+                backgroundColor: theme.palette?.action.disabledBackground
               }
             }
           }

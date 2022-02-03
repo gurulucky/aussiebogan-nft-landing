@@ -13,7 +13,7 @@ export default function Timeline(theme) {
     MuiTimelineConnector: {
       styleOverrides: {
         root: {
-          backgroundColor: theme.palette.divider
+          backgroundColor: theme.palette?.divider
         }
       }
     }

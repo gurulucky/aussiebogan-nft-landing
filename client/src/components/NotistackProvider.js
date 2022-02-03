@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => {
   const isLight = theme.palette?.mode === 'light';
 
   const createStyle = {
-    color: `${theme.palette.text.primary} !important`,
-    backgroundColor: `${theme.palette.background.paper} !important`
+    color: `${theme.palette?.text.primary} !important`,
+    backgroundColor: `${theme.palette?.background.paper} !important`
   };
 
   return createStyles({
@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => {
       margin: theme.spacing(0.25, 0),
       boxShadow: theme.customShadows.z8,
       borderRadius: theme.shape.borderRadius,
-      color: theme.palette.grey[isLight ? 0 : 800],
-      backgroundColor: theme.palette.grey[isLight ? 900 : 0]
+      color: theme.palette?.grey[isLight ? 0 : 800],
+      backgroundColor: theme.palette?.grey[isLight ? 900 : 0]
     },
     message: {
       padding: 0,

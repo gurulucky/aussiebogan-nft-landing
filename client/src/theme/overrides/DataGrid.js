@@ -12,20 +12,20 @@ export default function DataGrid(theme) {
           },
           '& .MuiDataGrid-toolbarContainer': {
             padding: theme.spacing(2),
-            backgroundColor: theme.palette.background.neutral,
+            backgroundColor: theme.palette?.background.neutral,
             '& .MuiButton-root': {
               marginRight: theme.spacing(1.5),
-              color: theme.palette.text.primary,
+              color: theme.palette?.text.primary,
               '&:hover': {
-                backgroundColor: theme.palette.action.hover
+                backgroundColor: theme.palette?.action.hover
               }
             }
           },
           '& .MuiDataGrid-cell, .MuiDataGrid-columnsContainer': {
-            borderBottom: `1px solid ${theme.palette.divider}`
+            borderBottom: `1px solid ${theme.palette?.divider}`
           },
           '& .MuiDataGrid-columnSeparator': {
-            color: theme.palette.divider
+            color: theme.palette?.divider
           }
         }
       }
@@ -59,7 +59,7 @@ export default function DataGrid(theme) {
               ...theme.typography.body2,
               padding: theme.spacing(0.75, 1),
               borderRadius: theme.shape.borderRadius,
-              backgroundColor: theme.palette.background.neutral
+              backgroundColor: theme.palette?.background.neutral
             },
             '& .MuiSvgIcon-root': {
               right: 4
@@ -76,16 +76,16 @@ export default function DataGrid(theme) {
           '& .MuiButton-root': {
             '&:first-of-type': {
               marginRight: theme.spacing(1.5),
-              color: theme.palette.text.primary,
+              color: theme.palette?.text.primary,
               '&:hover': {
-                backgroundColor: theme.palette.action.hover
+                backgroundColor: theme.palette?.action.hover
               }
             },
             '&:last-of-type': {
-              color: theme.palette.common.white,
-              backgroundColor: theme.palette.primary.main,
+              color: theme.palette?.common.white,
+              backgroundColor: theme.palette?.primary.main,
               '&:hover': {
-                backgroundColor: theme.palette.primary.dark
+                backgroundColor: theme.palette?.primary.dark
               }
             }
           }

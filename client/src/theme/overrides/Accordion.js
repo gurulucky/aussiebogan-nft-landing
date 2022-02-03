@@ -22,7 +22,7 @@ export default function Accordion(theme) {
           paddingRight: theme.spacing(1),
           '&.Mui-disabled': {
             opacity: 1,
-            color: theme.palette.action.disabled,
+            color: theme.palette?.action.disabled,
             '& .MuiTypography-root': {
               color: 'inherit'
             }

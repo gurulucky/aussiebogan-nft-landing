@@ -9,7 +9,7 @@ import { varWrapEnter, varFadeInRight } from '../../animate';
 
 const RootStyle = styled(motion.div)(({ theme }) => ({
   // position: 'relative',
-  // // backgroundColor: theme.palette.grey[400],
+  // // backgroundColor: theme.palette?.grey[400],
   // backgroundImage: "url('/static/bg.jpg')",
   // backgroundSize: '100% auto',
   // backgroundRepeat: 'no-repeat',
@@ -26,7 +26,7 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
   //   // justifyContent:'center'
   // }
   position: 'relative',
-  backgroundColor: theme.palette.grey[400],
+  backgroundColor: theme.palette?.grey[400],
   marginTop: '64px',
   // [theme.breakpoints.up('md')]: {
     // top: 0,

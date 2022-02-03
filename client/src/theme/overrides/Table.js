@@ -6,9 +6,9 @@ export default function Table(theme) {
       styleOverrides: {
         root: {
           '&.Mui-selected': {
-            backgroundColor: theme.palette.action.selected,
+            backgroundColor: theme.palette?.action.selected,
             '&:hover': {
-              backgroundColor: theme.palette.action.hover
+              backgroundColor: theme.palette?.action.hover
             }
           }
         }
@@ -20,24 +20,24 @@ export default function Table(theme) {
           borderBottom: 'none'
         },
         head: {
-          color: theme.palette.text.secondary,
-          backgroundColor: theme.palette.background.neutral,
+          color: theme.palette?.text.secondary,
+          backgroundColor: theme.palette?.background.neutral,
           '&:first-of-type': {
             paddingLeft: theme.spacing(3),
             borderTopLeftRadius: theme.shape.borderRadius,
             borderBottomLeftRadius: theme.shape.borderRadius,
-            boxShadow: `inset 8px 0 0 ${theme.palette.background.paper}`
+            boxShadow: `inset 8px 0 0 ${theme.palette?.background.paper}`
           },
           '&:last-of-type': {
             paddingRight: theme.spacing(3),
             borderTopRightRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
-            boxShadow: `inset -8px 0 0 ${theme.palette.background.paper}`
+            boxShadow: `inset -8px 0 0 ${theme.palette?.background.paper}`
           }
         },
         stickyHeader: {
-          backgroundColor: theme.palette.background.paper,
-          backgroundImage: `linear-gradient(to bottom, ${theme.palette.background.neutral} 0%, ${theme.palette.background.neutral} 100%)`
+          backgroundColor: theme.palette?.background.paper,
+          backgroundImage: `linear-gradient(to bottom, ${theme.palette?.background.neutral} 0%, ${theme.palette?.background.neutral} 100%)`
         },
         body: {
           '&:first-of-type': {
@@ -52,7 +52,7 @@ export default function Table(theme) {
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          borderTop: `solid 1px ${theme.palette.divider}`
+          borderTop: `solid 1px ${theme.palette?.divider}`
         },
         toolbar: {
           height: 64

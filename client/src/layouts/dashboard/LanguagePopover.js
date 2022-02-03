@@ -38,7 +38,7 @@ export default function LanguagePopover() {
           width: 44,
           height: 44,
           ...(open && {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)
+            bgcolor: (theme) => alpha(theme.palette?.primary.main, theme.palette?.action.focusOpacity)
           })
         }}
       >

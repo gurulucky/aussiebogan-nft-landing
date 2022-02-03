@@ -6,9 +6,9 @@ export default function Menu(theme) {
       styleOverrides: {
         root: {
           '&.Mui-selected': {
-            backgroundColor: theme.palette.action.selected,
+            backgroundColor: theme.palette?.action.selected,
             '&:hover': {
-              backgroundColor: theme.palette.action.hover
+              backgroundColor: theme.palette?.action.hover
             }
           }
         }

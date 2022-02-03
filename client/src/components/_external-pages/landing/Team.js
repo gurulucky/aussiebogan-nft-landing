@@ -87,10 +87,10 @@ function PlanCard({ plan, cardIndex }) {
           p: 5,
           borderRadius: '0px',
           boxShadow: (theme) =>
-            `0px 48px 80px ${alpha(isLight ? theme.palette.grey[500] : theme.palette.common.black, 0.12)}`,
+            `0px 48px 80px ${alpha(isLight ? theme.palette?.grey[500] : theme.palette?.common.black, 0.12)}`,
           ...(cardIndex === 1 && {
             boxShadow: (theme) =>
-              `0px 48px 80px ${alpha(isLight ? theme.palette.grey[500] : theme.palette.common.black, 0.48)}`
+              `0px 48px 80px ${alpha(isLight ? theme.palette?.grey[500] : theme.palette?.common.black, 0.48)}`
           })
         }}
       >
