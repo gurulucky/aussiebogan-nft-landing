@@ -6,7 +6,6 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-//
 import { varFadeInUp, MotionInView } from '../../animate';
 
 // ----------------------------------------------------------------------
@@ -92,7 +91,7 @@ export default function BoganForever() {
           <ContentStyle>
             {/* <MHidden width='mdDown'> */}
             <MotionInView variants={varFadeInUp}>
-              <Box component='img' src='/static/chief.png' />
+              <Box component='img' src='https://ucarecdn.com/bac6d3b6-f032-4df7-8b75-9ea33f7f3f37/chief.png' />
             </MotionInView>
 
             {/* </MHidden> */}

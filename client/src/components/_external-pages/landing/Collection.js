@@ -21,7 +21,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 const Scroll = styled(Box)(() => ({
     height: 256,
-    background: 'url(/static/ss1.jpg)',
+    background: 'url(https://ucarecdn.com/5fcc7e70-4c0c-4504-ac20-24a698a5b93d/ss1.jpg)',
     backgroundSize: '5120px 256px',
     animation: 'mosaic 40s linear infinite',
     '@keyframes mosaic': {
@@ -36,7 +36,7 @@ const Scroll = styled(Box)(() => ({
 
 const Scroll_2 = styled(Box)(() => ({
     height: 256,
-    background: 'url(/static/ss2.jpg)',
+    background: 'url(https://ucarecdn.com/6a2a3956-5814-4924-b811-5dcfbefb9b1b/ss2.jpg)',
     backgroundSize: '5120px 256px',
     animation: 'mosaic 40s linear infinite',
     '@keyframes mosaic': {

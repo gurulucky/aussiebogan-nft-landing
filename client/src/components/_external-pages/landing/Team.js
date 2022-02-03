@@ -27,15 +27,15 @@ const MEMBERS = [
 ];
 
 const IMAGES = [
-  '/static/team/chief.jpg',
-  '/static/team/project.jpg',
-  '/static/team/technical.jpg',
-  '/static/team/blockchain.jpg',
-  '/static/team/artist.jpg',
-  '/static/team/support.jpg',
-  '/static/team/creative.jpg',
-  '/static/team/marketing.jpg',
-  '/static/team/accounting.jpg'
+  'https://ucarecdn.com/1693d7a6-77db-413a-8999-67b73ac66460/chief.jpg',
+  'https://ucarecdn.com/a3045cce-551d-4054-8bfc-90abadd698d8/project.jpg',
+  'https://ucarecdn.com/5ca15f52-0219-44c0-9305-6c54e9d6902f/technical.jpg',
+  'https://ucarecdn.com/2f9bd0da-6d7c-4ee3-90ab-b81631d143b7/blockchain.jpg',
+  'https://ucarecdn.com/e2b448ab-37ab-4a3b-accb-359a925c10d9/artist.jpg',
+  'https://ucarecdn.com/c829027e-4a04-4f25-b34b-ef807572d720/support.jpg',
+  'https://ucarecdn.com/091eea5b-1bfe-4d7b-926a-a5017e74aea0/creative.jpg',
+  'https://ucarecdn.com/e515fc7c-38c8-4568-b5a6-7d40f3c6d438/marketing.jpg',
+  'https://ucarecdn.com/25251cd2-60f9-40cb-91ff-c826823a050a/accounting.jpg'
 ]
 
 const DESCRIPTION = [

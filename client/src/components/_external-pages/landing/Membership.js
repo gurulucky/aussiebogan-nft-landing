@@ -125,7 +125,7 @@ export default function Membership() {
 
           <Grid item xs={12} md={6} dir="ltr">
             <ContentStyle>
-                  <Box component='img' src='/static/gif.gif'/>
+                  <Box component='img' src='https://ucarecdn.com/3c2030bc-9bc5-4c55-a1ad-b97d7c6a37b6/gif.gif'/>
             </ContentStyle>
           </Grid>
         </Grid>
