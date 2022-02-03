@@ -2,7 +2,11 @@
 import { motion } from 'framer-motion';
 // material
 import { styled, useTheme } from '@material-ui/core/styles';
-import { Typography, Stack, useMediaQuery, Box } from '@material-ui/core';
+// import { Typography, Stack, useMediaQuery, Box } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography'
+import Stack from '@material-ui/core/Stack'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Box from '@material-ui/core/Box'
 import { varWrapEnter, varFadeInRight } from '../../animate';
 
 // ----------------------------------------------------------------------

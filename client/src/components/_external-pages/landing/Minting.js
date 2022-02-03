@@ -1,14 +1,18 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Web3 from 'web3'
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Grid, Card, Container, Typography, useMediaQuery, Stack, TextField, Button, InputBase } from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+import { useTheme, styled } from '@material-ui/core/styles';
+// import { Typography, useMediaQuery, Stack, TextField, Button, InputBase } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Stack from '@material-ui/core/Stack'
+import Button from '@material-ui/core/Button'
+// import { LoadingButton } from '@material-ui/lab';
+import LoadingButton from '@material-ui/lab/LoadingButton'
 //
-import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
+import { MotionInView, varFadeInDown } from '../../animate';
 import useCountdown from '../../../hooks/useCountdown';
 import { setAlert } from 'src/actions/manager';
 import { hasEnoughEth, mint, getTotalMinted } from '../../../lib/mint';

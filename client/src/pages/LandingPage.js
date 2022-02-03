@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import { scroller } from 'react-scroll';
 // material
 import { styled } from '@material-ui/core/styles';
-import { Stack } from '@material-ui/core';
+import  Stack  from '@material-ui/core/Stack';
 // components
 import Page from '../components/Page';
 import {

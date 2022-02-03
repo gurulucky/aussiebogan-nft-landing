@@ -1,12 +1,20 @@
 /* eslint-disable */
-import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
-import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
-import chevronRightFill from '@iconify/icons-eva/chevron-right-fill';
 // material
-import { useTheme, styled, alpha } from '@material-ui/core/styles';
-import { Box, useMediaQuery, Typography, ListItem, ListItemIcon, Stack } from '@material-ui/core';
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@material-ui/lab';
+import { useTheme, styled } from '@material-ui/core/styles';
+// import { Box, useMediaQuery, Typography, ListItem, ListItemIcon, Stack } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Typography from '@material-ui/core/Typography'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Stack from '@material-ui/core/Stack'
+// import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@material-ui/lab';
+import Timeline from '@material-ui/lab/Timeline'
+import TimelineItem from '@material-ui/lab/TimelineItem'
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator'
+import TimelineConnector from '@material-ui/lab/TimelineConnector'
+import TimelineContent from '@material-ui/lab/TimelineContent'
+import TimelineDot from '@material-ui/lab/TimelineDot'
 //
 import { MotionInView, varFadeInDown, varFadeInLeft, varFadeInRight } from '../../animate';
 import CheckIcon from '@mui/icons-material/Check';

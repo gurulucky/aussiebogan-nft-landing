@@ -4,8 +4,14 @@ import { useDispatch } from 'react-redux';
 import Web3 from 'web3'
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
-import { Typography, useMediaQuery, Stack,Button, InputBase } from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+// import { Typography, useMediaQuery, Stack,Button, InputBase } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Stack from '@material-ui/core/Stack'
+import Button from '@material-ui/core/Button'
+import InputBase from '@material-ui/core/InputBase'
+// import { LoadingButton } from '@material-ui/lab';
+import LoadingButton from '@material-ui/lab/LoadingButton'
 //
 import { setAlert } from 'src/actions/manager';
 import { hasEnoughEth, mint, getTotalMinted } from '../lib/mint';

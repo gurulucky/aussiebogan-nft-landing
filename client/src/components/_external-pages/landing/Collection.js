@@ -1,7 +1,10 @@
 /* eslint-disable */
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
-import { Box, Typography, useMediaQuery } from '@material-ui/core';
+// import { Box, Typography, useMediaQuery } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 //
 import {MotionInView, varFadeInDown } from '../../animate';
 

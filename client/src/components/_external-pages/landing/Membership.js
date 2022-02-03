@@ -1,11 +1,13 @@
 /* eslint-disable */
-import { Link as RouterLink } from 'react-router-dom';
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Grid, Button, Container, Typography, Stack, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Icon } from '@iconify/react';
-// routes
-import { PATH_PAGE } from '../../../routes/paths';
+import { useTheme, styled } from '@material-ui/core/styles';
+// import {  Grid, Button, Container, Typography, Stack, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Box from '@material-ui/core/Box'
 //
 import { varFadeInUp, MotionInView } from '../../animate';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';

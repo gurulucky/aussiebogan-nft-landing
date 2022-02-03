@@ -2,9 +2,15 @@
 import { useState } from 'react'
 // material
 import { useTheme, styled, alpha } from '@material-ui/core/styles';
-import { Box, Grid, Card, Link, Stack, Button, Divider, Container, Typography, Avatar, Paper } from '@material-ui/core';
+// import { Box, Grid, Stack, Typography, Avatar, Paper } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import Stack from '@material-ui/core/Stack'
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import Paper from '@material-ui/core/Paper'
 //
-import { varFadeIn, varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
+import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
 
 // ----------------------------------------------------------------------
 

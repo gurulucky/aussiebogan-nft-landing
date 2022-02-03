@@ -2,7 +2,12 @@ import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@material-ui/core/styles';
-import { Box, Button, Typography, Container, ListItem } from '@material-ui/core';
+// import { Box, Button, Typography, Container, ListItem } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import ListItem from '@material-ui/core/ListItem'
 // components
 import { MotionContainer, varBounceIn, varFadeInRight } from '../components/animate';
 import Page from '../components/Page';

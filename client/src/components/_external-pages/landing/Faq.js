@@ -1,8 +1,13 @@
 import { useState } from 'react';
 // material
 import { styled} from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+// import { Box, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import Accordion from '@material-ui/core/Accordion'
+import Typography from '@material-ui/core/Typography'
+import AccordionDetails from '@material-ui/core/AccordionDetails'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+// import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 //
 import { MotionInView, varFadeInDown, varFadeInRight } from '../../animate';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
