@@ -56,7 +56,6 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "highlight.js": "^11.2.0",
-    "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "lazysizes": "^5.3.2",
