@@ -21,9 +21,9 @@ export default function App() {
     <ThemeConfig>
       <ThemePrimaryColor>
         <ThemeLocalization>
-            <NotistackProvider>
+            {/* <NotistackProvider> */}
               {isInitialized ? <Router /> : <LoadingScreen />}
-            </NotistackProvider>
+            {/* </NotistackProvider> */}
         </ThemeLocalization>
       </ThemePrimaryColor>
     </ThemeConfig>
