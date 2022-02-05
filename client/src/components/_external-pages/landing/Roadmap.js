@@ -17,8 +17,8 @@ import TimelineContent from '@material-ui/lab/TimelineContent'
 import TimelineDot from '@material-ui/lab/TimelineDot'
 //
 import { MotionInView, varFadeInDown, varFadeInLeft, varFadeInRight } from '../../animate';
-import CheckIcon from '@mui/icons-material/Check';
-import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import CheckIcon from '@material-ui/icons/Check';
+import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({

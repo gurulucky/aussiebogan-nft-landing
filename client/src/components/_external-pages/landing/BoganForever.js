@@ -31,24 +31,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
   }
 }));
 
-const ScreenStyle = styled(MotionInView)(({ theme }) => ({
-  paddingRight: 2,
-  paddingBottom: 1,
-  maxWidth: 160,
-  borderRadius: 8,
-  backgroundColor: theme.palette?.grey[theme.palette?.mode === 'light' ? 300 : 800],
-  [theme.breakpoints.up('sm')]: {
-    maxWidth: 320,
-    paddingRight: 4,
-    borderRadius: 12
-  },
-  '& img': {
-    borderRadius: 8,
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: 12
-    }
-  }
-}));
 
 const COMMON = {
   scaleX: 0.86,
@@ -77,12 +59,6 @@ const variantScreenRight = {
 
 export default function BoganForever() {
   const theme = useTheme();
-  const isLight = theme.palette?.mode === 'light';
-  const isRTL = theme.direction === 'rtl';
-
-  const screenLeftAnimate = variantScreenLeft;
-  const screenCenterAnimate = variantScreenCenter;
-  const screenRightAnimate = variantScreenRight;
 
   return (
     <RootStyle>
@@ -91,7 +67,7 @@ export default function BoganForever() {
           <ContentStyle>
             {/* <MHidden width='mdDown'> */}
             <MotionInView variants={varFadeInUp}>
-              <Box component='img' src='https://ucarecdn.com/bac6d3b6-f032-4df7-8b75-9ea33f7f3f37/chief.png' />
+              <Box component='img' src='https://ucarecdn.com/bac6d3b6-f032-4df7-8b75-9ea33f7f3f37/chief.png' sx={{width:'100%'}}/>
             </MotionInView>
 
             {/* </MHidden> */}

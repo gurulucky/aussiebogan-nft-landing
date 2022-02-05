@@ -11,7 +11,7 @@ import { varWrapEnter, varFadeInRight } from '../../animate';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled(motion.div)(({ theme }) => ({
+const RootStyle = styled('div')(({ theme }) => ({
   // position: 'relative',
   // // backgroundColor: theme.palette?.grey[400],
   // backgroundImage: "url('/static/bg.jpg')",
@@ -30,7 +30,6 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
   //   // justifyContent:'center'
   // }
   position: 'relative',
-  backgroundColor: theme.palette?.grey[400],
   marginTop: '64px',
   // [theme.breakpoints.up('md')]: {
     // top: 0,
@@ -55,34 +54,6 @@ const ContentStyle = styled((props) => <Stack sx={{ width: 1 }} alignItems='cent
   }
 }));
 
-const HeroOverlayStyle = styled(motion.img)({
-  zIndex: 9,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  position: 'absolute'
-});
-
-const HeroImgStyle = styled(motion.img)(({ theme }) => ({
-  // top: 0,
-  right: 0,
-  bottom: 0,
-  zIndex: 8,
-  width: '100%',
-  // margin: 'auto',
-  position: 'absolute',
-  [theme.breakpoints.up('lg')]: {
-    right: '8%',
-    width: 'auto',
-    height: '72vh'
-  },
-  [theme.breakpoints.down('md')]: {
-    right: '8%',
-    width: 'auto',
-    height: '36vh'
-  }
-}));
-
 // ----------------------------------------------------------------------
 
 export default function Home() {
@@ -90,7 +61,7 @@ export default function Home() {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <>
-      <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
+      <RootStyle variants={varWrapEnter}>
         {/* <HeroOverlayStyle alt="overlay" src="/static/overlay.svg" variants={varFadeIn} /> */}
 
         {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}

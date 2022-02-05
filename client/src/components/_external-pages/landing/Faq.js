@@ -10,7 +10,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary'
 // import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 //
 import { MotionInView, varFadeInDown, varFadeInRight } from '../../animate';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // ----------------------------------------------------------------------
 const FAQ_DATA = [

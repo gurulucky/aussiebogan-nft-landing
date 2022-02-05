@@ -76,19 +76,19 @@
   }
 }
 
-/* .flux {
+.flux {
   animation: flux 2s linear infinite;
   -moz-animation: flux 2s linear infinite;
   -webkit-animation: flux 2s linear infinite;
   -o-animation: flux 2s linear infinite;
 } */
 
-/* .flux_title {
+.flux_title {
   animation: flux 2s linear infinite;
   -moz-animation: flux 2s linear infinite;
   -webkit-animation: flux 2s linear infinite;
   -o-animation: flux 2s linear infinite;
-} */
+}
 
 @keyframes flux {
   0%,
