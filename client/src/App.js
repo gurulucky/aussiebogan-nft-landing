@@ -6,13 +6,15 @@ import ThemeConfig from './theme';
 import useAuth from './hooks/useAuth';
 
 // components
+import Settings from './components/settings';
+import RtlLayout from './components/RtlLayout';
+import ScrollToTop from './components/ScrollToTop';
 import LoadingScreen from './components/LoadingScreen';
 import NotistackProvider from './components/NotistackProvider';
 import ThemePrimaryColor from './components/ThemePrimaryColor';
 import ThemeLocalization from './components/ThemeLocalization';
-
-// ----------------------------------------------------------------------
 import './App.css';
+// ----------------------------------------------------------------------
 
 export default function App() {
   const { isInitialized } = useAuth();
@@ -21,9 +23,11 @@ export default function App() {
     <ThemeConfig>
       <ThemePrimaryColor>
         <ThemeLocalization>
-            {/* <NotistackProvider> */}
-              {isInitialized ? <Router /> : <LoadingScreen />}
-            {/* </NotistackProvider> */}
+          <RtlLayout>
+            {/* <Settings /> */}
+            <ScrollToTop />
+            <Router />
+          </RtlLayout>
         </ThemeLocalization>
       </ThemePrimaryColor>
     </ThemeConfig>

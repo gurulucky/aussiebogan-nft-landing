@@ -1,8 +1,8 @@
-/* eslint-disable */
 import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes, useLocation } from 'react-router-dom';
 // layouts
 import MainLayout from '../layouts/main';
+// components
 import LoadingScreen from '../components/LoadingScreen';
 
 // ----------------------------------------------------------------------
@@ -35,24 +35,20 @@ const Loadable = (Component) => (props) => {
 
 export default function Router() {
   return useRoutes([
+    // Main Routes
     {
       path: '/',
       element: <MainLayout />,
       children: [
-        { path: '/', element: <LandingPage /> },
-        { path: '/terms', element: <TermsPage /> },
-        { path: '/privacy', element: <PrivacyPage /> },
-        { path: '/test', element: <TestPage /> }
+        {
+          path: '/',
+          element: <LandingPage />
+        }
       ]
     }
   ]);
 }
 
 // IMPORT COMPONENTS
-
 // Main
-const LandingPage = Loadable(lazy(() => import('../pages/LandingPage')));
-const TermsPage = Loadable(lazy(() => import('../pages/TermsPage.js')));
-const PrivacyPage = Loadable(lazy(() => import('../pages/Privacy.js')));
-
-const TestPage = Loadable(lazy(() => import('../pages/Test.js')));
+const LandingPage = Loadable(lazy(() => import('../pages/landing/LandingPage')));

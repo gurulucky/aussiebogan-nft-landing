@@ -1,11 +1,25 @@
+// i18n
+import './locales/i18n';
+
 // highlight
 import './utils/highlight';
 
 // scroll bar
 import 'simplebar/src/simplebar.css';
 
+// map
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 // lightbox
 import 'react-image-lightbox/style.css';
+
+// editor
+import 'react-quill/dist/quill.snow.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+// slick-carousel
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // lazy image
 import 'lazysizes';
@@ -20,42 +34,30 @@ import { Provider as ReduxProvider } from 'react-redux';
 // material
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-// redux
-// import { store, persistor } from './redux/store';
-import Store from './store';
 // contexts
 import { SettingsProvider } from './contexts/SettingsContext';
 import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
 // components
-
-import { AuthProvider } from './contexts/JWTContext';
-// import { AuthProvider } from './contexts/FirebaseContext';
-// import { AuthProvider } from './contexts/AwsCognitoContext';
-// import { AuthProvider } from './contexts/Auth0Context';
-
-//
+import LoadingScreen from './components/LoadingScreen';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
+import store from './store'
 
 // ----------------------------------------------------------------------
 
 ReactDOM.render(
   <HelmetProvider>
-    <ReduxProvider store={Store}>
-      {/* <PersistGate loading={<LoadingScreen />} persistor={persistor}> */}
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <SettingsProvider>
-            <CollapseDrawerProvider>
-              <BrowserRouter>
-                <AuthProvider>
-                  <App />
-                </AuthProvider>
-              </BrowserRouter>
-            </CollapseDrawerProvider>
-          </SettingsProvider>
-        </LocalizationProvider>
-      {/* </PersistGate> */}
+    <ReduxProvider store={store}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <SettingsProvider>
+          <CollapseDrawerProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </CollapseDrawerProvider>
+        </SettingsProvider>
+      </LocalizationProvider>
     </ReduxProvider>
   </HelmetProvider>,
   document.getElementById('root')

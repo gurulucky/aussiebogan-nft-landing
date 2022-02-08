@@ -1,4 +1,3 @@
-/* eslint-disable */
 import PropTypes from 'prop-types';
 import { createContext, useState } from 'react';
 // hooks
@@ -104,7 +103,7 @@ function SetColor(themeColor) {
 const initialState = {
   themeMode: 'dark',
   themeDirection: 'ltr',
-  themeColor: 'cyan',
+  themeColor: 'default',
   themeStretch: false,
   onChangeMode: () => {},
   onChangeDirection: () => {},
@@ -121,10 +120,10 @@ SettingsProvider.propTypes = {
 };
 
 function SettingsProvider({ children }) {
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState('settings', {
     themeMode: 'dark',
     themeDirection: 'ltr',
-    themeColor: 'cyan',
+    themeColor: 'default',
     themeStretch: false
   });
 
