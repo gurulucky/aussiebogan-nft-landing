@@ -1,11 +1,12 @@
 const express = require('express');
 const path = require('path');
+const connectDB = require('./config/db');
 
 require('dotenv').config();
 const app = express();
 
 ////    MongoDB connect
-
+connectDB()
 // Init Middleware
 app.use(express.json());
 
