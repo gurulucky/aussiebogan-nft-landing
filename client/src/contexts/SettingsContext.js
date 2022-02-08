@@ -103,7 +103,7 @@ function SetColor(themeColor) {
 const initialState = {
   themeMode: 'dark',
   themeDirection: 'ltr',
-  themeColor: 'default',
+  themeColor: 'cyan',
   themeStretch: false,
   onChangeMode: () => {},
   onChangeDirection: () => {},
@@ -123,7 +123,7 @@ function SettingsProvider({ children }) {
   const [settings, setSettings] = useState('settings', {
     themeMode: 'dark',
     themeDirection: 'ltr',
-    themeColor: 'default',
+    themeColor: 'cyan',
     themeStretch: false
   });
 
