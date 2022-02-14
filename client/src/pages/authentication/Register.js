@@ -61,7 +61,7 @@ export default function Register() {
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
             Enjoy events in Cryptics
           </Typography>
-          <img alt="register" src="/static/illustrations/illustration_register.png" />
+          <img alt="register" src='https://ucarecdn.com/bac6d3b6-f032-4df7-8b75-9ea33f7f3f37/chief.png' />
         </SectionStyle>
       </MHidden>
 
@@ -74,9 +74,6 @@ export default function Register() {
               </Typography>
               {/* <Typography sx={{ color: 'text.secondary' }}>Free forever. No credit card needed.</Typography> */}
             </Box>
-            <Tooltip title={capitalCase(method)}>
-              <Box component="img" src={`/static/auth/ic_${method}.png`} sx={{ width: 32, height: 32 }} />
-            </Tooltip>
           </Box>
 
           {method === 'firebase' && <AuthFirebaseSocials />}

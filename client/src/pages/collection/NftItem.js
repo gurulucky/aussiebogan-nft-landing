@@ -22,7 +22,7 @@ export default function NftItem({nft}) {
                     </CardContent>
                     <CardActions>
                         <Box sx={{ flexGrow: 1 }} />
-                        <a href={`https://testnets.opensea.io/assets/0x4c45442f7513418ce84979d8b669259f5aff7b8f/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>View on opensea</a>
+                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>View on opensea</a>
                     </CardActions>
                 </StyledCard>
             </Container>

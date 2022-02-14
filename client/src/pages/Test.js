@@ -13,7 +13,7 @@ import InputBase from '@material-ui/core/InputBase'
 // import { LoadingButton } from '@material-ui/lab';
 import LoadingButton from '@material-ui/lab/LoadingButton'
 //
-import { setModal, showPayment, buyNFTs } from '../actions/manager';
+import { setModal, showPayment, buyNFTs, setQuantity } from '../actions/manager';
 import { hasEnoughEth, mint, getTotalMinted } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 import Payment from './payment/Payment'
@@ -51,7 +51,8 @@ export default function Test() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
+  const quantity = useSelector(state => state.manager.quantity)
   const [account, setAccount] = useState('');
   const [initWeb3, setInitWeb3] = useState(false);
   const [minting, setMinting] = useState(false);
@@ -133,10 +134,11 @@ export default function Test() {
     if (e.target.value > 10) {
       return;
     }
-    setQuantity(e.target.value);
+    dispatch(setQuantity(e.target.value));
   }
 
   const onSucceed = async () => {
+    dispatch(showPayment(false))
     setBuying(true)
     try {
       let res = await buyNFTs(quantity)
@@ -179,7 +181,7 @@ export default function Test() {
         </Stack>
         <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
           <Stack direction='row' sx={{ border: '1px solid #0E77B7', p: '5px', backgroundColor: '#0f2938' }}>
-            <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1)}>-</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(quantity - 1 > 0 ? quantity - 1 : 1))}>-</ButtonStyle>
             <InputBase variant='outlined' type='number'
               fullWidth={true}
               inputProps={{
@@ -189,19 +191,19 @@ export default function Test() {
               value={quantity}
               onChange={changeQuantity}
             />
-            <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity + 1 <= 10 ? quantity + 1 : 10)}>+</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(quantity + 1 <= 10 ? quantity + 1 : 10))}>+</ButtonStyle>
           </Stack>
           <Stack direction='row' spacing={1}>
 
-            <ButtonStyle variant='outlined' onClick={() => setQuantity(3)}>3</ButtonStyle>
-            <ButtonStyle variant='outlined' onClick={() => setQuantity(5)}>5</ButtonStyle>
-            <ButtonStyle variant='outlined' onClick={() => setQuantity(10)}>10</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(3))}>3</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(5))}>5</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(10))}>10</ButtonStyle>
           </Stack>
         </Stack>
         <Stack direction='row' spacing={1}>
           <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
           {
-            isAuthenticated && <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={e => dispatch(showPayment(true))}>{buying?`Buying...`:`Buy`}</ConnectButton>
+            isAuthenticated && <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={e => dispatch(showPayment(true))}>{buying ? `Buying...` : `Buy`}</ConnectButton>
           }
         </Stack>
         <a href='https://rinkeby.etherscan.io/address/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c' target='_blank' style={{ textDecoration: 'none' }}><Typography variant='body1' color='white'>View Contract</Typography> </a>

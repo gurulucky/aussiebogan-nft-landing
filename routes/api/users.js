@@ -53,6 +53,7 @@ const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 const eth_provider = new ethers.providers.JsonRpcProvider(rinkebynet)
 
+
 var minterWallet = new ethers.Wallet.fromMnemonic(seed)
 var minterSigner = minterWallet.connect(eth_provider)
 var contract = new ethers.Contract(NFT_ADDRESS, NFT_ABI, minterSigner)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -13,6 +13,9 @@ import "./stripe.css";
 import PaypalForm from "./PaypalForm";
 ///     actions
 import { showPayment } from '../../actions/manager';
+import { getEthPrice } from '../../lib/mint';
+
+const PRICE = Number(process.env.REACT_APP_PRICE)
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBKEY_TEST);
 
@@ -53,10 +56,20 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 
-const Payment = ({onSucceed}) => {
+const Payment = ({ onSucceed }) => {
     const dispatch = useDispatch()
+    const quantity = useSelector(state => state.manager.quantity)
+    const [ethPrice, setEthPrice] = useState(0)
     const [expanded, setExpanded] = React.useState('stripe');
     const open = useSelector(state => state.manager.paymentOpen)
+
+    useEffect(() => {
+        getETHPrice()
+    }, [])
+
+    const getETHPrice = async () => {
+        setEthPrice(await getEthPrice())
+    }
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -65,14 +78,25 @@ const Payment = ({onSucceed}) => {
     const handleClose = () => {
         dispatch(showPayment(false))
     }
-    
+
     return (
         <Dialog open={open} onClose={handleClose}>
             {/* <DialogTitle>Use Google's location service?</DialogTitle> */}
             <DialogContent>
-                <Typography variant='h5' className='caption'>
-                    PAYMENT METHOD
-                </Typography>
+                <Stack direction='column' spacing={1}>
+                    <Stack direction='row' justifyContent='space-between'>
+                        <Typography variant='h5' className='caption'>
+                            PAYMENT METHOD
+                        </Typography>
+                        <Typography variant='h6' color='red'>
+                            {`${ethPrice.toFixed(2)} USD / ETH`}
+                        </Typography>
+                    </Stack>
+                    <Typography variant='body1'>
+                        {`You should pay ${(quantity * PRICE * ethPrice).toFixed(2)} USD for ${quantity} NFTs`}
+                    </Typography>
+
+                </Stack>
                 <Accordion expanded={expanded === 'stripe'} onChange={handleChange('stripe')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Box component='img' src='/static/stripe.png' width='60px' height='auto' />

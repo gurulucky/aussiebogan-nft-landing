@@ -1,5 +1,5 @@
 import {
-  SET_MODAL, SET_NFTS, SHOW_PAYMENT
+  SET_MODAL, SET_NFTS, SET_QUANTITY, SHOW_PAYMENT
 } from './types';
 
 import api from '../utils/api'
@@ -38,6 +38,13 @@ export const getNFTs = async (nftIds) => {
     console.log(err.message)
     return []
   }
+}
+
+export const setQuantity = (quantity) => dispatch => {
+  dispatch({
+    type: SET_QUANTITY,
+    payload: quantity
+  })
 }
 
 export const buyNFTs = async (amount) => {

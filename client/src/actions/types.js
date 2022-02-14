@@ -4,6 +4,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const SET_MODAL = 'SET_MODAL'
 export const SHOW_PAYMENT = 'SHOW_PAYMENT'
 export const SET_NFTS = 'SET_NFTS'
+export const SET_QUANTITY = 'SET_QUANTITY'
 /******    Auth          */
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';

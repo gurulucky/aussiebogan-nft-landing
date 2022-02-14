@@ -5,7 +5,8 @@ const initialState = {
   modalText: "",
   modalOpen: false,
   paymentOpen: false,
-  nfts: []
+  nfts: [],
+  quantity: 1
 };
 
 function managerReducer(state = initialState, action) {
@@ -27,6 +28,11 @@ function managerReducer(state = initialState, action) {
       return {
         ...state,
         nfts: payload
+      }
+    case types.SET_QUANTITY:
+      return {
+        ...state,
+        quantity: payload
       }
     default:
       return state;

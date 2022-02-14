@@ -4,6 +4,10 @@ import { TOKEN_URIS } from './ABC2-M_summary.js'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+const web3 = new Web3(mainnet)
+const aggregatorV3InterfaceABI = [{ "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "description", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint80", "name": "_roundId", "type": "uint80" }], "name": "getRoundData", "outputs": [{ "internalType": "uint80", "name": "roundId", "type": "uint80" }, { "internalType": "int256", "name": "answer", "type": "int256" }, { "internalType": "uint256", "name": "startedAt", "type": "uint256" }, { "internalType": "uint256", "name": "updatedAt", "type": "uint256" }, { "internalType": "uint80", "name": "answeredInRound", "type": "uint80" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "latestRoundData", "outputs": [{ "internalType": "uint80", "name": "roundId", "type": "uint80" }, { "internalType": "int256", "name": "answer", "type": "int256" }, { "internalType": "uint256", "name": "startedAt", "type": "uint256" }, { "internalType": "uint256", "name": "updatedAt", "type": "uint256" }, { "internalType": "uint80", "name": "answeredInRound", "type": "uint80" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "version", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
+const eth_usd = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, eth_usd)
 
 const NFT_ADDRESS = '0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c'
 const PRICE = 0.05
@@ -61,4 +65,15 @@ export const isBigger = (x, y) => {
         if (x[i] > y[i]) return 1;
     }
     return 0;
+}
+
+export const getEthPrice = async () => {
+    try {
+        let ethPrice = (await priceFeed.methods.latestRoundData().call()).answer / (10 ** 8)
+        console.log("ETH / USD", ethPrice)
+        return ethPrice
+    } catch (err) {
+        console.log(err.message)
+        return 0
+    }
 }
