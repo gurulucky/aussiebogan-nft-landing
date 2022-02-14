@@ -14,8 +14,8 @@ import LoadingButton from '@material-ui/lab/LoadingButton'
 //
 import { MotionInView, varFadeInDown } from '../../components/animate';
 import useCountdown from '../../hooks/useCountdown';
-import { setAlert } from 'src/actions/manager';
-import { hasEnoughEth, mint, getTotalMinted } from '../../lib/mint';
+import { setModal } from '../../actions/manager';
+import { hasEnoughEth, mint, getTotalMinted } from '../../lib/mint';  
 // ----------------------------------------------------------------------
 const NETWORK = 'rinkeby';
 const RINKEBY_CHAINID = 4;
@@ -106,7 +106,7 @@ export default function Minting() {
           method: "eth_chainId"
         });
         if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
-          dispatch(setAlert(true, `Connect to ${NETWORK} network on metamask.`));
+          dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           setAccount("");
           return;
         }
@@ -118,11 +118,11 @@ export default function Minting() {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
             if (await mint(accounts[0], quantity)) {
-              dispatch(setAlert(true, `Minting ${quantity} NFTs succeed`));
+              dispatch(setModal(true, `Minting ${quantity} NFTs succeed`));
               setTotal();
             }
           } else {
-            dispatch(setAlert(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+            dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
           }
           setMinting(false);
         }
@@ -130,7 +130,7 @@ export default function Minting() {
         setMinting(false);
       }
     } else {
-      dispatch(setAlert(true, "Install web3 wallet"));
+      dispatch(setModal(true, "Install web3 wallet"));
     }
   }
 

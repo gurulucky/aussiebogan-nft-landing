@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Web3 from 'web3'
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
@@ -13,8 +13,10 @@ import InputBase from '@material-ui/core/InputBase'
 // import { LoadingButton } from '@material-ui/lab';
 import LoadingButton from '@material-ui/lab/LoadingButton'
 //
-import { setAlert } from 'src/actions/manager';
+import { setModal, showPayment, buyNFTs } from '../actions/manager';
 import { hasEnoughEth, mint, getTotalMinted } from '../lib/mint';
+import AlertDialog from './AlertDialog';
+import Payment from './payment/Payment'
 // ----------------------------------------------------------------------
 const NETWORK = 'rinkeby';
 const RINKEBY_CHAINID = 4;
@@ -48,11 +50,12 @@ export default function Test() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const dispatch = useDispatch();
-
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const [quantity, setQuantity] = useState(1);
   const [account, setAccount] = useState('');
   const [initWeb3, setInitWeb3] = useState(false);
   const [minting, setMinting] = useState(false);
+  const [buying, setBuying] = useState(false)
   const [totalMinted, setTotalMinted] = useState(0);
 
   useEffect(() => {
@@ -67,6 +70,7 @@ export default function Test() {
       });
       window.ethereum.on('networkChanged', function (networkId) {
         if (Number(networkId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+          dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           setAccount("");
           return;
         }
@@ -80,10 +84,6 @@ export default function Test() {
   /// window.ethereum used to get addrss
   const conMetamask = async (e) => {
     // console.log(e);
-    if (e && account) {
-      setAccount("");
-      return;
-    }
     console.log('changed');
     if (window.ethereum) {
       try {
@@ -96,7 +96,7 @@ export default function Test() {
           method: "eth_chainId"
         });
         if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
-          dispatch(setAlert(true, `Connect to ${NETWORK} network on metamask.`));
+          dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           setAccount("");
           return;
         }
@@ -104,15 +104,15 @@ export default function Test() {
         console.log(accounts);
         // console.log(await window.web3.eth.getBalance(accounts[0]));
         setAccount(accounts[0] !== undefined ? accounts[0] : "");
-        if (accounts[0]) {
+        if (accounts[0] && e) {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
             if (await mint(accounts[0], quantity)) {
-              dispatch(setAlert(true, `Minting ${quantity} NFTs succeed`));
+              dispatch(setModal(true, `Minting ${quantity} NFTs succeed`));
               setTotal();
             }
           } else {
-            dispatch(setAlert(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+            dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
           }
           setMinting(false);
         }
@@ -120,7 +120,7 @@ export default function Test() {
         setMinting(false);
       }
     } else {
-      dispatch(setAlert(true, "Install web3 wallet"));
+      dispatch(setModal(true, "Install web3 wallet"));
     }
   }
 
@@ -136,56 +136,78 @@ export default function Test() {
     setQuantity(e.target.value);
   }
 
+  const onSucceed = async () => {
+    setBuying(true)
+    try {
+      let res = await buyNFTs(quantity)
+      if (res) {
+        dispatch(setModal(true, `You have bought ${quantity} ABCs. Please check in my collection`))
+      } else {
+        dispatch(setModal(true, `Buy NFTs failed`))
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
+    setBuying(false)
+  }
+
   return (
     <RootStyle>
-        <Stack direction='column'
-          sx={{
-            p: 3,
-            border: '1px solid #1CCAFF',
-            backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'
-          }}
-          spacing={5} alignItems='center'
-        >
-          <Stack direction='column'>
-            <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
-              Mint ABC NFTs
+      <Stack direction='column'
+        sx={{
+          p: 3,
+          border: '1px solid #1CCAFF',
+          backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'
+        }}
+        spacing={5} alignItems='center'
+      >
+        <Stack direction='column'>
+          <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
+            Mint ABC NFTs
+          </Typography>
+          <Stack direction='row' spacing={1} justifyContent='center'>
+            <Typography variant="h6" color='common.white'>
+              Total minted:
             </Typography>
-            <Stack direction='row' spacing={1} justifyContent='center'>
-              <Typography variant="h6" color='common.white'>
-                Total minted:
-              </Typography>
-              <Typography variant='h6' color='primary.main'>{`${totalMinted} / 10000`}</Typography>
-            </Stack>
+            <Typography variant='h6' color='primary.main'>{`${totalMinted} / 10000`}</Typography>
           </Stack>
-
-          <Stack direction='column'>
-            <Typography variant='h6' color='common.white' textAlign='center'>0.05 Eth + Gas fee</Typography>
-            <Typography variant='h6' color='common.white' textAlign='center'>Max 10 ABCs per transactions</Typography>
-          </Stack>
-          <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
-            <Stack direction='row' sx={{ border: '1px solid #0E77B7', p: '5px', backgroundColor: '#0f2938' }}>
-              <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1)}>-</ButtonStyle>
-              <InputBase variant='outlined' type='number'
-                fullWidth={true}
-                inputProps={{
-                  min: 1, max: 10,
-                  sx: { textAlign: 'center' },
-                }}
-                value={quantity}
-                onChange={changeQuantity}
-              />
-              <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity + 1 <= 10 ? quantity + 1 : 10)}>+</ButtonStyle>
-            </Stack>
-            <Stack direction='row' spacing={1}>
-
-              <ButtonStyle variant='outlined' onClick={() => setQuantity(3)}>3</ButtonStyle>
-              <ButtonStyle variant='outlined' onClick={() => setQuantity(5)}>5</ButtonStyle>
-              <ButtonStyle variant='outlined' onClick={() => setQuantity(10)}>10</ButtonStyle>
-            </Stack>
-          </Stack>
-          <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT ABC`}</ConnectButton>
-          <a href='https://rinkeby.etherscan.io/address/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c' target='_blank'><Typography variant='body1'>View Contract</Typography> </a>
         </Stack>
+
+        <Stack direction='column'>
+          <Typography variant='h6' color='common.white' textAlign='center'>0.05 Eth + Gas fee</Typography>
+          <Typography variant='h6' color='common.white' textAlign='center'>Max 10 ABCs per transactions</Typography>
+        </Stack>
+        <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
+          <Stack direction='row' sx={{ border: '1px solid #0E77B7', p: '5px', backgroundColor: '#0f2938' }}>
+            <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1)}>-</ButtonStyle>
+            <InputBase variant='outlined' type='number'
+              fullWidth={true}
+              inputProps={{
+                min: 1, max: 10,
+                sx: { textAlign: 'center' },
+              }}
+              value={quantity}
+              onChange={changeQuantity}
+            />
+            <ButtonStyle variant='outlined' onClick={() => setQuantity(quantity + 1 <= 10 ? quantity + 1 : 10)}>+</ButtonStyle>
+          </Stack>
+          <Stack direction='row' spacing={1}>
+
+            <ButtonStyle variant='outlined' onClick={() => setQuantity(3)}>3</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => setQuantity(5)}>5</ButtonStyle>
+            <ButtonStyle variant='outlined' onClick={() => setQuantity(10)}>10</ButtonStyle>
+          </Stack>
+        </Stack>
+        <Stack direction='row' spacing={1}>
+          <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
+          {
+            isAuthenticated && <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={e => dispatch(showPayment(true))}>{buying?`Buying...`:`Buy`}</ConnectButton>
+          }
+        </Stack>
+        <a href='https://rinkeby.etherscan.io/address/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c' target='_blank' style={{ textDecoration: 'none' }}><Typography variant='body1' color='white'>View Contract</Typography> </a>
+      </Stack>
+      <AlertDialog />
+      <Payment onSucceed={onSucceed} />
     </RootStyle >
   );
 }

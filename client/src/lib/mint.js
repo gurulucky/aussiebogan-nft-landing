@@ -1,5 +1,9 @@
+import Web3 from 'web3'
 import { NFT_ABI } from './abi.js'
 import { TOKEN_URIS } from './ABC2-M_summary.js'
+
+const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 const NFT_ADDRESS = '0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c'
 const PRICE = 0.05
@@ -14,9 +18,21 @@ export const mint = async (account, amount) => {
 }
 
 export const getTotalMinted = async () => {
-    let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+    let web3 = new Web3(rinkebynet)
+    let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
+    console.log('totalminted', tokenCounter)
     return tokenCounter;
+}
+
+export const getTokenUris = async (tokenIds) => {
+    let web3 = new Web3(rinkebynet)
+    let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+    let tokenUris = []
+    for (let i = 0; i < tokenIds.length; i++) {
+        tokenUris.push(await abc_contract.methods.tokenURI(tokenIds[i]).call())
+    }
+    return tokenUris
 }
 
 export const hasEnoughEth = async (account, amount) => {

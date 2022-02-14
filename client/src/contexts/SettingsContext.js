@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import { createContext, useState } from 'react';
 // hooks
@@ -120,7 +121,7 @@ SettingsProvider.propTypes = {
 };
 
 function SettingsProvider({ children }) {
-  const [settings, setSettings] = useState('settings', {
+  const [settings, setSettings] = useState({
     themeMode: 'dark',
     themeDirection: 'ltr',
     themeColor: 'cyan',

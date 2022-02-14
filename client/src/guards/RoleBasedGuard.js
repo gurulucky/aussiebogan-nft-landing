@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Container, Alert, AlertTitle } from '@material-ui/core';
 
 // ----------------------------------------------------------------------
 
-RoleBasedGuard.propTypes = {
-  accessibleRoles: PropTypes.array, // Example ['admin', 'leader']
-  children: PropTypes.node
-};
+// RoleBasedGuard.propTypes = {
+//   accessibleRoles: PropTypes.array, // Example ['admin', 'leader']
+//   children: PropTypes.node
+// };
 
 const useCurrentRole = () => {
   // Logic here to get current user role
@@ -14,10 +14,10 @@ const useCurrentRole = () => {
   return role;
 };
 
-export default function RoleBasedGuard({ accessibleRoles, children }) {
-  const currentRole = useCurrentRole();
-
-  if (!accessibleRoles.includes(currentRole)) {
+export default function RoleBasedGuard({ accessRole, children }) {
+  const role = useSelector(state => state.auth.user?.role);
+  console.log(role, accessRole);
+  if (accessRole !== role) {
     return (
       <Container>
         <Alert severity="error">

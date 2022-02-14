@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// hooks
-import useAuth from '../hooks/useAuth';
 // pages
 import Login from '../pages/authentication/Login';
+import {PATH_AUTH} from '../routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -13,21 +13,17 @@ AuthGuard.propTypes = {
 };
 
 export default function AuthGuard({ children }) {
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const { pathname } = useLocation();
   const [requestedLocation, setRequestedLocation] = useState(null);
+  const navigate = useNavigate();
 
-  if (!isAuthenticated) {
-    if (pathname !== requestedLocation) {
-      setRequestedLocation(pathname);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate(PATH_AUTH.login);
     }
-    return <Login />;
-  }
-
-  if (requestedLocation && pathname !== requestedLocation) {
-    setRequestedLocation(null);
-    return <Navigate to={requestedLocation} />;
-  }
-
+  }, [isAuthenticated])
+  
   return <>{children}</>;
 }

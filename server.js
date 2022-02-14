@@ -11,6 +11,12 @@ connectDB()
 app.use(express.json());
 
 // Define Routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/stripe', require('./routes/api/stripe'));
+
+app.use('/', express.static(path.join(__dirname, 'images')));
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
