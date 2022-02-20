@@ -224,47 +224,50 @@ export default function Roadmap() {
           <Stack direction='column' spacing={2}>
             <MotionInView variants={varFadeInLeft}>
 
-              <RoadmapItem title='0% - The Launch' contents={['2,500 ABC NFTs will be available for minting.']} />
+              <RoadmapItem title='0% - The Launch' contents={['Aussie Bogan Club NFTs will be available for minting.']} />
             </MotionInView>
             <MotionInView variants={varFadeInRight}>
 
               <RoadmapItem title='25% - ABC Airdrop'
                 contents={[
-                  'Exclusive for the first few collectors (randomly selected), Chief Bogan will airdrop 50 free NFTs.',
-                  'Further 2,500 ABC NFTs will be made available for minting.'
+                  'Exclusive for the first few NFT holders (randomly selected) Chief Bogan will airdrop 50 NFTs.',
+                  'Further 2,500 ABC NFTs will be made available for mintingABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.',
+                  'Aussie Bogan Club utility commences.',
+                  'Enjoy the interaction with your fellow Aussie Bogan Club member.'
                 ]}
               />
             </MotionInView>
             <MotionInView variants={varFadeInLeft}>
 
-              <RoadmapItem title='50% - More Giveaways'
+              <RoadmapItem title='50% - More Giveaways & Utility'
                 contents={[
-                  'A further 50 ABC NFTs will be given away to existing collectors based on the number of their referrals.',
-                  'Further 2,500 ABC NFTs will be made available for minting.',
-                  'Metaverse research will commence and development of initial specifications for the decentralized ABC mate’s game.'
+                  'A further 50 ABC NFTs will be given away to existing NFT holders.',
+                  'ABC breeding program specification development commences.',
+                  'Pursue utility expansion opportunities including partnerships.'
                 ]}
               />
             </MotionInView>
             <MotionInView variants={varFadeInRight}>
 
-              <RoadmapItem title='75% - Further Release & Airdrop'
+              <RoadmapItem title='75% - Merch. Store & Next ABC NFT Drop'
                 contents={
                   [
-                    'A further 100 ABC NFTs will be given away to existing collectors based on the number of their referrals.',
-                    'Chief Bogan will give away another 50 ABC NFTs to collectors on a randomly selected basis.',
-                    'Balance of 5,000 ABC NFTs will be made available for minting.',
-                    'Commence development of merchandise store and collection.'
+                    'Continue to pursue utility expansion opportunities including partnerships.',
+                    'Commence development of merchandise store and collection.',
+                    'Chief Bogan will give away another 50 ABC NFTs to holders on a randomly selected basis.',
+                    'Creation of next ABC NFT drop will commence including integration into breeding program.'
                   ]
                 }
               />
             </MotionInView>
             <MotionInView variants={varFadeInLeft}>
 
-              <RoadmapItem title='100% - Game Development StartsMore Giveaways'
+              <RoadmapItem title='100% - Bogans Rejoice!'
                 contents={[
-                  'This is the new beginning.',
-                  'In another act of generosity, Chief Bogan will give away a further 50 ABC NFTs to existing collectors based on a random basis as a big thank you from the Aussie Bogan Club.',
-                  'Commence development of decentralized ABC mate’s game.'
+                  'A new beginning for the Aussie Bogan Club',
+                  'In another act of generosity, Chief Bogan will give away another 50 ABC NFTs to holders on a randomly selected basis.',
+                  'Continue with development of ABC merchandise, breeding program, next ABC NFT drop creation and utility expansion including partnerships.',
+                  'ABC NFT holders encouraged to upload, to our social channels, their creations including skits, art and photos for a chance to be selected as winners by the ABC community and enjoy the prizes including having their creations turned into NFTs.'
                 ]}
               />
             </MotionInView>

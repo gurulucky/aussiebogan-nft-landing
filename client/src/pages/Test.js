@@ -75,7 +75,8 @@ export default function Test() {
         // }
       });
       window.ethereum.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== process.env.REACT_APP_ROPSTEN_ID) {
+        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+          
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
         }
@@ -89,7 +90,6 @@ export default function Test() {
   /// window.ethereum used to get addrss
   const conMetamask = async (e) => {
     // console.log(e);
-    console.log('changed');
     if (window.ethereum) {
       try {
         // const addressArray = await window.ethereum.request({
@@ -100,7 +100,8 @@ export default function Test() {
         const chainId = await window.ethereum.request({
           method: "eth_chainId"
         });
-        if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+        if (Number(chainId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+          console.log(chainId)
           dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           return;
         }

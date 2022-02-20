@@ -104,7 +104,7 @@ export default function MainNavbar() {
         // }
       });
       web3auth.provider.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== process.env.REACT_APP_ROPSTEN_ID) {
+        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
         }

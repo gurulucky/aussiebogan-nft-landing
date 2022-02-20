@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import { scroller } from 'react-scroll';
 // material
 import { styled } from '@material-ui/core/styles';
-import  Stack  from '@material-ui/core/Stack';
+import Stack from '@material-ui/core/Stack';
 // components
 import Page from '../../components/Page';
 import BoganForever from './BoganForever'
@@ -15,6 +15,7 @@ import Membership from './Membership'
 import Minting from './Minting'
 import Roadmap from './Roadmap'
 import Team from './Team'
+import Utility from './Utility'
 import AlertDialog from '../AlertDialog'
 // ----------------------------------------------------------------------
 
@@ -59,6 +60,9 @@ export default function LandingPage() {
           <Collection />
         </Stack>
         <Membership />
+        <Stack id='utility'>
+          <Utility />
+        </Stack>
         <Stack id='team'>
 
           <Team />

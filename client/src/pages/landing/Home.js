@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Stack from '@material-ui/core/Stack'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Box from '@material-ui/core/Box'
-import { varWrapEnter, varFadeInRight } from '../../components/animate';
+import { MotionInView, varWrapEnter, varFadeInRight } from '../../components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -32,16 +32,16 @@ const RootStyle = styled('div')(({ theme }) => ({
   position: 'relative',
   marginTop: '64px',
   // [theme.breakpoints.up('md')]: {
-    // top: 0,
-    // left: 0,
-    width: '100%',
-    // display: 'flex',
-    // alignItems: 'center'
+  // top: 0,
+  // left: 0,
+  width: '100%',
+  // display: 'flex',
+  // alignItems: 'center'
   // }
 }));
 
 const ContentStyle = styled((props) => <Stack sx={{ width: 1 }} alignItems='center' spacing={5} {...props} />)(({ theme }) => ({
-  zIndex: 10,
+  
   margin: 'auto',
   top: '0px',
   textAlign: 'center',
@@ -60,25 +60,22 @@ export default function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   return (
-    <>
-      <RootStyle variants={varWrapEnter}>
-        {/* <HeroOverlayStyle alt="overlay" src="/static/overlay.svg" variants={varFadeIn} /> */}
+    <RootStyle variants={varWrapEnter}>
+      {/* <HeroOverlayStyle alt="overlay" src="/static/overlay.svg" variants={varFadeIn} /> */}
 
-        {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}
+      {/* <HeroImgStyle alt="hero" src="/static/chief_nft.png" variants={varFadeInUp} /> */}
 
-        {/* <Container maxWidth="lg"> */}
-        <Box component="img" src='https://ucarecdn.com/c2b5be2b-0790-4af2-957c-b083e9248053/bg.jpg' sx={{width:'100%'}}>
+      {/* <Container maxWidth="lg"> */}
+      <Box component="img" src='https://ucarecdn.com/c2b5be2b-0790-4af2-957c-b083e9248053/bg.jpg' sx={{ width: '100%' }}>
 
-        </Box>
-        <ContentStyle>
-          <motion.div variants={varFadeInRight}>
-            <Typography variant={matches ? 'h2' : 'h3'} className='flux'>Aussie Bogan<br />Club</Typography>
-          </motion.div>
+      </Box>
+      <ContentStyle>
+        <MotionInView variants={varFadeInRight}>
+          <Typography variant={matches ? 'h2' : 'h3'} className='flux'>Aussie Bogan<br />Club</Typography>
+        </MotionInView>
 
-        </ContentStyle>
-        {/* </Container> */}
-      </RootStyle>
-      {/* <Box sx={{ height: { md: '100vh' } }} /> */}
-    </>
+      </ContentStyle>
+      {/* </Container> */}
+    </RootStyle>
   );
 }
