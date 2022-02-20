@@ -8,11 +8,6 @@ import { Container, Alert, AlertTitle } from '@material-ui/core';
 //   children: PropTypes.node
 // };
 
-const useCurrentRole = () => {
-  // Logic here to get current user role
-  const role = 'admin';
-  return role;
-};
 
 export default function RoleBasedGuard({ accessRole, children }) {
   const role = useSelector(state => state.auth.user?.role);

@@ -1,4 +1,4 @@
-import { Button, Divider, Container, Card, CircularProgress} from '@material-ui/core';
+import { Button, Container, Card, CircularProgress} from '@material-ui/core';
 import { styled} from '@material-ui/core/styles';
 
 export const RootStyle = styled(Container)(({ theme }) => ({

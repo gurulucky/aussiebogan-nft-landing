@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { scroller } from 'react-scroll';
+import { useSelector } from 'react-redux';
 // material
 import { styled } from '@material-ui/core/styles';
 import { Stack, Grid, Typography } from '@material-ui/core';
 // components
-import Page from '../../components/Page';
 import NftItem from './NftItem';
 import AlertDialog from '../AlertDialog'
-import {StyledCircleProgress} from '../styled/StyledInput'
+import { StyledCircleProgress } from '../styled/StyledInput'
 //actions
 import { getNFTs } from '../../actions/manager';
 // ----------------------------------------------------------------------
@@ -22,30 +20,24 @@ const RootStyle = styled('div')(({ theme }) => ({
   minHeight: window.innerHeight + 'px'
 }));
 
-const ContentStyle = styled('div')(({ theme }) => ({
-  overflow: 'hidden',
-  position: 'relative'
-}));
-
 // ----------------------------------------------------------------------
 
 export default function LandingPage() {
-  const dispatch = useDispatch()
   const nftIds = useSelector(state => state.auth.user?.nftIds)
   const [nfts, setNfts] = useState([])
   const [loadingAssets, setLoadingAssets] = useState(false)
-
-  useEffect(() => {
-    if (nftIds) {
-      getNfts(nftIds)
-    }
-  }, [nftIds])
 
   const getNfts = async () => {
     setLoadingAssets(true)
     setNfts(await getNFTs(nftIds))
     setLoadingAssets(false)
   }
+  useEffect(() => {
+    if (nftIds) {
+      getNfts(nftIds)
+    }
+  }, [nftIds, getNfts])
+
 
   return (
     <RootStyle title="Aussie Bogan" id="move_top">

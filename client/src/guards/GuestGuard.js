@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // hooks
 import { PATH_PAGE } from '../routes/paths';
 
@@ -19,7 +19,7 @@ export default function GuestGuard({ children }) {
     if (isAuthenticated) {
       navigate(PATH_PAGE.home);
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
   return <>{children}</>;
 }

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Stack, Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Stack} from "@mui/material";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const PaypalForm = ({ onSucceed }) => {
-    const [clicked, setClicked] = useState(false);
     const PAYMENT_CURRENCY = "USD";
     const amount = {
         currency_code: PAYMENT_CURRENCY,

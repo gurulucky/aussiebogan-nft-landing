@@ -1,12 +1,11 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
+// import { setAlert } from './alert';
 import {
   REGISTER_SUCCESS,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGOUT,
-  SET_USER_DETAIL,
   USER_UPDATED
 } from './types';
 

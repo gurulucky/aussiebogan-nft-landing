@@ -79,7 +79,8 @@ export default function Router() {
 
 // IMPORT COMPONENTS
 // Authentication
-const Login = Loadable(lazy(() => import('../pages/authentication/Login')));
+// const Login = Loadable(lazy(() => import('../pages/authentication/Login')));
+const Login = Loadable(lazy(() => import('../pages/web3auth/Web3Login')));
 const Register = Loadable(lazy(() => import('../pages/authentication/Register')));
 const ResetPassword = Loadable(lazy(() => import('../pages/authentication/ResetPassword')));
 const VerifyCode = Loadable(lazy(() => import('../pages/authentication/VerifyCode')));

@@ -13,7 +13,7 @@ import "./stripe.css";
 import PaypalForm from "./PaypalForm";
 ///     actions
 import { showPayment } from '../../actions/manager';
-import { getEthPrice } from '../../lib/mint';
+// import { getEthPrice } from '../../lib/mint';
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 
@@ -64,12 +64,12 @@ const Payment = ({ onSucceed }) => {
     const open = useSelector(state => state.manager.paymentOpen)
 
     useEffect(() => {
-        getETHPrice()
+        // getETHPrice()
     }, [])
 
-    const getETHPrice = async () => {
-        setEthPrice(await getEthPrice())
-    }
+    // const getETHPrice = async () => {
+    //     // setEthPrice(await getEthPrice())
+    // }
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);

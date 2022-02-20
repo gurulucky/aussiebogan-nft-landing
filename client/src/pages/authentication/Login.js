@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { capitalCase } from 'change-case';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import { styled } from '@material-ui/core/styles';
-import { Box, Card, Stack, Link, Alert, Tooltip, Container, Typography, Button } from '@material-ui/core';
+import { Box, Card, Stack, Link,  Container, Typography } from '@material-ui/core';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // layouts
@@ -51,7 +50,7 @@ export default function Login() {
     if (isAuthenticated) {
       navigate(-1);
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
   return (
     <RootStyle title="Login | Minimal-UI">

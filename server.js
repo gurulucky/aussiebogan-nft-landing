@@ -1,19 +1,19 @@
 const express = require('express');
 const path = require('path');
-const connectDB = require('./config/db');
+// const connectDB = require('./config/db');
 
 require('dotenv').config();
 const app = express();
 
 ////    MongoDB connect
-connectDB()
+// connectDB()
 // Init Middleware
 app.use(express.json());
 
 // Define Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/stripe', require('./routes/api/stripe'));
+// app.use('/api/users', require('./routes/api/users'));
+// app.use('/api/auth', require('./routes/api/auth'));
+// app.use('/api/stripe', require('./routes/api/stripe'));
 
 app.use('/', express.static(path.join(__dirname, 'images')));
 

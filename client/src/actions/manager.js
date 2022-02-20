@@ -1,10 +1,17 @@
 import {
-  SET_MODAL, SET_NFTS, SET_QUANTITY, SHOW_PAYMENT
+  SET_MODAL, SET_WALLET, SET_QUANTITY, SHOW_PAYMENT
 } from './types';
 
 import api from '../utils/api'
 import axios from 'axios'
 import { getTokenUris } from '../lib/mint';
+
+export const setWallet = (wallet) => dispatch => {
+  dispatch({
+    type: SET_WALLET,
+    payload: wallet
+  })
+}
 
 export const setModal = (open, text) => dispatch => {
   dispatch({

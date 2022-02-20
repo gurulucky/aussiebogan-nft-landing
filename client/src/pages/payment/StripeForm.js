@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import {
     CardElement,
     useStripe,
@@ -10,7 +10,7 @@ import api from '../../utils/api';
 
 const StripeForm = ({ onSucceed }) => {
     const quantity = useSelector(state => state.manager.quantity)
-    const [totalPrice, setTotalPrice] = useState(0)
+    // const [totalPrice, setTotalPrice] = useState(0)
     const [succeeded, setSucceeded] = useState(false);
     const [error, setError] = useState(null);
     const [processing, setProcessing] = useState('');
@@ -26,7 +26,7 @@ const StripeForm = ({ onSucceed }) => {
                 console.log("post create-payment");
                 const res = await api.post('/stripe/create-payment-intent', { quantity });
                 setClientSecret(res.data.clientSecret);
-                setTotalPrice(res.data.totalPrice)
+                // setTotalPrice(res.data.totalPrice)
                 console.log('getclientsecret', res.data.clientSecret);
             } catch (err) {
                 console.log('getclientsecret err', err);

@@ -12,15 +12,20 @@ import Button from '@material-ui/core/Button'
 import InputBase from '@material-ui/core/InputBase'
 // import { LoadingButton } from '@material-ui/lab';
 import LoadingButton from '@material-ui/lab/LoadingButton'
+import WertWidget from '@wert-io/widget-initializer';
+import { signSmartContractData } from '@wert-io/widget-sc-signer';
+import { v4 as uuidv4 } from 'uuid';
 //
-import { setModal, showPayment, buyNFTs, setQuantity } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted } from '../lib/mint';
+import { setModal, setQuantity } from '../actions/manager';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint } from '../lib/mint';
 import AlertDialog from './AlertDialog';
-import Payment from './payment/Payment'
+
+
+const PRICE = Number(process.env.REACT_APP_PRICE)
+
+
 // ----------------------------------------------------------------------
-const NETWORK = 'rinkeby';
-const RINKEBY_CHAINID = 4;
-const MAINNET_CHAINID = 1;
+const NETWORK = process.env.REACT_APP_NETWORK;
 
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
@@ -53,7 +58,7 @@ export default function Test() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   // const [quantity, setQuantity] = useState(1);
   const quantity = useSelector(state => state.manager.quantity)
-  const [account, setAccount] = useState('');
+  const wallet = useSelector(state => state.manager.wallet)
   const [initWeb3, setInitWeb3] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buying, setBuying] = useState(false)
@@ -70,9 +75,8 @@ export default function Test() {
         // }
       });
       window.ethereum.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
-          dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
-          setAccount("");
+        if (Number(networkId) !== process.env.REACT_APP_ROPSTEN_ID) {
+          dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
         }
         conMetamask();
@@ -98,13 +102,11 @@ export default function Test() {
         });
         if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
           dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
-          setAccount("");
           return;
         }
         const accounts = await window.ethereum.enable();
         console.log(accounts);
         // console.log(await window.web3.eth.getBalance(accounts[0]));
-        setAccount(accounts[0] !== undefined ? accounts[0] : "");
         if (accounts[0] && e) {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
@@ -137,19 +139,35 @@ export default function Test() {
     dispatch(setQuantity(e.target.value));
   }
 
-  const onSucceed = async () => {
-    dispatch(showPayment(false))
+  const buy = async () => {
     setBuying(true)
-    try {
-      let res = await buyNFTs(quantity)
-      if (res) {
-        dispatch(setModal(true, `You have bought ${quantity} ABCs. Please check in my collection`))
-      } else {
-        dispatch(setModal(true, `Buy NFTs failed`))
-      }
-    } catch (err) {
-      console.log(err.message)
-    }
+    const privateKey = process.env.REACT_APP_PRIVATE_KEY;
+    let signature = await getSignatureForMint(wallet, quantity)
+    const signedData = signSmartContractData({
+      address: wallet, //user wallet
+      commodity: 'ETH',
+      commodity_amount: (PRICE * quantity).toString(),
+      pk_id: 'key1',
+      sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+      sc_id: uuidv4(), // must be unique for any request
+      sc_input_data: signature,
+    }, privateKey);
+
+    const otherWidgetOptions = {
+      partner_id: process.env.REACT_APP_PARTNER_ID,
+      container_id: 'widget',
+      click_id: uuidv4(), // unique id of purhase in your system
+      origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+      width: 400,
+      height: 600,
+    };
+
+    const wertWidget = new WertWidget({
+      ...signedData,
+      ...otherWidgetOptions,
+    });
+
+    window.open(wertWidget.getRedirectUrl())
     setBuying(false)
   }
 
@@ -176,7 +194,7 @@ export default function Test() {
         </Stack>
 
         <Stack direction='column'>
-          <Typography variant='h6' color='common.white' textAlign='center'>0.05 Eth + Gas fee</Typography>
+          <Typography variant='h6' color='common.white' textAlign='center'>{`${PRICE} Eth + Gas fee`}</Typography>
           <Typography variant='h6' color='common.white' textAlign='center'>Max 10 ABCs per transactions</Typography>
         </Stack>
         <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
@@ -200,16 +218,20 @@ export default function Test() {
             <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(10))}>10</ButtonStyle>
           </Stack>
         </Stack>
-        <Stack direction='row' spacing={1}>
+        <Stack direction={isDesktop ? 'row' : 'column'} spacing={1}>
           <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
           {
-            isAuthenticated && <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={e => dispatch(showPayment(true))}>{buying ? `Buying...` : `Buy`}</ConnectButton>
+            wallet &&
+            <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={buy}>
+              {buying ? `Buying...` : `Buy`}
+            </ConnectButton>
           }
         </Stack>
-        <a href='https://rinkeby.etherscan.io/address/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c' target='_blank' style={{ textDecoration: 'none' }}><Typography variant='body1' color='white'>View Contract</Typography> </a>
+        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
+          <Typography variant='body1' color='white'>View Contract</Typography>
+        </a>
       </Stack>
       <AlertDialog />
-      <Payment onSucceed={onSucceed} />
     </RootStyle >
   );
 }

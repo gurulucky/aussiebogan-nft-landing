@@ -3,26 +3,23 @@ import { NFT_ABI } from './abi.js'
 import { TOKEN_URIS } from './ABC2-M_summary.js'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
-const web3 = new Web3(mainnet)
-const aggregatorV3InterfaceABI = [{ "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "description", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint80", "name": "_roundId", "type": "uint80" }], "name": "getRoundData", "outputs": [{ "internalType": "uint80", "name": "roundId", "type": "uint80" }, { "internalType": "int256", "name": "answer", "type": "int256" }, { "internalType": "uint256", "name": "startedAt", "type": "uint256" }, { "internalType": "uint256", "name": "updatedAt", "type": "uint256" }, { "internalType": "uint80", "name": "answeredInRound", "type": "uint80" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "latestRoundData", "outputs": [{ "internalType": "uint80", "name": "roundId", "type": "uint80" }, { "internalType": "int256", "name": "answer", "type": "int256" }, { "internalType": "uint256", "name": "startedAt", "type": "uint256" }, { "internalType": "uint256", "name": "updatedAt", "type": "uint256" }, { "internalType": "uint80", "name": "answeredInRound", "type": "uint80" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "version", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
-const eth_usd = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
-const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, eth_usd)
 
-const NFT_ADDRESS = '0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c'
-const PRICE = 0.05
+const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
+const PRICE = process.env.REACT_APP_PRICE
 
 export const mint = async (account, amount) => {
     let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
-    let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
+    let tokenCounter = await getTotalMinted()
     let mintUris = TOKEN_URIS.slice(tokenCounter, tokenCounter + amount);
     console.log('mint tokenUris', mintUris);
-    let res = await abc_contract.methods.mint(mintUris).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+    let res = await abc_contract.methods.mint(account, mintUris).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
     return res.status
 }
 
 export const getTotalMinted = async () => {
-    let web3 = new Web3(rinkebynet)
+    let web3 = new Web3(ropstennet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
     console.log('totalminted', tokenCounter)
@@ -30,7 +27,7 @@ export const getTotalMinted = async () => {
 }
 
 export const getTokenUris = async (tokenIds) => {
-    let web3 = new Web3(rinkebynet)
+    let web3 = new Web3(ropstennet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenUris = []
     for (let i = 0; i < tokenIds.length; i++) {
@@ -67,13 +64,42 @@ export const isBigger = (x, y) => {
     return 0;
 }
 
-export const getEthPrice = async () => {
-    try {
-        let ethPrice = (await priceFeed.methods.latestRoundData().call()).answer / (10 ** 8)
-        console.log("ETH / USD", ethPrice)
-        return ethPrice
-    } catch (err) {
-        console.log(err.message)
-        return 0
+
+export const shortAddress = (address) => {
+    if (address !== "" || address !== undefined) {
+        let lowCase = address.toLowerCase();
+        return "0x" + lowCase.charAt(2).toUpperCase() + lowCase.substr(3, 3) + "..." + lowCase.substr(-4);
     }
+    return address;
+}
+
+export const getSignatureForMint = async (account, amount) => {
+    if(!account || amount <= 0){
+        return
+    }
+    const web3 = new Web3(mainnet)
+    let tokenCounter = await getTotalMinted()
+    let mintUris = TOKEN_URIS.slice(tokenCounter, tokenCounter + amount);
+    let signature = web3.eth.abi.encodeFunctionCall(
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string[]",
+                    "name": "tokenUris",
+                    "type": "string[]"
+                }
+            ],
+            "name": "mint",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        [account, mintUris]
+    )
+    return signature
 }

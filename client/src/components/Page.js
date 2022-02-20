@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-import { forwardRef, useEffect, useCallback } from 'react';
+import { forwardRef} from 'react';
 // material
 import { Box } from '@material-ui/core';
 // utils
@@ -9,7 +8,6 @@ import { Box } from '@material-ui/core';
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { pathname } = useLocation();
 
   return (
     <Box ref={ref} {...other}>

@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
-import closeFill from '@iconify/icons-eva/close-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // material
 import {
@@ -23,10 +22,8 @@ import { LoadingButton } from '@material-ui/lab';
 // routes
 import { PATH_AUTH } from '../../../routes/paths';
 // hooks
-import useAuth from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
 //
-import { MIconButton } from '../../@material-extend';
 import {login} from '../../../actions/auth';
 
 // ----------------------------------------------------------------------

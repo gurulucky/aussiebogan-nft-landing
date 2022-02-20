@@ -38,7 +38,6 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import { SettingsProvider } from './contexts/SettingsContext';
 import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
 // components
-import LoadingScreen from './components/LoadingScreen';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';

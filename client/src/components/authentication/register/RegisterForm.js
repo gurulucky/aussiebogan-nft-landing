@@ -5,16 +5,13 @@ import { Icon } from '@iconify/react';
 import { useSnackbar } from 'notistack5';
 import { useFormik, Form, FormikProvider } from 'formik';
 import eyeFill from '@iconify/icons-eva/eye-fill';
-import closeFill from '@iconify/icons-eva/close-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // material
-import { Stack, TextField, IconButton, InputAdornment, Alert, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { Stack, TextField, IconButton, InputAdornment, Alert} from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 // hooks
-import useAuth from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
-//
-import { MIconButton } from '../../@material-extend';
+
 import { register } from '../../../actions/auth';
 // ----------------------------------------------------------------------
 
