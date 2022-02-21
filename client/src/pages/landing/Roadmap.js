@@ -113,7 +113,7 @@ export default function Roadmap() {
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Further 2,500 ABC NFTs will be made available for mintingABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.</Typography>
+                  <Typography variant='h6'>ABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
@@ -249,7 +249,7 @@ export default function Roadmap() {
               <RoadmapItem title='25% - ABC Airdrop'
                 contents={[
                   'Exclusive for the first few NFT holders (randomly selected) Chief Bogan will airdrop 50 NFTs.',
-                  'Further 2,500 ABC NFTs will be made available for mintingABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.',
+                  'ABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.',
                   'Aussie Bogan Club utility commences.',
                   'Enjoy the interaction with your fellow Aussie Bogan Club member.'
                 ]}
