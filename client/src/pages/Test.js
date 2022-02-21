@@ -299,7 +299,7 @@ export default function Test() {
             : web3authReady &&
             <>
               <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
-                {wallet ? `Buy` : `Login`}
+                {wallet ? `Mint using Cash / Fiat` : `Create Wallet Via Email`}
               </ConnectButton>
               {
                 wallet &&

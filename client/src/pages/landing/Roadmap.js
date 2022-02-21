@@ -87,7 +87,7 @@ export default function Roadmap() {
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>2,500 ABC NFTs will be available for minting.</Typography>
+                  <Typography variant='h6'>Aussie Bogan Club NFTs will be available for minting.</Typography>
                 </ListItem>
               </TimelineContent>
             </TimelineItem>
@@ -107,13 +107,25 @@ export default function Roadmap() {
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Exclusive for the first few collectors (randomly selected), Chief Bogan will airdrop 50 free NFTs.</Typography>
+                  <Typography variant='h6'>Exclusive for the first few NFT holders (randomly selected) Chief Bogan will airdrop 50 NFTs.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Further 2,500 ABC NFTs will be made available for minting.</Typography>
+                  <Typography variant='h6'>Further 2,500 ABC NFTs will be made available for mintingABC NFT holders to commence uploading, to our social channels, their creations including skits, art and photos for a chance to be selected as a winner by the ABC community.</Typography>
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <CheckIcon />
+                  </ListItemIcon>
+                  <Typography variant='h6'>Aussie Bogan Club utility commences.</Typography>
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <CheckIcon />
+                  </ListItemIcon>
+                  <Typography variant='h6'>Enjoy the interaction with your fellow Aussie Bogan Club member.</Typography>
                 </ListItem>
               </TimelineContent>
             </TimelineItem>
@@ -127,25 +139,25 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                  More Giveaways
+                More Giveaways & Utility
                 </Typography>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>A further 50 ABC NFTs will be given away to existing collectors based on the number of their referrals.</Typography>
+                  <Typography variant='h6'>A further 50 ABC NFTs will be given away to existing NFT holders.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Further 2,500 ABC NFTs will be made available for minting. </Typography>
+                  <Typography variant='h6'>ABC breeding program specification development commences.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Metaverse research will commence and development of initial specifications for the decentralized ABC mate’s game.</Typography>
+                  <Typography variant='h6'>Pursue utility expansion opportunities including partnerships.</Typography>
                 </ListItem>
               </TimelineContent>
             </TimelineItem>
@@ -159,31 +171,31 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                  Further Release & Airdrop
+                Merch. Store & Next ABC NFT Drop
                 </Typography>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>A further 100 ABC NFTs will be given away to existing collectors based on the number of their referrals.</Typography>
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon />
-                  </ListItemIcon>
-                  <Typography variant='h6'>Chief Bogan will give away another 50 ABC NFTs to collectors on a randomly selected basis.</Typography>
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon />
-                  </ListItemIcon>
-                  <Typography variant='h6'>Balance of 5,000 ABC NFTs will be made available for minting.</Typography>
+                  <Typography variant='h6'>Continue to pursue utility expansion opportunities including partnerships.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
                   <Typography variant='h6'>Commence development of merchandise store and collection.</Typography>
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <CheckIcon />
+                  </ListItemIcon>
+                  <Typography variant='h6'>Chief Bogan will give away another 50 ABC NFTs to holders on a randomly selected basis.</Typography>
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <CheckIcon />
+                  </ListItemIcon>
+                  <Typography variant='h6'>Creation of next ABC NFT drop will commence including integration into breeding program.</Typography>
                 </ListItem>
               </TimelineContent>
             </TimelineItem>
@@ -197,25 +209,31 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                  Game Development StartsMore Giveaways
+                Bogans Rejoice!
                 </Typography>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>This is the new beginning.</Typography>
+                  <Typography variant='h6'>A new beginning for the Aussie Bogan Club</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>In another act of generosity, Chief Bogan will give away a further 50 ABC NFTs to existing collectors based on a random basis as a big thank you from the Aussie Bogan Club. </Typography>
+                  <Typography variant='h6'>In another act of generosity, Chief Bogan will give away another 50 ABC NFTs to holders on a randomly selected basis.</Typography>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <CheckIcon />
                   </ListItemIcon>
-                  <Typography variant='h6'>Commence development of decentralized ABC mate’s game.</Typography>
+                  <Typography variant='h6'>Continue with development of ABC merchandise, breeding program, next ABC NFT drop creation and utility expansion including partnerships.</Typography>
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <CheckIcon />
+                  </ListItemIcon>
+                  <Typography variant='h6'>ABC NFT holders encouraged to upload, to our social channels, their creations including skits, art and photos for a chance to be selected as winners by the ABC community and enjoy the prizes including having their creations turned into NFTs.</Typography>
                 </ListItem>
               </TimelineContent>
             </TimelineItem>
