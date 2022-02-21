@@ -15,9 +15,11 @@ import LoadingButton from '@material-ui/lab/LoadingButton'
 import WertWidget from '@wert-io/widget-initializer';
 import { signSmartContractData } from '@wert-io/widget-sc-signer';
 import { v4 as uuidv4 } from 'uuid';
+import { Web3Auth } from "@web3auth/web3auth";
+import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
 //
-import { setModal, setQuantity } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint } from '../lib/mint';
+import { setModal, setQuantity, setWallet } from '../actions/manager';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 
 
@@ -26,6 +28,23 @@ const PRICE = Number(process.env.REACT_APP_PRICE)
 
 // ----------------------------------------------------------------------
 const NETWORK = process.env.REACT_APP_NETWORK;
+
+const ethChainConfig = {
+  chainNamespace: CHAIN_NAMESPACES.EIP155,
+  chainId: "0x3",
+  rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
+  displayName: `${NETWORK}`,
+  blockExplorer: `https://${NETWORK}.etherscan.io/`,
+  ticker: "ETH",
+  tickerName: "Ethereum",
+};
+// We are initializing with EIP155 namespace which
+// will initialize the modal with ethereum mainnet
+// by default.
+const web3auth = new Web3Auth({
+  chainConfig: ethChainConfig,
+  clientId: process.env.REACT_APP_CLIENT_ID // get your clientId from https://developer.web3auth.io
+});
 
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
@@ -62,6 +81,7 @@ export default function Test() {
   const [initWeb3, setInitWeb3] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buying, setBuying] = useState(false)
+  const [web3authReady, setWeb3authReady] = useState(false)
   const [totalMinted, setTotalMinted] = useState(0);
 
   useEffect(() => {
@@ -76,17 +96,20 @@ export default function Test() {
       });
       window.ethereum.on('networkChanged', function (networkId) {
         if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
-          
+
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
         }
         conMetamask();
       });
-      setTotal()
       // conMetamask();
+    } else {
+      initWeb3Modal()
     }
+    setTotal()
     // getRyoshiBalance(account, zksyncWallet);
   }, []);
+
   /// window.ethereum used to get addrss
   const conMetamask = async (e) => {
     // console.log(e);
@@ -128,6 +151,48 @@ export default function Test() {
     }
   }
 
+  const initWeb3Modal = async () => {
+    setWeb3authReady(false)
+    await web3auth.initModal();
+    setWeb3authReady(true)
+  }
+
+  const login = async () => {
+    try {
+      await web3auth.connect();
+      const web3 = new Web3(web3auth.provider);
+      web3auth.provider.on('accountsChanged', function (accounts) {
+        // if (accounts[0] !== account) {
+        dispatch(setWallet(accounts[0]))
+        console.log("change", accounts[0]);
+        // }
+      });
+      web3auth.provider.on('networkChanged', function (networkId) {
+        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+          dispatch(setModal(true, `Connect to ${NETWORK} network.`));
+          return;
+        }
+      });
+      const address = (await web3.eth.getAccounts())[0];
+      dispatch(setWallet(address))
+      const balance = await web3.eth.getBalance(address);
+      console.log(await web3auth.getUserInfo())
+      console.log(address, balance)
+    } finally {
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await web3auth.logout()
+      dispatch(setWallet(""))
+      console.log('logout')
+
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
   const setTotal = async () => {
     let total = await getTotalMinted();
     setTotalMinted(total);
@@ -138,6 +203,14 @@ export default function Test() {
       return;
     }
     dispatch(setQuantity(e.target.value));
+  }
+
+  const handleBuy = async () => {
+    if (wallet) {
+      buy()
+    } else {
+      login()
+    }
   }
 
   const buy = async () => {
@@ -219,15 +292,26 @@ export default function Test() {
             <ButtonStyle variant='outlined' onClick={() => dispatch(setQuantity(10))}>10</ButtonStyle>
           </Stack>
         </Stack>
-        <Stack direction={isDesktop ? 'row' : 'column'} spacing={1}>
-          <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
-          {
-            wallet &&
-            <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={buy}>
-              {buying ? `Buying...` : `Buy`}
-            </ConnectButton>
-          }
-        </Stack>
+        {/* <Stack direction={isDesktop ? 'row' : 'column'} spacing={1}> */}
+        {
+          initWeb3 ?
+            <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
+            : web3authReady &&
+            <>
+              <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
+                {wallet ? `Buy` : `Login`}
+              </ConnectButton>
+              {
+                wallet &&
+                <a href={`https://opensea.io/${wallet}`} target='_blank' style={{textDecoration:'none'}}>
+                  <Typography variant='body1' color='primary.main'>
+                    My collections
+                  </Typography>
+                </a>
+              }
+            </>
+        }
+        {/* </Stack> */}
         <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
           <Typography variant='body1' color='white'>View Contract</Typography>
         </a>

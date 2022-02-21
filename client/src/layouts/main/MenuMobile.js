@@ -121,21 +121,7 @@ export default function MenuMobile({ isOffset, isHome }) {
             <Link component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
               <Logo sx={{ mx: PADDING, my: 3 }} />
             </Link>
-            <a href='https://discord.gg/DbDQC9ep29' target='_blank'>
-              <IconButton color='primary'>
-                <SvgIcon>{DiscordPath}</SvgIcon>
-              </IconButton>
-            </a>
-            <a href='https://twitter.com/boganclub' target='_blank'>
-              <IconButton color='primary'>
-                <SvgIcon>{TwitterPath}</SvgIcon>
-              </IconButton>
-            </a>
-            <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
-              <IconButton color='primary'>
-                <SvgIcon>{InstagramPath}</SvgIcon>
-              </IconButton>
-            </a>
+            
           </Stack>
 
           <List disablePadding sx={{ paddingLeft: '10px' }}>

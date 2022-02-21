@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
-import Web3 from "web3";
-import { Web3Auth } from "@web3auth/web3auth";
-import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
-import { LOGIN_MODAL_EVENTS } from "@web3auth/ui";
+// import Web3 from "web3";
+// import { Web3Auth } from "@web3auth/web3auth";
+// import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
+// import { LOGIN_MODAL_EVENTS } from "@web3auth/ui";
 // material
 import { styled } from '@material-ui/core/styles';
 import { Box, Button, AppBar, Toolbar, Container, Typography, Stack, IconButton, SvgIcon, Menu, MenuItem, ListItemIcon, Divider } from '@material-ui/core';
@@ -20,7 +20,7 @@ import { MHidden } from '../../components/@material-extend';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import navConfig from './MenuConfig';
-import { setWallet } from '../../actions/manager'
+// import { setWallet } from '../../actions/manager'
 import { shortAddress } from '../../lib/mint'
 
 const APP_BAR_MOBILE = 64;
@@ -52,22 +52,22 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
   boxShadow: theme.customShadows.z8
 }));
 
-const ethChainConfig = {
-  chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: "0x3",
-  rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
-  displayName: `${NETWORK}`,
-  blockExplorer: `https://${NETWORK}.etherscan.io/`,
-  ticker: "ETH",
-  tickerName: "Ethereum",
-};
-// We are initializing with EIP155 namespace which
-// will initialize the modal with ethereum mainnet
-// by default.
-const web3auth = new Web3Auth({
-  chainConfig: ethChainConfig,
-  clientId: process.env.REACT_APP_CLIENT_ID // get your clientId from https://developer.web3auth.io
-});
+// const ethChainConfig = {
+//   chainNamespace: CHAIN_NAMESPACES.EIP155,
+//   chainId: "0x3",
+//   rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
+//   displayName: `${NETWORK}`,
+//   blockExplorer: `https://${NETWORK}.etherscan.io/`,
+//   ticker: "ETH",
+//   tickerName: "Ethereum",
+// };
+// // We are initializing with EIP155 namespace which
+// // will initialize the modal with ethereum mainnet
+// // by default.
+// const web3auth = new Web3Auth({
+//   chainConfig: ethChainConfig,
+//   clientId: process.env.REACT_APP_CLIENT_ID // get your clientId from https://developer.web3auth.io
+// });
 
 // ----------------------------------------------------------------------
 
@@ -75,67 +75,67 @@ export default function MainNavbar() {
   const dispatch = useDispatch()
   const isOffset = useOffSetTop(100);
   const { pathname } = useLocation();
-  const wallet = useSelector(state => state.manager.wallet)
+  // const wallet = useSelector(state => state.manager.wallet)
   const role = useSelector(state => state.auth.user?.role);
   const isHome = pathname === '/';
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const [web3authReady, setWeb3authReady] = useState(false)
+  // const [web3authReady, setWeb3authReady] = useState(false)
 
-  useEffect(() => {
-    initWeb3()
-  }, [])
+  // useEffect(() => {
+  //   initWeb3()
+  // }, [])
 
-  const initWeb3 = async () => {
-    setWeb3authReady(false)
-    await web3auth.initModal();
-    setWeb3authReady(true)
-  }
+  // const initWeb3 = async () => {
+  //   setWeb3authReady(false)
+  //   await web3auth.initModal();
+  //   setWeb3authReady(true)
+  // }
 
-  const login = async () => {
-    try {
-      await web3auth.connect();
-      const web3 = new Web3(web3auth.provider);
-      web3auth.provider.on('accountsChanged', function (accounts) {
-        // if (accounts[0] !== account) {
-        dispatch(setWallet(accounts[0]))
-        console.log("change", accounts[0]);
-        // }
-      });
-      web3auth.provider.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
-          dispatch(setModal(true, `Connect to ${NETWORK} network.`));
-          return;
-        }
-      });
-      const address = (await web3.eth.getAccounts())[0];
-      dispatch(setWallet(address))
-      const balance = await web3.eth.getBalance(address);
-      console.log(await web3auth.getUserInfo())
-      console.log(address, balance)
-    } finally {
-    }
-  };
+  // const login = async () => {
+  //   try {
+  //     await web3auth.connect();
+  //     const web3 = new Web3(web3auth.provider);
+  //     web3auth.provider.on('accountsChanged', function (accounts) {
+  //       // if (accounts[0] !== account) {
+  //       dispatch(setWallet(accounts[0]))
+  //       console.log("change", accounts[0]);
+  //       // }
+  //     });
+  //     web3auth.provider.on('networkChanged', function (networkId) {
+  //       if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+  //         dispatch(setModal(true, `Connect to ${NETWORK} network.`));
+  //         return;
+  //       }
+  //     });
+  //     const address = (await web3.eth.getAccounts())[0];
+  //     dispatch(setWallet(address))
+  //     const balance = await web3.eth.getBalance(address);
+  //     console.log(await web3auth.getUserInfo())
+  //     console.log(address, balance)
+  //   } finally {
+  //   }
+  // };
 
-  const logout = async () => {
-    try {
-      await web3auth.logout()
-      dispatch(setWallet(""))
-      console.log('logout')
+  // const logout = async () => {
+  //   try {
+  //     await web3auth.logout()
+  //     dispatch(setWallet(""))
+  //     console.log('logout')
 
-    } catch (err) {
-      console.log(err.message)
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err.message)
+  //   }
+  // }
 
-  const handleLogin = () => {
-    if (wallet) {
-      logout()
-    } else {
-      login()
-    }
-  }
+  // const handleLogin = () => {
+  //   if (wallet) {
+  //     logout()
+  //   } else {
+  //     login()
+  //   }
+  // }
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
@@ -181,7 +181,7 @@ export default function MainNavbar() {
                   <SvgIcon>{InstagramPath}</SvgIcon>
                 </IconButton>
               </a>
-              <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
+              {/* <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
                 {wallet ? `Logout` : `Login`}
               </Button>
               {
@@ -191,13 +191,13 @@ export default function MainNavbar() {
                     {`${shortAddress(wallet)}`}
                   </Typography>
                 </a>
-              }
+              } */}
             </Stack>
 
           </MHidden>
 
           <MHidden width="mdUp">
-            <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
+            {/* <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
               {wallet ? `Logout` : `Login`}
             </Button>
             {
@@ -207,8 +207,23 @@ export default function MainNavbar() {
                   {`${shortAddress(wallet)}`}
                 </Typography>
               </a>
-            }
+            } */}
             <Stack direction='row' spacing={1}>
+              <a href='https://discord.gg/DbDQC9ep29' target='_blank'>
+                <IconButton color='primary'>
+                  <SvgIcon>{DiscordPath}</SvgIcon>
+                </IconButton>
+              </a>
+              <a href='https://twitter.com/boganclub' target='_blank'>
+                <IconButton color='primary'>
+                  <SvgIcon>{TwitterPath}</SvgIcon>
+                </IconButton>
+              </a>
+              <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
+                <IconButton color='primary'>
+                  <SvgIcon>{InstagramPath}</SvgIcon>
+                </IconButton>
+              </a>
               <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
             </Stack>
           </MHidden>

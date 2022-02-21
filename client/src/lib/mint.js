@@ -19,11 +19,15 @@ export const mint = async (account, amount) => {
 }
 
 export const getTotalMinted = async () => {
-    let web3 = new Web3(ropstennet)
-    let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
-    let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
-    console.log('totalminted', tokenCounter)
-    return tokenCounter;
+    try{
+        let web3 = new Web3(ropstennet)
+        let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+        let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
+        console.log('totalminted', tokenCounter)
+        return tokenCounter;
+    }catch(err){
+        console.log('totalminted', err.message)
+    }
 }
 
 export const getTokenUris = async (tokenIds) => {
