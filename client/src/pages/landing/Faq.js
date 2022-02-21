@@ -25,11 +25,11 @@ const FAQ_DATA = [
   },
   {
     title: "What is the quality of a Aussie Bogan Club NFT?",
-    content: `Each Aussie Bogan Club NFT available on the website is an 800 x 800 PNG file for all to right click and save, however only be owning a Aussie Bogan Club NFT will you be able to unlock its super high resolution 4000 x 4000 (pixel) version, which will be available on IPFS.  You’ll then be free to print the art yourself to create your own physical items and of course, boast about your Aussie Bogan Club NFT ownership and diner status. `,
+    content: `Only be owning a Aussie Bogan Club NFT will you be able to unlock its super high resolution 4000 x 4000 (pixel) version, which will be available on IPFS.  You’ll then be free to print the art yourself to create your own physical items and of course, boast about your Aussie Bogan Club NFT ownership status. `,
   },
   {
     title: "When is the public sale?",
-    content: `TBA`,
+    content: `We will announce our public sale date on our social media platforms.  Please connect to one or all of our social channels to stay up-to-date`,
   },
   {
     title: 'What kind of NFTs are Aussie Bogan Club NFTs?',
@@ -37,19 +37,19 @@ const FAQ_DATA = [
   },
   {
     title: 'How can I get a Aussie Bogan Club NFT?',
-    content: 'One the sale commences, you will need a Metamask wallet holding enough Ethereum cryptocurrency to purchase a Aussie Bogan Club NFT, which can be minted on our website. Or secondary sales will be available at opensea.io or clubvirtual.io or other reputable NFT marketplace/s.',
+    content: 'Once the sale commences, you will need a MetaMask wallet holding enough Ethereum cryptocurrency to purchase a Aussie Bogan Club NFT, which can be minted on our website. Or secondary sales will be available at opensea.io or clubvirtual.io or other reputable NFT marketplace/s.',
   },
   {
     title: 'What should I do after minting an Aussie Bogan Club NFT?',
-    content: 'You can use your Aussie Bogan Club NFT as a profile picture (PFP) online, or you can resell your Aussie Bogan Club NFT on the secondary market. We think you should consider holding it as it will be a part of a great gaming project, we have planned, where you will be able to use it!',
+    content: 'You can use your Aussie Bogan Club NFT as a profile picture (PFP) online, or you can resell your Aussie Bogan Club NFT on the secondary market. We think you should consider holding it to enjoy the current and future utility and up-coming developments',
   },
   {
-    title: 'What is Metamask?',
+    title: 'What is MetaMask?',
     content: 'MetaMask is a decentralized digital wallet that can be used to store digital currency (cryptocurrency) and NFTs. It can be accessed through a browser extension or through a mobile/smart phone app.',
   },
   {
     title: 'I don’t have a cryptocurrency wallet yet?',
-    content: 'If you don’t have a digital wallet, you can create a Metamask wallet by visiting https://metamask.io/',
+    content: 'If you don’t have a digital wallet, you can create a MetaMask wallet by visiting https://metamask.io/',
   },
   {
     title: 'How much is it for a Aussie Bogan Club NFT?',
@@ -61,7 +61,7 @@ const FAQ_DATA = [
   },
   {
     title: 'After I buy a Aussie Bogan Club NFT where will it be?',
-    content: 'Aussie Bogan Club NFTs are safely stored in your Metamask wallet.',
+    content: 'Aussie Bogan Club NFTs are safely stored in your MetaMask wallet or other compatible digital wallet that you use.',
   },
   {
     title: 'How many Aussie Bogan Club NFTs can I buy at once?',
@@ -93,7 +93,7 @@ const FAQ_DATA = [
   },
   {
     title: 'Will there be utility for the Aussie Bogan Club?',
-    content: 'Absolutely. Between our planned metaverse game, IRL meetup plans, planned merch sale release, and future NFT drops, we will continually adding value for those holding any of the Aussie Bogan Club NFTs.  Also, you’ll be an exclusive member of the Aussie Bogan Club socialite community and who knows what that may bring in the future.',
+    content: 'Absolutely. Between our IRL meetup plans, planned merch sale release, and future NFT drops, we will be continually adding value for those holding any of the Aussie Bogan Club NFTs.  Also, you’ll be an exclusive member of the Aussie Bogan Club socialite community and who knows what that may bring in the future.',
   },
   {
     title: 'Will you work with partners?',

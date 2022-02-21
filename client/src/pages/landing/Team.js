@@ -18,7 +18,7 @@ const MEMBERS = [
   'Chief Bogan',
   'Bogan Project Manager',
   'Technical Wiz',
-  'Blockchain/NFT Geek',
+  'Blockchain / NFT Geek',
   'Artist Extraordinaire',
   'Support Artist',
   'Social Bogan',

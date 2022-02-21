@@ -17,7 +17,7 @@ const KEY_INFO = [
   ['Blockchain', 'Ethereum'],
   ['Unlockable content', 'Yes, high-resolution image'],
   ['File hosting', 'IPFS'],
-  ['Royalties', '7% to fund ABC ongoing and new projects'],
+  ['Royalties', '7.5% to fund ABC ongoing and new projects'],
   ['Reveal type', 'Instant'],
   ['Smart contract', 'https://etherscan...']
 ];
