@@ -301,7 +301,7 @@ export default function Test() {
               <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
                 {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email`}
               </ConnectButton>
-              {
+              { 
                 wallet &&
                 <a href={`https://opensea.io/${wallet}`} target='_blank' style={{textDecoration:'none'}}>
                   <Typography variant='body1' color='primary.main'>
