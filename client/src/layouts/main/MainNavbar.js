@@ -218,7 +218,7 @@ export default function MainNavbar() {
                 <IconButton color='primary'>
                   <SvgIcon>{TwitterPath}</SvgIcon>
                 </IconButton>
-              </a>
+              </a>    
               <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
                 <IconButton color='primary'>
                   <SvgIcon>{InstagramPath}</SvgIcon>
