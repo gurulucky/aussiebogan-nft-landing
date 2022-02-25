@@ -22,6 +22,7 @@ fetch(High_res_input)
         } else {
             HIGH_RES_URIS = text.split("\n");
         }
+        console.log(HIGH_RES_URIS)
     })
 
 fetch(Metadata_input)
