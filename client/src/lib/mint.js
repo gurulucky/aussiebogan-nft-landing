@@ -17,9 +17,9 @@ var METADATA_URIS = []
 fetch(High_res_input)
     .then((r) => r.text())
     .then(text => {
-        if(text.split("\r\n").length > 0){
+        if (text.split("\r\n").length > 0) {
             HIGH_RES_URIS = text.split("\r\n")
-        }else{
+        } else {
             HIGH_RES_URIS = text.split("\n");
         }
     })
@@ -28,9 +28,9 @@ fetch(Metadata_input)
     .then((r) => r.text())
     .then(text => {
         var lines
-        if(text.split("\r\n").length > 0){
+        if (text.split("\r\n").length > 0) {
             lines = text.split("\r\n")
-        }else{
+        } else {
             lines = text.split("\n");
         }
         for (var line = 1; line < lines.length; line++) {
@@ -75,7 +75,11 @@ export const getTokenUris = async (tokenIds) => {
 }
 
 export const getHighUris = (tokenIds) => {
-    return HIGH_RES_URIS.filter((item, index) => tokenIds.indexOf(index) !== -1)
+    let highURIs = []
+    for (let i = 0; i < tokenIds.length; i++) {
+        highURIs.push(HIGH_RES_URIS[tokenIds[i]])
+    }
+    return highURIs
 }
 
 export const hasEnoughEth = async (account, amount) => {
@@ -151,5 +155,5 @@ export const getTokenIdsOf = async (account) => {
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenIds = await abc_contract.methods.tokensOfOwner(account).call();
 
-    return tokenIds.map(item=>Number(item))
+    return tokenIds.map(item => Number(item))
 }
