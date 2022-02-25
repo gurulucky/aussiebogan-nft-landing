@@ -22,9 +22,9 @@ import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(10,3),
+  padding: theme.spacing(10, 3),
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(10,15)
+    padding: theme.spacing(10, 15)
   }
 }));
 
@@ -43,8 +43,8 @@ const RoadmapItem = ({ title, contents }) => {
         {title}
       </Typography>
       {
-        contents.map(text =>
-          <ListItem>
+        contents.map((text, index) =>
+          <ListItem key={index}>
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
@@ -139,7 +139,7 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                More Giveaways & Utility
+                  More Giveaways & Utility
                 </Typography>
                 <ListItem>
                   <ListItemIcon>
@@ -171,7 +171,7 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                Merch. Store & Next ABC NFT Drop
+                  Merch. Store & Next ABC NFT Drop
                 </Typography>
                 <ListItem>
                   <ListItemIcon>
@@ -209,7 +209,7 @@ export default function Roadmap() {
               </TimelineSeparator>
               <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography variant="h4" color='primary' component="span">
-                Bogans Rejoice!
+                  Bogans Rejoice!
                 </Typography>
                 <ListItem>
                   <ListItemIcon>

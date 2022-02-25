@@ -67,8 +67,8 @@ export default function MainFooter() {
               justifyContent={{ xs: 'center', md: 'flex-start' }}
               sx={{ mt: 5, mb: { xs: 5, md: 0 } }}
             >
-              {SOCIALS.map((social) => (
-                <a href={`${social.href}`} target='_blank'>
+              {SOCIALS.map((social,index) => (
+                <a href={`${social.href}`} target='_blank' key={index}>
                   <IconButton color='primary' size='small'>
                     {social.icon}
                   </IconButton>

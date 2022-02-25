@@ -9,7 +9,7 @@ import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@material-ui/core/styles';
 import { Box, Button, AppBar, Toolbar, Container, Typography, Stack, IconButton, SvgIcon, Menu, MenuItem, ListItemIcon, Divider } from '@material-ui/core';
-import { AccountCircle, Settings, Logout, Login, Collections } from '@material-ui/icons';
+
 //////////////////////////
 import { DiscordPath, TwitterPath, InstagramPath } from '../../components/SvgIcon';
 import useOffSetTop from '../../hooks/useOffSetTop';
@@ -75,67 +75,11 @@ export default function MainNavbar() {
   const dispatch = useDispatch()
   const isOffset = useOffSetTop(100);
   const { pathname } = useLocation();
-  // const wallet = useSelector(state => state.manager.wallet)
+  const wallet = useSelector(state => state.manager.wallet)
   const role = useSelector(state => state.auth.user?.role);
   const isHome = pathname === '/';
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
-  // const [web3authReady, setWeb3authReady] = useState(false)
-
-  // useEffect(() => {
-  //   initWeb3()
-  // }, [])
-
-  // const initWeb3 = async () => {
-  //   setWeb3authReady(false)
-  //   await web3auth.initModal();
-  //   setWeb3authReady(true)
-  // }
-
-  // const login = async () => {
-  //   try {
-  //     await web3auth.connect();
-  //     const web3 = new Web3(web3auth.provider);
-  //     web3auth.provider.on('accountsChanged', function (accounts) {
-  //       // if (accounts[0] !== account) {
-  //       dispatch(setWallet(accounts[0]))
-  //       console.log("change", accounts[0]);
-  //       // }
-  //     });
-  //     web3auth.provider.on('networkChanged', function (networkId) {
-  //       if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
-  //         dispatch(setModal(true, `Connect to ${NETWORK} network.`));
-  //         return;
-  //       }
-  //     });
-  //     const address = (await web3.eth.getAccounts())[0];
-  //     dispatch(setWallet(address))
-  //     const balance = await web3.eth.getBalance(address);
-  //     console.log(await web3auth.getUserInfo())
-  //     console.log(address, balance)
-  //   } finally {
-  //   }
-  // };
-
-  // const logout = async () => {
-  //   try {
-  //     await web3auth.logout()
-  //     dispatch(setWallet(""))
-  //     console.log('logout')
-
-  //   } catch (err) {
-  //     console.log(err.message)
-  //   }
-  // }
-
-  // const handleLogin = () => {
-  //   if (wallet) {
-  //     logout()
-  //   } else {
-  //     login()
-  //   }
-  // }
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
@@ -183,15 +127,8 @@ export default function MainNavbar() {
               </a>
               {/* <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
                 {wallet ? `Logout` : `Login`}
-              </Button>
-              {
-                wallet &&
-                <a href={`https://opensea.io/${wallet}`} target='_blank'>
-                  <Typography variant='body1' color='white'>
-                    {`${shortAddress(wallet)}`}
-                  </Typography>
-                </a>
-              } */}
+              </Button> */}
+              
             </Stack>
 
           </MHidden>
@@ -218,7 +155,7 @@ export default function MainNavbar() {
                 <IconButton color='primary'>
                   <SvgIcon>{TwitterPath}</SvgIcon>
                 </IconButton>
-              </a>    
+              </a>
               <a href='https://www.instagram.com/aussie_bogan_club/' target='_blank'>
                 <IconButton color='primary'>
                   <SvgIcon>{InstagramPath}</SvgIcon>

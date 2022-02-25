@@ -109,8 +109,8 @@ export default function Membership() {
                 </Typography>
                 <List dense={false}>
                   {
-                    MEMBERSHIP_TEXT.map(item =>
-                      <ListItem>
+                    MEMBERSHIP_TEXT.map((item,index) =>
+                      <ListItem key={index}>
                         <ListItemIcon>
                           <LoyaltyIcon sx={{color:'primary.main'}}/>
                         </ListItemIcon>

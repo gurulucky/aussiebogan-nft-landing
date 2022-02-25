@@ -71,7 +71,7 @@ export default function Utility() {
         <Stack direction='column' spacing={2}>
           {
             UTILITY_INFO.map((item, index) =>
-              <Stack direction='row' spacing={3} alignItems='center'>
+              <Stack direction='row' key={index} spacing={3} alignItems='center'>
                 <Typography variant='h3' color='primary.main' textAlign='right'>{`${index + 1}`}</Typography>
                 <Typography variant='h6'>{item}</Typography>
               </Stack>

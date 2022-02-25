@@ -130,7 +130,7 @@ export default function Faq() {
         <MotionInView variants={varFadeInRight}>
           {
             FAQ_DATA.map((item, index) =>
-              <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}
+              <Accordion expanded={expanded === `panel${index}`} key={index} onChange={handleChange(`panel${index}`)}
                 sx={{
                   border: '1px solid #1CCAFF',
                   backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'

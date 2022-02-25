@@ -1,9 +1,11 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 import Web3 from 'web3'
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
+import LockIcon from '@mui/icons-material/Lock';
 // import { Typography, useMediaQuery, Stack,Button, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
@@ -88,12 +90,14 @@ export default function Test() {
     if (window.ethereum && !initWeb3) {
       setInitWeb3(true);
       window.web3 = new Web3(window.ethereum);
+
       window.ethereum.on('accountsChanged', function (accounts) {
         // if (accounts[0] !== account) {
         console.log("change", accounts[0]);
         conMetamask();
         // }
       });
+
       window.ethereum.on('networkChanged', function (networkId) {
         if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
 
@@ -102,7 +106,8 @@ export default function Test() {
         }
         conMetamask();
       });
-      // conMetamask();
+
+      conMetamask();
     } else {
       initWeb3Modal()
     }
@@ -130,6 +135,8 @@ export default function Test() {
         }
         const accounts = await window.ethereum.enable();
         console.log(accounts);
+        dispatch(setWallet(accounts[0]))
+        window.localStorage.setItem('wallet', accounts[0])
         // console.log(await window.web3.eth.getBalance(accounts[0]));
         if (accounts[0] && e) {
           setMinting(true);
@@ -164,6 +171,7 @@ export default function Test() {
       web3auth.provider.on('accountsChanged', function (accounts) {
         // if (accounts[0] !== account) {
         dispatch(setWallet(accounts[0]))
+        window.localStorage.setItem('wallet', accounts[0])
         console.log("change", accounts[0]);
         // }
       });
@@ -175,6 +183,7 @@ export default function Test() {
       });
       const address = (await web3.eth.getAccounts())[0];
       dispatch(setWallet(address))
+      window.localStorage.setItem('wallet', address)
       const balance = await web3.eth.getBalance(address);
       console.log(await web3auth.getUserInfo())
       console.log(address, balance)
@@ -186,6 +195,7 @@ export default function Test() {
     try {
       await web3auth.logout()
       dispatch(setWallet(""))
+      window.localStorage.setItem('wallet', "")
       console.log('logout')
 
     } catch (err) {
@@ -301,15 +311,13 @@ export default function Test() {
               <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
                 {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email Address`}
               </ConnectButton>
-              { 
-                wallet &&
-                <a href={`https://opensea.io/${wallet}`} target='_blank' style={{textDecoration:'none'}}>
-                  <Typography variant='body1' color='primary.main'>
-                    My collections
-                  </Typography>
-                </a>
-              }
             </>
+        }
+        {
+          wallet &&
+          <RouterLink to='/collection' style={{textDecoration:'none'}}>
+            My Collection
+          </RouterLink>
         }
         {/* </Stack> */}
         <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>

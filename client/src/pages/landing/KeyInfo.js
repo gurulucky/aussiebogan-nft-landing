@@ -85,8 +85,8 @@ export default function KeyInfo() {
         <TableStyle>
           <tbody>
             {
-              KEY_INFO.map(info =>
-                <tr>
+              KEY_INFO.map((info,index) =>
+                <tr key={index}>
                   <td><Typography variant='h6'>{info[0]}</Typography> </td>
                   <td><Typography variant='h6'>{info[1]}</Typography> </td>
                 </tr>

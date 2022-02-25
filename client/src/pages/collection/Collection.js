@@ -8,7 +8,8 @@ import NftItem from './NftItem';
 import AlertDialog from '../AlertDialog'
 import { StyledCircleProgress } from '../styled/StyledInput'
 //actions
-import { getNFTs } from '../../actions/manager';
+import { getNFTsWithHighResImage } from '../../actions/manager';
+import { getTokenIdsOf } from '../../lib/mint'
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -23,30 +24,37 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LandingPage() {
-  const nftIds = useSelector(state => state.auth.user?.nftIds)
+  const wallet = useSelector(state => state.manager.wallet)
   const [nfts, setNfts] = useState([])
   const [loadingAssets, setLoadingAssets] = useState(false)
 
-  const getNfts = async () => {
+  const getNftsOf = async (wallet) => {
     setLoadingAssets(true)
-    setNfts(await getNFTs(nftIds))
+    let nftIds = await getTokenIdsOf(wallet)
+    console.log('nftIds',nftIds)
+    setNfts(await getNFTsWithHighResImage(nftIds))
     setLoadingAssets(false)
   }
+
   useEffect(() => {
-    if (nftIds) {
-      getNfts(nftIds)
+    if (wallet) {
+      getNftsOf(wallet)
+    }else if(window.localStorage.getItem('wallet')){
+      getNftsOf(window.localStorage.getItem('wallet'))
     }
-  }, [nftIds, getNfts])
+  }, [])
 
 
   return (
     <RootStyle title="Aussie Bogan" id="move_top">
       {
-        loadingAssets &&
+        loadingAssets ?
         <Stack direction='row' justifyContent='center' alignItems='center'>
           <StyledCircleProgress />
           <Typography variant="body1" color="white" sx={{ marginLeft: "15px" }}>Loading now, please wait... </Typography>
         </Stack>
+        : nfts?.length ===0 &&
+        <Typography variant="body1" color="white" sx={{ marginLeft: "15px" }}>There is no collection.</Typography>
       }
       <Grid container>
         {
