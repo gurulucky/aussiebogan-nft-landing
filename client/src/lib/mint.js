@@ -17,10 +17,10 @@ var METADATA_URIS = []
 fetch(High_res_input)
     .then((r) => r.text())
     .then(text => {
-        if (text.split("\r\n").length > 0) {
-            HIGH_RES_URIS = text.split("\r\n")
+        if (text.split("\n").length > 0) {
+            HIGH_RES_URIS = text.split("\n")
         } else {
-            HIGH_RES_URIS = text.split("\n");
+            HIGH_RES_URIS = text.split("\r\n");
         }
         console.log(HIGH_RES_URIS)
     })
@@ -29,10 +29,10 @@ fetch(Metadata_input)
     .then((r) => r.text())
     .then(text => {
         var lines
-        if (text.split("\r\n").length > 0) {
-            lines = text.split("\r\n")
+        if (text.split("\n").length > 0) {
+            lines = text.split("\n")
         } else {
-            lines = text.split("\n");
+            lines = text.split("\r\n");
         }
         for (var line = 1; line < lines.length; line++) {
             if (lines[line]) {
