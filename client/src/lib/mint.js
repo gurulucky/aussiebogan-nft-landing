@@ -22,7 +22,7 @@ fetch(High_res_input)
         } else {
             HIGH_RES_URIS = text.split("\r\n");
         }
-        console.log(HIGH_RES_URIS)
+        // console.log(HIGH_RES_URIS)
     })
 
 fetch(Metadata_input)
@@ -41,7 +41,7 @@ fetch(Metadata_input)
                 METADATA_URIS.push(element);
             }
         }
-        console.log(METADATA_URIS)
+        // console.log(METADATA_URIS)
     })
 
 export const mint = async (account, amount) => {
