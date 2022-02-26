@@ -41,7 +41,7 @@ fetch(Metadata_input)
                 METADATA_URIS.push(element);
             }
         }
-
+        console.log(METADATA_URIS)
     })
 
 export const mint = async (account, amount) => {
