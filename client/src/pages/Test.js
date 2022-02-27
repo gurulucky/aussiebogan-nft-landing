@@ -51,6 +51,7 @@ const web3auth = new Web3Auth({
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
   padding: theme.spacing(3),
+  paddingTop: theme.spacing(15),
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(15)
   }
@@ -308,6 +309,11 @@ export default function Test() {
             <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
             : web3authReady &&
             <>
+              <Typography variant='body1' sx={{color:'yellow'}}>
+                {
+                  wallet || 'No Wallet Detected'
+                }
+              </Typography>
               <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
                 {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email Address`}
               </ConnectButton>

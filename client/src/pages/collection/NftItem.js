@@ -23,10 +23,10 @@ export default function NftItem({ nft }) {
                     </CardContent>
                     <CardActions>
                         <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none' }}>
-                            <Button color='primary' startIcon={<LockIcon />}>Unlock content</Button>
+                            <Button color='primary' startIcon={<LockIcon />}>Unlockable content</Button>
                         </a>
                         <Box sx={{ flexGrow: 1 }} />
-                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>View on opensea</a>
+                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>View on OpenSea</a>
                     </CardActions>
                 </StyledCard>
             </Container>
