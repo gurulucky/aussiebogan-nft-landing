@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import { NFT_ABI } from './abi.js'
 // import { METADATA_URIS } from './ABC2-M_summary.js'
-import Metadata_input from './ABC2-M_summary.txt'
+import Metadata_input from './ABC_summary.txt'
 import High_res_input from './ABC_Hi-Res_ipfsURI.txt'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';

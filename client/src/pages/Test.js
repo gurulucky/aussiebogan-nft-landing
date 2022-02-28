@@ -342,7 +342,7 @@ export default function Test() {
         {
           wallet &&
           <RouterLink to='/collection' style={{ textDecoration: 'none' }}>
-            My Collection
+            My Collections
           </RouterLink>
         }
         {/* </Stack> */}
