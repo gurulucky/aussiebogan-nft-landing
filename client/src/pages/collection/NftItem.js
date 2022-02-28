@@ -10,14 +10,14 @@ export default function NftItem({ nft }) {
                 <StyledCard>
                     <CardContent sx={{ py: "4px" }}>
                         <Stack justifyContent="center" alignItems="center" sx={{ height: "360px", backgroundColor: "rgb(43 43 43)" }}>
-                            <img src={nft.image || '/empty.png'} title="Ryoshi Vision" alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
-                        </Stack>
-                        <Stack direction="row" justifyContent="space-between" alignItems="center">
                             <a href={nft.metadataUri} target='_blank'>
-                                <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
-                                    {`${nft.name}`}
-                                </Typography>
+                                <img src={nft.image || '/empty.png'} title="Ryoshi Vision" alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
                             </a>
+                        </Stack>
+                        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{mt:'10px'}}>
+                            <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
+                                {`${nft.name}`}
+                            </Typography>
                         </Stack>
                         {/* <Typography variant="body1" color="rgb(221, 221, 221)">
                             {nft.description}

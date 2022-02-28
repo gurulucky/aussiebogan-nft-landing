@@ -322,7 +322,7 @@ export default function Test() {
             : web3authReady &&
             <>
               <Stack direction='row' justifyContent='center' alignItems='center'>
-                <Typography variant='body1' sx={{ color: 'yellow' }}>
+                <Typography variant='body1' sx={{ color: 'white' }}>
                   {
                     wallet ? shortAddress(wallet) : 'No Wallet Detected'
                   }
@@ -341,13 +341,13 @@ export default function Test() {
         }
         {
           wallet &&
-          <RouterLink to='/collection' style={{ textDecoration: 'none' }}>
+          <RouterLink to='/collection' style={{ textDecoration: 'none', color:'yellow' }}>
             My Collections
           </RouterLink>
         }
         {/* </Stack> */}
-        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
-          <Typography variant='body1' color='white'>View Contract</Typography>
+        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none'}}>
+          <Typography variant='body1' style={{color:'primary'}}>View Contract</Typography>
         </a>
       </Stack>
       <AlertDialog />
