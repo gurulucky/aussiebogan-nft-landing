@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 import Web3 from 'web3'
+import { toast } from 'react-toastify';
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
-import LockIcon from '@mui/icons-material/Lock';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 // import { Typography, useMediaQuery, Stack,Button, InputBase } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
@@ -23,6 +24,7 @@ import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/b
 import { setModal, setQuantity, setWallet } from '../actions/manager';
 import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress } from '../lib/mint';
 import AlertDialog from './AlertDialog';
+import { IconButton } from '@material-ui/core';
 
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
@@ -256,6 +258,16 @@ export default function Test() {
     setBuying(false)
   }
 
+  const copy = async () => {
+    await navigator.clipboard.writeText(wallet)
+    toast.info(`address copied.`, {
+      position: "top-right",
+      autoClose: 3000,
+      closeOnClick: true,
+      hideProgressBar: true,
+    });
+  }
+
   return (
     <RootStyle>
       <Stack direction='column'
@@ -309,11 +321,19 @@ export default function Test() {
             <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
             : web3authReady &&
             <>
-              <Typography variant='body1' sx={{color:'yellow'}}>
+              <Stack direction='row' justifyContent='center' alignItems='center'>
+                <Typography variant='body1' sx={{ color: 'yellow' }}>
+                  {
+                    wallet ? shortAddress(wallet) : 'No Wallet Detected'
+                  }
+                </Typography>
                 {
-                  wallet || 'No Wallet Detected'
+                  wallet &&
+                  <IconButton onClick={copy}>
+                    <ContentCopyIcon />
+                  </IconButton>
                 }
-              </Typography>
+              </Stack>
               <ConnectButton loading={buying} loadingPosition='start' variant='contained' size='large' onClick={handleBuy}>
                 {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email Address`}
               </ConnectButton>
@@ -321,7 +341,7 @@ export default function Test() {
         }
         {
           wallet &&
-          <RouterLink to='/collection' style={{textDecoration:'none'}}>
+          <RouterLink to='/collection' style={{ textDecoration: 'none' }}>
             My Collection
           </RouterLink>
         }

@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // routes
 import Router from './routes';
 // theme
@@ -24,11 +26,12 @@ export default function App() {
         <ThemeLocalization>
           <RtlLayout>
             {/* <NotistackProvider> */}
-              {/* <Settings /> */}
-              <ScrollToTop />
-              <Router />
+            {/* <Settings /> */}
+            <ScrollToTop />
+            <Router />
             {/* </NotistackProvider> */}
           </RtlLayout>
+          <ToastContainer />
         </ThemeLocalization>
       </ThemePrimaryColor>
     </ThemeConfig>

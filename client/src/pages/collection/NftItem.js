@@ -13,9 +13,11 @@ export default function NftItem({ nft }) {
                             <img src={nft.image || '/empty.png'} title="Ryoshi Vision" alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
                         </Stack>
                         <Stack direction="row" justifyContent="space-between" alignItems="center">
-                            <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
-                                {`${nft.name}`}
-                            </Typography>
+                            <a href={nft.metadataUri} target='_blank'>
+                                <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
+                                    {`${nft.name}`}
+                                </Typography>
+                            </a>
                         </Stack>
                         {/* <Typography variant="body1" color="rgb(221, 221, 221)">
                             {nft.description}
