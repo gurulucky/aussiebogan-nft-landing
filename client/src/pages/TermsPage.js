@@ -26,7 +26,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 export default function Terms() {
   return (
-    <RootStyle title="404 Page Not Found | Minimal-UI">
+    <RootStyle>
       <Container>
         <MotionContainer initial="initial" open>
           <Box sx={{ margin: 'auto' }}>
