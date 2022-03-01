@@ -229,7 +229,7 @@ export default function Test() {
   const buy = async () => {
     setBuying(true)
     const privateKey = process.env.REACT_APP_PRIVATE_KEY;
-    let signature = await getSignatureForMint(wallet, quantity)
+    let signature = await getSignatureForMint(wallet, quantity, id)
     const signedData = signSmartContractData({
       address: wallet, //user wallet
       commodity: 'ETH',
@@ -347,7 +347,7 @@ export default function Test() {
         }
         {/* </Stack> */}
         <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
-          <Typography variant='body1' style={{ color: 'primary' }}>View Contract</Typography>
+          <Typography variant='body1' color='primary'>View Contract</Typography>
         </a>
       </Stack>
       <AlertDialog />
