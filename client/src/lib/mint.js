@@ -122,13 +122,14 @@ export const shortAddress = (address) => {
     return address;
 }
 
-export const getSignatureForMint = async (account, amount) => {
+export const getSignatureForMint = async (account, amount, id) => {
     if (!account || amount <= 0) {
         return
     }
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+    let groupId = id ? Number(id) : 0
     let signature = web3.eth.abi.encodeFunctionCall(
         {
             "inputs": [
@@ -153,7 +154,7 @@ export const getSignatureForMint = async (account, amount) => {
             "stateMutability": "payable",
             "type": "function"
         },
-        [account, mintUris]
+        [account, mintUris, groupId]
     )
     return signature
 }
