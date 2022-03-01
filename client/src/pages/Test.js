@@ -276,7 +276,7 @@ export default function Test() {
           border: '1px solid #1CCAFF',
           backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'
         }}
-        spacing={5} alignItems='center'
+        spacing={3} alignItems='center'
       >
         <Stack direction='column'>
           <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
@@ -318,7 +318,12 @@ export default function Test() {
         {/* <Stack direction={isDesktop ? 'row' : 'column'} spacing={1}> */}
         {
           initWeb3 ?
-            <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
+            <>
+              <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
+              {
+                minting&&<Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
+              }
+            </>
             : web3authReady &&
             <>
               <Stack direction='row' justifyContent='center' alignItems='center'>
