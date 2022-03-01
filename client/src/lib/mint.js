@@ -44,12 +44,14 @@ fetch(Metadata_input)
         // console.log(METADATA_URIS)
     })
 
-export const mint = async (account, amount) => {
+export const mint = async (account, amount, id) => {
     let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
     console.log('mint tokenUris', mintUris);
-    let res = await abc_contract.methods.mint(account, mintUris).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+    let groupId = id ? Number(id) : 0
+    console.log('groupId', groupId)
+    let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
     return res.status
 }
 
@@ -139,6 +141,11 @@ export const getSignatureForMint = async (account, amount) => {
                     "internalType": "string[]",
                     "name": "tokenUris",
                     "type": "string[]"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_groupId",
+                    "type": "uint256"
                 }
             ],
             "name": "mint",

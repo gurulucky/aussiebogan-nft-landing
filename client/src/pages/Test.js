@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink as RouterLink, useLocation } from 'react-router-dom';
+import { NavLink as RouterLink, useParams } from 'react-router-dom';
 import Web3 from 'web3'
 import { toast } from 'react-toastify';
 // material
@@ -79,7 +79,7 @@ export default function Test() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+  const { id } = useParams();
   // const [quantity, setQuantity] = useState(1);
   const quantity = useSelector(state => state.manager.quantity)
   const wallet = useSelector(state => state.manager.wallet)
@@ -144,7 +144,7 @@ export default function Test() {
         if (accounts[0] && e) {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
-            if (await mint(accounts[0], quantity)) {
+            if (await mint(accounts[0], quantity, id)) {
               dispatch(setModal(true, `Minting ${quantity} NFTs succeed`));
               setTotal();
             }
@@ -341,13 +341,13 @@ export default function Test() {
         }
         {
           wallet &&
-          <RouterLink to='/collection' style={{ textDecoration: 'none', color:'yellow' }}>
+          <RouterLink to='/collection' style={{ textDecoration: 'none', color: 'yellow' }}>
             My Collections
           </RouterLink>
         }
         {/* </Stack> */}
-        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none'}}>
-          <Typography variant='body1' style={{color:'primary'}}>View Contract</Typography>
+        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
+          <Typography variant='body1' style={{ color: 'primary' }}>View Contract</Typography>
         </a>
       </Stack>
       <AlertDialog />
