@@ -4,7 +4,7 @@ import {
 
 import api from '../utils/api'
 import axios from 'axios'
-import { getHighUris, getTokenUris } from '../lib/mint';
+import { getHighUris, getTokenUris, getRarityScores } from '../lib/mint';
 
 export const setWallet = (wallet) => dispatch => {
   dispatch({
@@ -34,12 +34,13 @@ export const getNFTsWithHighResImage = async (nftIds) => {
     }
     let tokenURIs = await getTokenUris(nftIds)
     let highURIs = getHighUris(nftIds)
+    let rarityScores = getRarityScores(nftIds)
     console.log(tokenURIs, highURIs)
     let nfts = []
     for (let i = 0; i < tokenURIs.length; i++) {
       try {
         let nft = (await axios.get(tokenURIs[i])).data
-        nfts.push({ ...nft, metadataUri:tokenURIs[i], tokenId: nftIds[i], highUri: highURIs[i] })
+        nfts.push({ ...nft, metadataUri: tokenURIs[i], tokenId: nftIds[i], highUri: highURIs[i], rarityScore: rarityScores[i] })
       } catch (err) {
 
       }

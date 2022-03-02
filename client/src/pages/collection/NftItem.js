@@ -18,15 +18,15 @@ export default function NftItem({ nft }) {
                             <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
                                 {`${nft.name}`}
                             </Typography>
-                            <a href={nft.metadataUri} target='_blank' style={{textDecoration:'none'}}>
+                            <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none' }}>
                                 <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
                                     Metadata
                                 </Typography>
                             </a>
                         </Stack>
-                        {/* <Typography variant="body1" color="rgb(221, 221, 221)">
-                            {nft.description}
-                        </Typography> */}
+                        <Typography variant="caption" color="rgb(221, 221, 221)">
+                            {`Rarity Score: ${nft.rarityScore}`}
+                        </Typography>
                     </CardContent>
                     <CardActions>
                         <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none' }}>

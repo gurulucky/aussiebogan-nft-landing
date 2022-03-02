@@ -3,6 +3,7 @@ import { NFT_ABI } from './abi.js'
 // import { METADATA_URIS } from './ABC2-M_summary.js'
 import Metadata_input from './ABC_summary.txt'
 import High_res_input from './ABC_Hi-Res_ipfsURI.txt'
+import Rarity_input from './ABC_Rarity_Summary.txt'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
@@ -13,27 +14,30 @@ const PRICE = process.env.REACT_APP_PRICE
 
 var HIGH_RES_URIS = []
 var METADATA_URIS = []
+var RARITY_SCORES = []
+
+fetch(Rarity_input)
+    .then((r) => r.text())
+    .then(text => {
+        RARITY_SCORES = text.split("\n").map(item => {
+            let rarity = item.replace('\r', '')
+            rarity = rarity.split('_')
+            return rarity[rarity.length - 1]
+        })
+        // console.log(HIGH_RES_URIS)
+    })
 
 fetch(High_res_input)
     .then((r) => r.text())
     .then(text => {
-        if (text.split("\n").length > 0) {
-            HIGH_RES_URIS = text.split("\n")
-        } else {
-            HIGH_RES_URIS = text.split("\r\n");
-        }
+        HIGH_RES_URIS = text.split("\n").map(item => item.replace('\r', ''))
         // console.log(HIGH_RES_URIS)
     })
 
 fetch(Metadata_input)
     .then((r) => r.text())
     .then(text => {
-        var lines
-        if (text.split("\n").length > 0) {
-            lines = text.split("\n")
-        } else {
-            lines = text.split("\r\n");
-        }
+        var lines = text.split("\n").map(item => item.replace('\r', ''))
         for (var line = 1; line < lines.length; line++) {
             if (lines[line]) {
                 const infuraUrlset = lines[line].split("	");
@@ -45,14 +49,19 @@ fetch(Metadata_input)
     })
 
 export const mint = async (account, amount, id) => {
-    let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
-    let tokenCounter = await getTotalMinted()
-    let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
-    console.log('mint tokenUris', mintUris);
-    let groupId = id ? Number(id) : 0
-    console.log('groupId', groupId)
-    let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
-    return res.status
+    try {
+
+        let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+        let tokenCounter = await getTotalMinted()
+        let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+        console.log('mint tokenUris', mintUris);
+        let groupId = id ? Number(id) : 0
+        console.log('groupId', groupId)
+        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+        return res.status
+    } catch (err) {
+        console.log(err.message)
+    }
 }
 
 export const getTotalMinted = async () => {
@@ -83,6 +92,15 @@ export const getHighUris = (tokenIds) => {
         highURIs.push(HIGH_RES_URIS[tokenIds[i]])
     }
     return highURIs
+}
+
+export const getRarityScores = (tokenIds) => {
+    let rarityScores = []
+    for (let i = 0; i < tokenIds.length; i++) {
+        rarityScores.push(RARITY_SCORES[tokenIds[i]])
+    }
+    console.log(rarityScores)
+    return rarityScores
 }
 
 export const hasEnoughEth = async (account, amount) => {

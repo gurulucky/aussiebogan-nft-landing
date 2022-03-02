@@ -1,0 +1,10 @@
+ABC_#1_Rarity_Metadata_91.43
+ABC_#2_Rarity_Metadata_96.17
+ABC_#3_Rarity_Metadata_58.43
+ABC_#4_Rarity_Metadata_99.76
+ABC_#5_Rarity_Metadata_64.76
+ABC_#6_Rarity_Metadata_56.17
+ABC_#7_Rarity_Metadata_90.00
+ABC_#8_Rarity_Metadata_83.10
+ABC_#9_Rarity_Metadata_90.93
+ABC_#10_Rarity_Metadata_69.26
