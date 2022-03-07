@@ -22,12 +22,13 @@ import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
 //
 import { setModal, setQuantity, setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 import { IconButton } from '@material-ui/core';
 
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
+const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 
 // ----------------------------------------------------------------------
@@ -86,8 +87,11 @@ export default function Test() {
   const [initWeb3, setInitWeb3] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buying, setBuying] = useState(false)
+  const [renaming, setRenaming] = useState(false)
   const [web3authReady, setWeb3authReady] = useState(false)
   const [totalMinted, setTotalMinted] = useState(0);
+  const [tokenId, setTokenId] = useState(-1)
+  const [name, setName] = useState("")
 
   useEffect(() => {
     if (window.ethereum && !initWeb3) {
@@ -218,6 +222,19 @@ export default function Test() {
     dispatch(setQuantity(e.target.value));
   }
 
+  const changeTokenId = (e) => {
+    if (e.target.value >= 0 && e.target.value <= 10000) {
+      setTokenId(e.target.value)
+    } else {
+      dispatch(setModal(true, 'please input correct token ID'))
+    }
+  }
+
+  const changeName = (e) => {
+    let name = e.target.value.trim();
+    setName(name)
+  }
+
   const handleBuy = async () => {
     if (wallet) {
       buy()
@@ -266,6 +283,67 @@ export default function Test() {
       closeOnClick: true,
       hideProgressBar: true,
     });
+  }
+
+  const rename = async () => {
+    if (tokenId < 0 || tokenId > 9999) {
+      dispatch(setModal(true, `Please input correct token ID`))
+      return
+    }
+    if (name.length < 3 || name.length > 20) {
+      dispatch(setModal(true, `Please input 3~20 characters for name`))
+      return
+    }
+    try {
+      setRenaming(true)
+
+      if (initWeb3 && wallet) {
+        if (await hasEnoughEthForRename(wallet)) {
+          if (await renameNFT(wallet, tokenId, name)) {
+            dispatch(setModal(true, `Your NFT name was changed by "${name}"`))
+          }
+        } else {
+          dispatch(setModal(true, `Your ETH balance is not enough for renaming`))
+        }
+      } else if (web3authReady && wallet) {
+        const privateKey = process.env.REACT_APP_PRIVATE_KEY;
+        let signature = await getSignatureForRename(wallet, tokenId, name)
+        if (signature) {
+          const signedData = signSmartContractData({
+            address: wallet, //user wallet
+            commodity: 'ETH',
+            commodity_amount: RENAME_PRICE,
+            pk_id: 'key1',
+            sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+            sc_id: uuidv4(), // must be unique for any request
+            sc_input_data: signature,
+          }, privateKey);
+
+          const otherWidgetOptions = {
+            partner_id: process.env.REACT_APP_PARTNER_ID,
+            container_id: 'widget',
+            click_id: uuidv4(), // unique id of purhase in your system
+            origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+            width: 400,
+            height: 600,
+          };
+
+          const wertWidget = new WertWidget({
+            ...signedData,
+            ...otherWidgetOptions,
+          });
+
+          window.open(wertWidget.getRedirectUrl())
+        }else{
+          dispatch(setModal(true, `You can't rename ABC now. Please try later.`))
+        }
+      }
+
+      setRenaming(false)
+    } catch (err) {
+      console.log(err.message)
+    }
+    setRenaming(false)
   }
 
   return (
@@ -321,7 +399,7 @@ export default function Test() {
             <>
               <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`MINT`}</ConnectButton>
               {
-                minting&&<Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
+                minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
               }
             </>
             : web3authReady &&
@@ -344,13 +422,48 @@ export default function Test() {
               </ConnectButton>
             </>
         }
+
+        <Stack direction='column'>
+          <Typography className='flux_title' variant="h3" color='primary.main' sx={{ textAlign: 'center' }}>
+            Rename your ABC
+          </Typography>
+          <Stack direction='row' spacing={1} justifyContent='center'>
+            <Typography variant="h6" color='common.white'>
+              {`rename fee: ${RENAME_PRICE} Eth`}
+            </Typography>
+          </Stack>
+        </Stack>
+        <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
+          <Stack direction='row' spacing={1} >
+            <InputBase variant='outlined' type='number' placeholder='Token ID'
+              inputProps={{
+                min: 1, max: 10,
+                sx: { textAlign: 'center', width: '100px', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
+
+              }}
+              onChange={changeTokenId}
+            />
+            <InputBase variant='outlined' type='text' placeholder='New name(3~20 charaters)'
+              inputProps={{
+                sx: { width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
+
+              }}
+              onChange={changeName}
+            />
+          </Stack>
+          {
+            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
+            <Stack direction='row' spacing={1}>
+              <ConnectButton loading={renaming} loadingPosition='start' variant='contained' size='large' onClick={rename} sx={{ width: '100px' }}>{`RENAME`}</ConnectButton>
+            </Stack>
+          }
+        </Stack>
         {
           wallet &&
           <RouterLink to='/collection' style={{ textDecoration: 'none', color: 'yellow' }}>
             My Collections
           </RouterLink>
         }
-        {/* </Stack> */}
         <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
           <Typography variant='body1' color='primary'>View Contract</Typography>
         </a>

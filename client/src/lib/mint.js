@@ -4,6 +4,8 @@ import { NFT_ABI } from './abi.js'
 import Metadata_input from './ABC_summary.txt'
 import High_res_input from './ABC_Hi-Res_ipfsURI.txt'
 import Rarity_input from './ABC_Rarity_Summary.txt'
+import { pinJSONToIPFS } from './pinata.js'
+import axios from 'axios'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
@@ -11,6 +13,7 @@ const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 const PRICE = process.env.REACT_APP_PRICE
+const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 var HIGH_RES_URIS = []
 var METADATA_URIS = []
@@ -118,6 +121,22 @@ export const hasEnoughEth = async (account, amount) => {
     }
 }
 
+export const hasEnoughEthForRename = async (account) => {
+    try {
+        let balance = await window.web3.eth.getBalance(account);
+        // console.log(balance, window.web3.utils.toWei((PRICE * amount).toString, "ether"));
+        console.log(balance, RENAME_PRICE)
+        if (isBigger(String(balance), String(window.web3.utils.toWei(RENAME_PRICE, "ether"))) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        console.log(err.message);
+        return false;
+    }
+}
+
 export const isBigger = (x, y) => {
     x = x || "0";
     y = y || "0";
@@ -142,7 +161,7 @@ export const shortAddress = (address) => {
 
 export const getSignatureForMint = async (account, amount, id) => {
     if (!account || amount <= 0) {
-        return
+        return ""
     }
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
@@ -174,6 +193,7 @@ export const getSignatureForMint = async (account, amount, id) => {
         },
         [account, mintUris, groupId]
     )
+    console.log(`mint signature ${signature}`)
     return signature
 }
 
@@ -184,3 +204,88 @@ export const getTokenIdsOf = async (account) => {
 
     return tokenIds.map(item => Number(item))
 }
+
+export const getNewMetadataURI = async (tokenId, name) => {
+    let metadata, metadataURI, tokenURI
+    let web3 = new Web3(ropstennet)
+    let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+    try {
+        tokenURI = await abc_contract.methods.tokenURI(tokenId).call()
+    } catch (err) {
+        console.log(err.message)
+        return ""
+    }
+
+    await axios.get(tokenURI)
+        .then(res => {
+            metadata = res.data;
+        })
+        .catch(err => {
+            return ""
+        })
+
+    metadata.name = name;
+
+    let uploadToIPFS = await pinJSONToIPFS(metadata);
+    if (uploadToIPFS.success) {
+        metadataURI = 'https://gateway.pinata.cloud/ipfs/' + uploadToIPFS.pinataUrl
+        console.log(`rename metadata ${metadataURI}`)
+        return metadataURI
+    } else {
+        return ""
+    }
+}
+
+export const renameNFT = async (account, tokenId, name) => {
+    try {
+        let metadataURI = await getNewMetadataURI(tokenId, name)
+        if (metadataURI) {
+            let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+            let res = await abc_contract.methods.setTokenUri(account, tokenId, metadataURI).send({ from: account, value: window.web3.utils.toWei(RENAME_PRICE.toString(), "ether") })
+            return res.status
+        } else {
+            return false
+        }
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export const getSignatureForRename = async (account, tokenId, name) => {
+    let metadataURI = await getNewMetadataURI(tokenId, name)
+    if (metadataURI) {
+        const web3 = new Web3(mainnet)
+        let signature = web3.eth.abi.encodeFunctionCall(
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "tokenOwner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "tokenUri",
+                        "type": "string"
+                    }
+                ],
+                "name": "setTokenUri",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            [account, tokenId, metadataURI]
+        )
+        console.log(`rename signature ${signature}`)
+        return signature
+    }
+    else{
+        return ""
+    }
+}
+
