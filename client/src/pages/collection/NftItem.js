@@ -11,7 +11,7 @@ export default function NftItem({ nft }) {
                     <CardContent sx={{ py: "4px" }}>
                         <Stack justifyContent="center" alignItems="center" sx={{ height: "360px", backgroundColor: "rgb(43 43 43)" }}>
                             {/* <a href={nft.metadataUri} target='_blank'> */}
-                            <img src={nft.image || '/empty.png'} title="Ryoshi Vision" alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
+                            <img src={nft.image || '/empty.png'} title={nft.name} alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
                             {/* </a> */}
                         </Stack>
                         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mt: '10px' }}>
@@ -24,9 +24,14 @@ export default function NftItem({ nft }) {
                                 </Typography>
                             </a>
                         </Stack>
-                        <Typography variant="caption" color="rgb(221, 221, 221)">
-                            {`Rarity Score: ${nft.rarityScore}`}
-                        </Typography>
+                        <Stack direction='row' justifyContent='space-between'>
+                            <Typography variant="caption" color="rgb(221, 221, 221)">
+                                {`Rarity Score: ${nft.rarityScore}`}
+                            </Typography>
+                            <Typography variant="caption" color="rgb(221, 221, 221)">
+                                {`Token ID: ${nft.tokenId}`}
+                            </Typography>
+                        </Stack>
                     </CardContent>
                     <CardActions>
                         <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none' }}>

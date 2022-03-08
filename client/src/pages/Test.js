@@ -422,14 +422,31 @@ export default function Test() {
               </ConnectButton>
             </>
         }
-
+        {
+          wallet &&
+          <RouterLink to='/collection' style={{ textDecoration: 'none', color: 'yellow' }}>
+            My Collections
+          </RouterLink>
+        }
+        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
+          <Typography variant='body1' color='primary'>View Contract</Typography>
+        </a>
+      </Stack>
+      <Stack direction='column'
+        sx={{
+          p: 3,
+          border: '1px solid #1CCAFF',
+          backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'
+        }}
+        spacing={3} alignItems='center'
+      >        
         <Stack direction='column'>
-          <Typography className='flux_title' variant="h3" color='primary.main' sx={{ textAlign: 'center' }}>
+          <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
             Rename your ABC
           </Typography>
           <Stack direction='row' spacing={1} justifyContent='center'>
             <Typography variant="h6" color='common.white'>
-              {`rename fee: ${RENAME_PRICE} Eth`}
+              {`${RENAME_PRICE} Eth + Gas fee`}
             </Typography>
           </Stack>
         </Stack>
@@ -458,15 +475,6 @@ export default function Test() {
             </Stack>
           }
         </Stack>
-        {
-          wallet &&
-          <RouterLink to='/collection' style={{ textDecoration: 'none', color: 'yellow' }}>
-            My Collections
-          </RouterLink>
-        }
-        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
-          <Typography variant='body1' color='primary'>View Contract</Typography>
-        </a>
       </Stack>
       <AlertDialog />
     </RootStyle >
