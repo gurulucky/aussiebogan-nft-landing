@@ -149,10 +149,7 @@ export default function Test() {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
             if (await mint(accounts[0], quantity, id)) {
-              if(quantity > 1){
-                dispatch(setModal(true, `${quantity} NFTs were minted successfully.`));  
-              }
-              dispatch(setModal(true, `${quantity} NFT was minted successfully`));
+                dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));  
               setTotal();
             }
           } else {
