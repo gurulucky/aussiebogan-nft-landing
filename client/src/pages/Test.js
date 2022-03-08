@@ -300,7 +300,7 @@ export default function Test() {
       if (initWeb3 && wallet) {
         if (await hasEnoughEthForRename(wallet)) {
           if (await renameNFT(wallet, tokenId, name)) {
-            dispatch(setModal(true, `Your NFT name was changed by "${name}"`))
+            dispatch(setModal(true, `Your NFT name was changed to "${name}"`))
           }
         } else {
           dispatch(setModal(true, `Your ETH balance is not enough for renaming`))
@@ -465,8 +465,7 @@ export default function Test() {
 
             <InputBase variant='outlined' type='text' placeholder='New Name (3-20 Characters)'
               inputProps={{
-                sx: { width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
-
+                sx: { textAlign:'center', width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
               }}
               onChange={changeName}
             />
@@ -477,6 +476,9 @@ export default function Test() {
             <Stack direction='row' spacing={1}>
               <ConnectButton loading={renaming} loadingPosition='start' variant='contained' size='large' onClick={rename} sx={{ width: '100px' }}>{`RENAME`}</ConnectButton>
             </Stack>
+          }
+          {
+                minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
           }
         </Stack>
       </Stack>
