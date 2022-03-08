@@ -441,7 +441,7 @@ export default function Test() {
         spacing={3} alignItems='center'
       >        
         <Stack direction='column'>
-          <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
+          <Typography className='flux_title' variant="h4" color='primary.main' sx={{ textAlign: 'center' }}>
             Rename your ABC
           </Typography>
           <Stack direction='row' spacing={1} justifyContent='center'>
@@ -460,7 +460,7 @@ export default function Test() {
               }}
               onChange={changeTokenId}
             />
-            <InputBase variant='outlined' type='text' placeholder='New name(3~20 charaters)'
+            <InputBase variant='outlined' type='text' placeholder='New Name (3-20 Characters)'
               inputProps={{
                 sx: { width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
 
