@@ -149,7 +149,10 @@ export default function Test() {
           setMinting(true);
           if (await hasEnoughEth(accounts[0], quantity)) {
             if (await mint(accounts[0], quantity, id)) {
-              dispatch(setModal(true, `Minting ${quantity} NFTs succeed`));
+              if(quantity > 1){
+                dispatch(setModal(true, `${quantity} NFTs were minted successfully.`));  
+              }
+              dispatch(setModal(true, `${quantity} NFT was minted successfully`));
               setTotal();
             }
           } else {
@@ -425,7 +428,7 @@ export default function Test() {
         {
           wallet &&
           <RouterLink to='/collection' style={{ textDecoration: 'none', color: 'yellow' }}>
-            My Collections
+            My Collection
           </RouterLink>
         }
         <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
