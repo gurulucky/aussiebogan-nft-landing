@@ -14,12 +14,17 @@ export default function NftItem({ nft }) {
                             <img src={nft.image || '/empty.png'} title={nft.name} alt="nft" style={{ display: "block", maxWidth: "360px", maxHeight: "360px", width: "auto", height: "auto" }} />
                             {/* </a> */}
                         </Stack>
-                        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mt: '10px' }}>
-                            <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
-                                {`${nft.name}`}
-                            </Typography>
-                            <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none' }}>
+                        <Stack direction="row" justifyContent="space-between" sx={{ mt: '10px' }}>
+                            <Stack direction='row' alignItems='center'>
+                                <Typography gutterBottom variant="caption" color="rgb(221, 221, 221)">
+                                    Token Name:&nbsp;
+                                </Typography>
                                 <Typography gutterBottom variant="body1" color="rgb(221, 221, 221)">
+                                    {`${nft.name}`}
+                                </Typography>
+                            </Stack>
+                            <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none' }}>
+                                <Typography gutterBottom variant="caption" color="rgb(221, 221, 221)">
                                     Metadata
                                 </Typography>
                             </a>
@@ -38,7 +43,9 @@ export default function NftItem({ nft }) {
                             <Button color='primary' startIcon={<LockIcon />}>Unlockable content</Button>
                         </a>
                         <Box sx={{ flexGrow: 1 }} />
-                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>View on OpenSea</a>
+                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>
+                            <Box component='img' src='/static/opensea.png' width='30px' height='30px'/>
+                        </a>
                     </CardActions>
                 </StyledCard>
             </Container>

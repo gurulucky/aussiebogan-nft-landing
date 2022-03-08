@@ -334,7 +334,7 @@ export default function Test() {
           });
 
           window.open(wertWidget.getRedirectUrl())
-        }else{
+        } else {
           dispatch(setModal(true, `You can't rename ABC now. Please try later.`))
         }
       }
@@ -439,7 +439,7 @@ export default function Test() {
           backgroundImage: 'repeating-linear-gradient(45deg,#0b1414,#0b1414 10px,#061724 10px,#061724 20px)'
         }}
         spacing={3} alignItems='center'
-      >        
+      >
         <Stack direction='column'>
           <Typography className='flux_title' variant="h4" color='primary.main' sx={{ textAlign: 'center' }}>
             Rename your ABC
@@ -450,7 +450,7 @@ export default function Test() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' spacing={1}>
+        <Stack direction={isDesktop ? 'row' : 'column'} justifyContent='center' alignItems='center' spacing={1}>
           <Stack direction='row' spacing={1} >
             <InputBase variant='outlined' type='number' placeholder='Token ID'
               inputProps={{
@@ -460,6 +460,9 @@ export default function Test() {
               }}
               onChange={changeTokenId}
             />
+          </Stack>
+          <Stack direction='row'>
+
             <InputBase variant='outlined' type='text' placeholder='New Name (3-20 Characters)'
               inputProps={{
                 sx: { width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
@@ -468,6 +471,7 @@ export default function Test() {
               onChange={changeName}
             />
           </Stack>
+
           {
             ((initWeb3 && wallet) || (web3authReady && wallet)) &&
             <Stack direction='row' spacing={1}>
