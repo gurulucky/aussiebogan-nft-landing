@@ -478,7 +478,7 @@ export default function Test() {
             </Stack>
           }
           {
-                minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
+                renaming && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
           }
         </Stack>
       </Stack>
