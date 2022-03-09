@@ -8,11 +8,12 @@ import { Grid, Link, Divider, Container, Typography, IconButton, Stack, SvgIcon 
 import { PATH_PAGE } from '../../routes/paths';
 //
 import Logo from '../../components/Logo';
-import { DiscordPath, TwitterPath, InstagramPath } from '../../components/SvgIcon';
+import { FacebookPath, DiscordPath, TwitterPath, InstagramPath } from '../../components/SvgIcon';
 // ----------------------------------------------------------------------
 
 const SOCIALS = [
-  { name: 'Discord', icon: <SvgIcon><g fill="none">{DiscordPath}</g></SvgIcon>, href: 'https://discord.gg/DbDQC9ep29' },
+  { name : 'Facebook', icon: <SvgIcon>{FacebookPath}</SvgIcon>, href: 'https://www.facebook.com/Aussieboganclub/' },
+  { name: 'Discord', icon: <SvgIcon>{DiscordPath}</SvgIcon>, href: 'https://discord.gg/DbDQC9ep29' },
   { name: 'Twitter', icon: <SvgIcon>{TwitterPath}</SvgIcon>, href: 'https://twitter.com/boganclub' },
   { name: 'Instagram', icon: <SvgIcon>{InstagramPath}</SvgIcon>, href: 'https://www.instagram.com/aussie_bogan_club/' }
 ];

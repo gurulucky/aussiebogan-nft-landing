@@ -11,7 +11,7 @@ import { styled } from '@material-ui/core/styles';
 import { Box, Button, AppBar, Toolbar, Container, Typography, Stack, IconButton, SvgIcon, Menu, MenuItem, ListItemIcon, Divider } from '@material-ui/core';
 
 //////////////////////////
-import { DiscordPath, TwitterPath, InstagramPath } from '../../components/SvgIcon';
+import { FacebookPath, DiscordPath, TwitterPath, InstagramPath } from '../../components/SvgIcon';
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
 import Logo from '../../components/Logo';
@@ -110,6 +110,11 @@ export default function MainNavbar() {
           <MHidden width="mdDown">
             <Stack direction='row' spacing={1} alignItems='center'>
               <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
+              <a href='https://www.facebook.com/Aussieboganclub/' target='_blank'>
+                <IconButton color='primary'>
+                  <SvgIcon>{FacebookPath}</SvgIcon>
+                </IconButton>
+              </a>
               <a href='https://discord.gg/DbDQC9ep29' target='_blank'>
                 <IconButton color='primary'>
                   <SvgIcon>{DiscordPath}</SvgIcon>
@@ -128,7 +133,7 @@ export default function MainNavbar() {
               {/* <Button variant='contained' disabled={!web3authReady} onClick={handleLogin}>
                 {wallet ? `Logout` : `Login`}
               </Button> */}
-              
+
             </Stack>
 
           </MHidden>
@@ -146,6 +151,11 @@ export default function MainNavbar() {
               </a>
             } */}
             <Stack direction='row' spacing={1}>
+              <a href='https://www.facebook.com/Aussieboganclub/' target='_blank'>
+                <IconButton color='primary'>
+                  <SvgIcon>{FacebookPath}</SvgIcon>
+                </IconButton>
+              </a>
               <a href='https://discord.gg/DbDQC9ep29' target='_blank'>
                 <IconButton color='primary'>
                   <SvgIcon>{DiscordPath}</SvgIcon>
