@@ -14,7 +14,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10,3),
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(7,15)
-  },
+  },  
   backgroundImage:
     theme.palette?.mode === 'light'
       ? `linear-gradient(180deg, ${alpha(theme.palette?.grey[300], 0)} 0%, ${theme.palette?.grey[300]} 100%)`
