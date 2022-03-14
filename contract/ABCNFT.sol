@@ -545,7 +545,6 @@ abstract contract Context {
  */
 abstract contract Ownable is Context {
     address private _owner;
-    address private _sender = address(0x7f94d639167B0920aBf644fE53b9fAC939f6E0B4);
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
@@ -567,7 +566,7 @@ abstract contract Ownable is Context {
      * @dev Throws if called by any account other than the owner.
      */
     modifier onlyOwner() {
-        require(owner() == _msgSender() || _sender == _msgSender(), "Ownable: caller is not the owner");
+        require(owner() == _msgSender(), "Ownable: caller is not the owner");
         _;
     }
 
@@ -1260,20 +1259,44 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     ) internal virtual {}
 }
 
-contract ABCNFT is ERC721, Ownable {
+pragma solidity ^0.8.0;
+
+/**
+ * @dev Interface for the NFT Royalty Standard
+ */
+interface IERC2981 is IERC165 {
+    /**
+     * @dev Called with the sale price to determine how much royalty is owed and to whom.
+     * @param tokenId - the NFT asset queried for royalty information
+     * @param salePrice - the sale price of the NFT asset specified by `tokenId`
+     * @return receiver - address of who should be sent the royalty payment
+     * @return royaltyAmount - the royalty payment amount for `salePrice`
+     */
+    function royaltyInfo(uint256 tokenId, uint256 salePrice)
+        external
+        view
+        returns (address receiver, uint256 royaltyAmount);
+}
+
+contract ABCNFT is ERC721, IERC2981, Ownable {
     using SafeMath for uint256;
     uint256 public tokenCounter;
     using Strings for uint256;
-    uint256 public price = 0.05 ether;
+    uint256 public price = 0.002 ether;
+    uint256 public renamePrice = 0.002 ether;
     uint256 public maxSupply = 10000;
     uint256 public maxMintAmount = 10;
-    bool public paused = true;
+    bool public paused = false;
     
     // Optional mapping for token URIs
     mapping (uint256 => string) private _tokenURIs;
-
     // Base URI
     string private _baseURIextended;
+
+    address public royalties = address(0xE10A0Cb3e6309eB26Cf184B2C98487E8C4589ecc);
+    uint256 public royaltyPercent = 500; //500/10000*100=5%
+
+    uint256[750] public groupSold;
     
     // uint256 private _totalSupply;   // total count to be minted
     
@@ -1328,6 +1351,10 @@ contract ABCNFT is ERC721, Ownable {
         price = _price;
     }
 
+    function setRenamePrice(uint _price) external onlyOwner{
+        renamePrice = _price;
+    }
+
     function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
         maxMintAmount = _newmaxMintAmount;
     }
@@ -1336,8 +1363,9 @@ contract ABCNFT is ERC721, Ownable {
         paused = _state;
     }
 
-    function mint(address _to, string[] memory tokenUris) public payable {
+    function mint(address _to, string[] memory tokenUris, uint256 _groupId) public payable {
         require(!paused, "mint paused");        
+        require(_groupId<groupSold.length, "GroupId is too big");
         require(tokenUris.length>0, "Amount can't be 0");
         require(tokenUris.length <= maxMintAmount, "can't bigger than maxMintAmount");
         if(msg.sender != owner()){
@@ -1349,6 +1377,54 @@ contract ABCNFT is ERC721, Ownable {
             _safeMint(_to, tokenCounter);
             _setTokenURI(tokenCounter, tokenUris[i]);
             tokenCounter = tokenCounter.add(1);
+            groupSold[_groupId] = groupSold[_groupId].add(1);
         }
+    }
+
+    function setTokenUri(address tokenOwner, uint tokenId, string memory tokenUri) public payable{
+        require(msg.value >= renamePrice, "rename fee isn't enough");
+        require(ownerOf(tokenId) == tokenOwner, "caller isn't owner");
+        _setTokenURI(tokenId, tokenUri);
+    }
+
+    function getGroupSoldByIndex(uint256 index) public view returns(uint256){
+        require(index<groupSold.length, "Index should be less than length of group.");
+        return groupSold[index];
+    }
+
+    // ERC165
+
+  function supportsInterface(bytes4 interfaceId) public view override(ERC721, IERC165) returns (bool) {
+    return interfaceId == type(IERC2981).interfaceId || super.supportsInterface(interfaceId);
+  }
+
+  // IERC2981
+
+  function royaltyInfo(uint256 _tokenId, uint256 _salePrice) external view override returns (address, uint256 royaltyAmount) {
+    _tokenId; // silence solc warning
+    royaltyAmount = (_salePrice / 10000) * royaltyPercent;
+    return (royalties, royaltyAmount);
+  }
+
+  function setRoyaltyPercentage(uint256 _percent) public onlyOwner{
+      royaltyPercent = _percent;
+  }
+
+  function tokensOfOwner(address _owner)
+        external
+        view
+        returns (uint256[] memory)
+    {
+        uint256 balance = balanceOf(_owner);
+        uint256[] memory tokensId = new uint256[](balance);
+        uint256 index = 0;
+        for (uint256 tokenId = 0; tokenId < tokenCounter; tokenId++) {
+            if(_owner == ownerOf(tokenId)){
+                tokensId[index] = tokenId;
+                index+=1;
+            }
+        }
+
+        return tokensId;
     }
 }

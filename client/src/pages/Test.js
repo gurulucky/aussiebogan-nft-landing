@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { NavLink as RouterLink, useParams } from 'react-router-dom';
 import Web3 from 'web3'
 import { toast } from 'react-toastify';
@@ -22,7 +23,7 @@ import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
 //
 import { setModal, setQuantity, setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename, getGroupId } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 import { IconButton } from '@material-ui/core';
 
@@ -79,6 +80,7 @@ const ConnectButton = styled(LoadingButton)(({ theme }) => ({
 export default function Test() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { id } = useParams();
   // const [quantity, setQuantity] = useState(1);
@@ -94,6 +96,9 @@ export default function Test() {
   const [name, setName] = useState("")
 
   useEffect(() => {
+    if (getGroupId(id) === -1) {
+      navigate('/vip', { replace: true })
+    }
     if (window.ethereum && !initWeb3) {
       setInitWeb3(true);
       window.web3 = new Web3(window.ethereum);
@@ -145,17 +150,19 @@ export default function Test() {
         dispatch(setWallet(accounts[0]))
         window.localStorage.setItem('wallet', accounts[0])
         // console.log(await window.web3.eth.getBalance(accounts[0]));
-        if (accounts[0] && e) {
-          setMinting(true);
-          if (await hasEnoughEth(accounts[0], quantity)) {
-            if (await mint(accounts[0], quantity, id)) {
-                dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));  
-              setTotal();
+        if (getGroupId(id) >= 0) {
+          if (accounts[0] && e) {
+            setMinting(true);
+            if (await hasEnoughEth(accounts[0], quantity)) {
+              if (await mint(accounts[0], quantity, getGroupId(id))) {
+                dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));
+                setTotal();
+              }
+            } else {
+              dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
             }
-          } else {
-            dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+            setMinting(false);
           }
-          setMinting(false);
         }
       } catch (err) {
         setMinting(false);
@@ -465,7 +472,7 @@ export default function Test() {
 
             <InputBase variant='outlined' type='text' placeholder='New Name (3-20 Characters)'
               inputProps={{
-                sx: { textAlign:'center', width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
+                sx: { textAlign: 'center', width: '200px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
               }}
               onChange={changeName}
             />
@@ -478,7 +485,7 @@ export default function Test() {
             </Stack>
           }
           {
-                renaming && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
+            renaming && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
           }
         </Stack>
       </Stack>
