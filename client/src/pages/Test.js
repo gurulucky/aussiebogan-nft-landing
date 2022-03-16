@@ -34,13 +34,15 @@ const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 // ----------------------------------------------------------------------
 const NETWORK = process.env.REACT_APP_NETWORK;
+const CHAIN_ID = Number(process.env.REACT_APP_MAINNET_ID)
+// const CHAIN_ID = 3
 
 const ethChainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: "0x3",
+  chainId: "0x1",
   rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
   displayName: `${NETWORK}`,
-  blockExplorer: `https://${NETWORK}.etherscan.io/`,
+  blockExplorer: `https://etherscan.io/`,
   ticker: "ETH",
   tickerName: "Ethereum",
 };
@@ -97,7 +99,7 @@ export default function Test() {
 
   useEffect(() => {
     if (getGroupId(id) === -1) {
-      navigate('/vip', { replace: true })
+      navigate('/', { replace: true })
     }
     if (window.ethereum && !initWeb3) {
       setInitWeb3(true);
@@ -111,7 +113,7 @@ export default function Test() {
       });
 
       window.ethereum.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+        if (Number(networkId) !== CHAIN_ID) {
 
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
@@ -140,7 +142,7 @@ export default function Test() {
         const chainId = await window.ethereum.request({
           method: "eth_chainId"
         });
-        if (Number(chainId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+        if (Number(chainId) !== CHAIN_ID) {
           console.log(chainId)
           dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           return;
@@ -191,7 +193,7 @@ export default function Test() {
         // }
       });
       web3auth.provider.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+        if (Number(networkId) !== CHAIN_ID) {
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
         }
@@ -269,9 +271,10 @@ export default function Test() {
 
       const otherWidgetOptions = {
         partner_id: process.env.REACT_APP_PARTNER_ID,
-        container_id: 'widget',
+        container_id: 'wert-widget',
         click_id: uuidv4(), // unique id of purhase in your system
-        origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+        // origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+        origin: 'https://widget.wert.io', // this option needed only for this example to work
         width: 400,
         height: 600,
       };

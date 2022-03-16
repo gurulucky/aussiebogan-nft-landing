@@ -26,8 +26,6 @@ import { shortAddress } from '../../lib/mint'
 const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 88;
 
-const NETWORK = process.env.REACT_APP_NETWORK
-
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
   height: APP_BAR_MOBILE,
   transition: theme.transitions.create(['height', 'background-color'], {

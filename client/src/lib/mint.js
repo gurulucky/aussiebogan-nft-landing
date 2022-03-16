@@ -74,6 +74,7 @@ export const getGroupId = (groupId) => {
     if (!groupId) {
         return 0
     }
+    groupId = groupId.toUpperCase()
     for (let i = 0; i < GROUP_PREFIX.length; i++) {
         if (groupId.indexOf(GROUP_PREFIX[i]) === 0 && (Number(groupId.replace(GROUP_PREFIX[i], '')) > 0 && Number(groupId.replace(GROUP_PREFIX[i], '')) <= GROUP_COUNTS[i])) {
             console.log(groupId, Number(groupId.replace(GROUP_PREFIX[i], '')))
@@ -85,7 +86,7 @@ export const getGroupId = (groupId) => {
 
 export const getTotalMinted = async () => {
     try {
-        let web3 = new Web3(ropstennet)
+        let web3 = new Web3(mainnet)
         let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
         let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
         console.log('totalminted', tokenCounter)
@@ -96,7 +97,7 @@ export const getTotalMinted = async () => {
 }
 
 export const getTokenUris = async (tokenIds) => {
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenUris = []
     for (let i = 0; i < tokenIds.length; i++) {
@@ -182,6 +183,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+    console.log('mint uris', mintUris)
     console.log('groupId', groupId)
     let signature = web3.eth.abi.encodeFunctionCall(
         {
@@ -214,7 +216,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
 }
 
 export const getTokenIdsOf = async (account) => {
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenIds = await abc_contract.methods.tokensOfOwner(account).call();
 
@@ -223,7 +225,7 @@ export const getTokenIdsOf = async (account) => {
 
 export const getNewMetadataURI = async (tokenId, name) => {
     let metadata, metadataURI, tokenURI
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     try {
         tokenURI = await abc_contract.methods.tokenURI(tokenId).call()

@@ -69,8 +69,7 @@ export default function Router() {
         { path: '/', element: <LandingPage /> },
         { path: '/terms', element: <TermsPage /> },
         { path: '/privacy', element: <PrivacyPage /> },
-        { path: '/vip', element: <TestPage /> },
-        { path: '/vip/:id', element: <TestPage /> },
+        { path: '/:id', element: <TestPage /> },
         // { path: '/user', element: <AuthGuard><UserAccount /></AuthGuard> },
         { path: '/collection', element: <CollectionPage /> },
       ]

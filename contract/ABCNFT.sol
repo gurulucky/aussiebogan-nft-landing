@@ -1282,8 +1282,8 @@ contract ABCNFT is ERC721, IERC2981, Ownable {
     using SafeMath for uint256;
     uint256 public tokenCounter;
     using Strings for uint256;
-    uint256 public price = 0.002 ether;
-    uint256 public renamePrice = 0.002 ether;
+    uint256 public price = 0.05 ether;
+    uint256 public renamePrice = 0.008 ether;
     uint256 public maxSupply = 10000;
     uint256 public maxMintAmount = 10;
     bool public paused = false;
@@ -1293,7 +1293,7 @@ contract ABCNFT is ERC721, IERC2981, Ownable {
     // Base URI
     string private _baseURIextended;
 
-    address public royalties = address(0xE10A0Cb3e6309eB26Cf184B2C98487E8C4589ecc);
+    address public royalties;
     uint256 public royaltyPercent = 500; //500/10000*100=5%
 
     uint256[750] public groupSold;
@@ -1302,7 +1302,6 @@ contract ABCNFT is ERC721, IERC2981, Ownable {
     
     constructor () ERC721 ("AussieBoganClub", "ABC"){
         tokenCounter = 0;
-        // _totalSupply = totalSupply;
     }
 
     function withdraw() public onlyOwner() {
@@ -1408,6 +1407,10 @@ contract ABCNFT is ERC721, IERC2981, Ownable {
 
   function setRoyaltyPercentage(uint256 _percent) public onlyOwner{
       royaltyPercent = _percent;
+  }
+
+  function setRoyalties(address _royalties) public onlyOwner {
+      royalties = _royalties;
   }
 
   function tokensOfOwner(address _owner)
