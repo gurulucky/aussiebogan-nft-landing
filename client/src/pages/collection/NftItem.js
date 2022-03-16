@@ -3,6 +3,8 @@ import LockIcon from '@mui/icons-material/Lock';
 
 import { StyledCard } from "../styled/StyledInput"
 
+const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
+
 export default function NftItem({ nft }) {
     return (
         <Grid item xs={12} sm={6} md={4} sx={{ my: "10px" }}>
@@ -43,7 +45,7 @@ export default function NftItem({ nft }) {
                             <Button color='primary' startIcon={<LockIcon />}>Unlockable content</Button>
                         </a>
                         <Box sx={{ flexGrow: 1 }} />
-                        <a href={`https://testnets.opensea.io/assets/0xfFA4683b9aC4aAD95416804f4cac0e23f527F63c/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>
+                        <a href={`https://opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank' rel='noreferrer' style={{ color: "white" }}>
                             <Box component='img' src='/static/opensea.png' width='30px' height='30px'/>
                         </a>
                     </CardActions>
