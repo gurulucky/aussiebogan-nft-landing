@@ -19,7 +19,7 @@ const KEY_INFO = [
   ['File hosting', 'IPFS'],
   ['Royalties', '7.5% to fund ABC ongoing and new projects'],
   ['Reveal type', 'Instant'],
-  ['Smart contract', 'https://etherscan...']
+  ['Smart contract', 'https://etherscan.io/address/0x21ee41BDB2f8A493752A4F8Fd9040Fc4d7224d88']
 ];
 
 const Root = styled(Box)`

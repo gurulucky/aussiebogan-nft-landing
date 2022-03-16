@@ -442,7 +442,7 @@ export default function Test() {
             My Collection
           </RouterLink>
         }
-        <a href={`https://${NETWORK}.etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
+        <a href={`https://etherscan.io/address/${process.env.REACT_APP_NFT_ADDRESS}`} target='_blank' style={{ textDecoration: 'none' }}>
           <Typography variant='body1' color='primary'>View Contract</Typography>
         </a>
       </Stack>
