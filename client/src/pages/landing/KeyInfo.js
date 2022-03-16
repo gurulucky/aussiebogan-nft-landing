@@ -18,8 +18,7 @@ const KEY_INFO = [
   ['Unlockable content', 'Yes, high-resolution image'],
   ['File hosting', 'IPFS'],
   ['Royalties', '7.5% to fund ABC ongoing and new projects'],
-  ['Reveal type', 'Instant'],
-  ['Smart contract', 'https://etherscan.io/address/0x21ee41BDB2f8A493752A4F8Fd9040Fc4d7224d88']
+  ['Reveal type', 'Instant']
 ];
 
 const Root = styled(Box)`
