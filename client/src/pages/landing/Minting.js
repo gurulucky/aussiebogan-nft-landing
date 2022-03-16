@@ -17,9 +17,8 @@ import useCountdown from '../../hooks/useCountdown';
 import { setModal } from '../../actions/manager';
 import { hasEnoughEth, mint, getTotalMinted } from '../../lib/mint';  
 // ----------------------------------------------------------------------
-const NETWORK = 'rinkeby';
-const RINKEBY_CHAINID = 4;
-const MAINNET_CHAINID = 1;
+const NETWORK = process.env.REACT_APP_NETWORK;
+const CHAIN_ID = Number(process.env.REACT_APP_MAINNET_ID)
 
 const RootStyle = styled('div')(({ theme }) => ({
   // paddingTop: theme.spacing(15),
@@ -76,7 +75,7 @@ export default function Minting() {
         // }
       });
       window.ethereum.on('networkChanged', function (networkId) {
-        if (Number(networkId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+        if (Number(networkId) !== CHAIN_ID) {
           setAccount("");
           return;
         }
@@ -105,7 +104,7 @@ export default function Minting() {
         const chainId = await window.ethereum.request({
           method: "eth_chainId"
         });
-        if (Number(chainId) !== (NETWORK === 'rinkeby' ? RINKEBY_CHAINID : MAINNET_CHAINID)) {
+        if (Number(networkId) !== CHAIN_ID) {
           dispatch(setModal(true, `Connect to ${NETWORK} network on metamask.`));
           setAccount("");
           return;
