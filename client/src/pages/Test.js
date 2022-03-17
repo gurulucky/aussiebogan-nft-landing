@@ -263,7 +263,7 @@ export default function Test() {
         address: wallet, //user wallet
         commodity: 'ETH',
         commodity_amount: (PRICE * quantity).toString(),
-        pk_id: 'key1',
+        pk_id: 'key2',
         sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
         sc_id: uuidv4(), // must be unique for any request
         sc_input_data: signature,
@@ -327,7 +327,7 @@ export default function Test() {
             address: wallet, //user wallet
             commodity: 'ETH',
             commodity_amount: RENAME_PRICE,
-            pk_id: 'key1',
+            pk_id: 'key2',
             sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
             sc_id: uuidv4(), // must be unique for any request
             sc_input_data: signature,
