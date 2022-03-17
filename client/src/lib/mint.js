@@ -204,7 +204,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
                     "type": "uint256"
                 }
             ],
-            "name": "mintt",
+            "name": "mint",
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
