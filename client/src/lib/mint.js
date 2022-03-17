@@ -209,7 +209,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
             "stateMutability": "payable",
             "type": "function"
         },
-        [account, mintUris, groupId]
+        [account, mintUris]
     )
     console.log(`mint signature ${signature}`)
     return signature
