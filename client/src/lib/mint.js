@@ -204,12 +204,12 @@ export const getSignatureForMint = async (account, amount, groupId) => {
                     "type": "uint256"
                 }
             ],
-            "name": "mint",
+            "name": "mintt",
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
         },
-        [account, mintUris]
+        [account, mintUris, groupId]
     )
     console.log(`mint signature ${signature}`)
     return signature
