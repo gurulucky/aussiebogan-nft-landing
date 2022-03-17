@@ -270,40 +270,45 @@ export const renameNFT = async (account, tokenId, name) => {
 }
 
 export const getSignatureForRename = async (account, tokenId, name) => {
-    let metadataURI = await getNewMetadataURI(tokenId, name)
-    if (metadataURI) {
-        const web3 = new Web3(mainnet)
-        let signature = web3.eth.abi.encodeFunctionCall(
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "tokenOwner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "tokenId",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "tokenUri",
-                        "type": "string"
-                    }
-                ],
-                "name": "setTokenUri",
-                "outputs": [],
-                "stateMutability": "payable",
-                "type": "function"
-            },
-            [account, tokenId, metadataURI]
-        )
-        console.log(`rename signature ${signature}`)
-        return signature
-    }
-    else {
-        return ""
+    try {
+
+        let metadataURI = await getNewMetadataURI(tokenId, name)
+        if (metadataURI) {
+            const web3 = new Web3(mainnet)
+            let signature = web3.eth.abi.encodeFunctionCall(
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "tokenOwner",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "tokenUri",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "setTokenUri",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                [account, tokenId, metadataURI]
+            )
+            console.log(`rename signature ${signature}`)
+            return signature
+        }else{
+            return ''
+        }
+    }catch(err){
+        console.log(err.message)
+        return ''
     }
 }
 

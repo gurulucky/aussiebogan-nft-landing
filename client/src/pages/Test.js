@@ -21,12 +21,12 @@ import { signSmartContractData } from '@wert-io/widget-sc-signer';
 import { v4 as uuidv4 } from 'uuid';
 import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/base";
+import Torus from '@toruslabs/torus-embed'
 //
 import { setModal, setQuantity, setWallet } from '../actions/manager';
 import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename, getGroupId } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 import { IconButton } from '@material-ui/core';
-
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
@@ -123,7 +123,7 @@ export default function Test() {
 
       conMetamask();
     } else {
-      initWeb3Modal()
+      // initWeb3Modal()
     }
     setTotal()
     // getRyoshiBalance(account, zksyncWallet);
@@ -175,24 +175,54 @@ export default function Test() {
     }
   }
 
-  const initWeb3Modal = async () => {
-    setWeb3authReady(false)
-    await web3auth.initModal();
-    setWeb3authReady(true)
-  }
+  // const initWeb3Modal = async () => {
+  //   setWeb3authReady(false)
+  //   // await web3auth.initModal();
+
+  //   setWeb3authReady(true)
+  // }
+
+  // const login = async () => {
+  //   try {
+  //     await web3auth.connect();
+  //     const web3 = new Web3(web3auth.provider);
+  //     web3auth.provider.on('accountsChanged', function (accounts) {
+  //       // if (accounts[0] !== account) {
+  //       dispatch(setWallet(accounts[0]))
+  //       window.localStorage.setItem('wallet', accounts[0])
+  //       console.log("change", accounts[0]);
+  //       // }
+  //     });
+  //     web3auth.provider.on('networkChanged', function (networkId) {
+  //       if (Number(networkId) !== CHAIN_ID) {
+  //         dispatch(setModal(true, `Connect to ${NETWORK} network.`));
+  //         return;
+  //       }
+  //     });
+  //     const address = (await web3.eth.getAccounts())[0];
+  //     dispatch(setWallet(address))
+  //     window.localStorage.setItem('wallet', address)
+  //     const balance = await web3.eth.getBalance(address);
+  //     console.log(await web3auth.getUserInfo())
+  //     console.log(address, balance)
+  //   } finally {
+  //   }
+  // };
 
   const login = async () => {
     try {
-      await web3auth.connect();
-      const web3 = new Web3(web3auth.provider);
-      web3auth.provider.on('accountsChanged', function (accounts) {
+      const torus = new Torus();
+      await torus.init();
+      await torus.login(); // await torus.ethereum.enable()
+      const web3 = new Web3(torus.provider);
+      torus.provider.on('accountsChanged', function (accounts) {
         // if (accounts[0] !== account) {
         dispatch(setWallet(accounts[0]))
         window.localStorage.setItem('wallet', accounts[0])
         console.log("change", accounts[0]);
         // }
       });
-      web3auth.provider.on('networkChanged', function (networkId) {
+      torus.provider.on('networkChanged', function (networkId) {
         if (Number(networkId) !== CHAIN_ID) {
           dispatch(setModal(true, `Connect to ${NETWORK} network.`));
           return;
@@ -319,7 +349,7 @@ export default function Test() {
         } else {
           dispatch(setModal(true, `Your ETH balance is not enough for renaming`))
         }
-      } else if (web3authReady && wallet) {
+      } else if (wallet) {
         const privateKey = process.env.REACT_APP_PRIVATE_KEY;
         let signature = await getSignatureForRename(wallet, tokenId, name)
         if (signature) {
@@ -416,7 +446,7 @@ export default function Test() {
                 minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
               }
             </>
-            : web3authReady &&
+            : 
             <>
               <Stack direction='row' justifyContent='center' alignItems='center'>
                 <Typography variant='body1' sx={{ color: 'white' }}>
@@ -486,7 +516,7 @@ export default function Test() {
           </Stack>
 
           {
-            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
+            ((initWeb3 && wallet) || wallet) &&
             <Stack direction='row' spacing={1}>
               <ConnectButton loading={renaming} loadingPosition='start' variant='contained' size='large' onClick={rename} sx={{ width: '100px' }}>{`RENAME`}</ConnectButton>
             </Stack>
