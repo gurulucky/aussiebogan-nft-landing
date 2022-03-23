@@ -70,6 +70,7 @@ export default function Router() {
         { path: '/terms', element: <TermsPage /> },
         { path: '/privacy', element: <PrivacyPage /> },
         { path: '/:id', element: <TestPage /> },
+        { path: '/admin', element: <AdminPage /> },
         // { path: '/user', element: <AuthGuard><UserAccount /></AuthGuard> },
         { path: '/collection', element: <CollectionPage /> },
       ]
@@ -89,5 +90,6 @@ const LandingPage = Loadable(lazy(() => import('../pages/landing/LandingPage')))
 const TermsPage = Loadable(lazy(() => import('../pages/TermsPage.js')));
 const PrivacyPage = Loadable(lazy(() => import('../pages/Privacy.js')));
 const TestPage = Loadable(lazy(() => import('../pages/Test.js')));
+const AdminPage = Loadable(lazy(() => import('../pages/Admin.js')));
 const UserAccount = Loadable(lazy(() => import('../pages/user/UserAccount')));
 const CollectionPage = Loadable(lazy(() => import('../pages/collection/Collection')));

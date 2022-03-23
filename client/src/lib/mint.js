@@ -63,11 +63,20 @@ export const mint = async (account, amount, groupId) => {
         let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
         console.log('mint tokenUris', mintUris);
         console.log('groupId', groupId)
-        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+        let value = '0'
+        if(account !== await getContractOwner()){
+            value = window.web3.utils.toWei((PRICE * amount).toString(), "ether")
+        }
+        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value })
         return res.status
     } catch (err) {
         console.log(err.message)
     }
+}
+
+export const getContractOwner = async () => {
+    let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+    return await abc_contract.methods.owner().call()
 }
 
 export const getGroupId = (groupId) => {
@@ -303,10 +312,10 @@ export const getSignatureForRename = async (account, tokenId, name) => {
             )
             console.log(`rename signature ${signature}`)
             return signature
-        }else{
+        } else {
             return ''
         }
-    }catch(err){
+    } catch (err) {
         console.log(err.message)
         return ''
     }

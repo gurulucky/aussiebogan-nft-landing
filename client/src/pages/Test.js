@@ -232,7 +232,7 @@ export default function Test() {
       dispatch(setWallet(address))
       window.localStorage.setItem('wallet', address)
       const balance = await web3.eth.getBalance(address);
-      console.log(await web3auth.getUserInfo())
+      // console.log(await web3auth.getUserInfo())
       console.log(address, balance)
     } finally {
     }
