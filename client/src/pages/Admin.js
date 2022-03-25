@@ -162,7 +162,7 @@ export default function Admin() {
       >
         <Stack direction='column'>
           <Typography className='flux_title' variant="h2" color='primary.main' sx={{ textAlign: 'center' }}>
-            Give away
+            Gift a Bogan
           </Typography>
           <Stack direction='row' spacing={1} justifyContent='center'>
             <Typography variant="h6" color='common.white'>
@@ -178,7 +178,7 @@ export default function Admin() {
         </Stack>
         <InputBase variant='outlined' type='text' placeholder='Input give away address'
           inputProps={{
-            sx: { textAlign: 'center', width: '300px', border: '1px solid white', border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
+            sx: { textAlign: 'center', width:{md:'380px', xs:'300px'}, fontSize:{md:'14px', xs:'11px'}, border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
           }}
           onChange={e => setGiveWallet(e.target.value)}
         />
@@ -189,7 +189,7 @@ export default function Admin() {
               fullWidth={true}
               inputProps={{
                 min: 1, max: 10,
-                sx: { textAlign: 'center' },
+                sx: { textAlign: 'center'}
               }}
               value={quantity}
               onChange={changeQuantity}
@@ -207,7 +207,7 @@ export default function Admin() {
         {
           initWeb3 &&
           <>
-            <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`Give away`}</ConnectButton>
+            <ConnectButton loading={minting} loadingPosition='start' variant='contained' size='large' onClick={conMetamask}>{`Gift away`}</ConnectButton>
             {
               minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
             }
