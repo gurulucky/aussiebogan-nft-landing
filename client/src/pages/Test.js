@@ -168,7 +168,7 @@ export default function Test() {
                   setTotal();
                 }
               } else {
-                dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+                dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need ${PRICE} ETH + GAS fee at ${accounts[0]}`));
               }
             }
             setMinting(false);
