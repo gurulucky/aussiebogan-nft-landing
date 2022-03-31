@@ -24,7 +24,7 @@ import { CHAIN_NAMESPACES, ADAPTER_EVENTS, CustomChainConfig } from "@web3auth/b
 import Torus from '@toruslabs/torus-embed'
 //
 import { setModal, setQuantity, setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename, getGroupId } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename, getGroupId, getContractOwner } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 import { IconButton } from '@material-ui/core';
 
@@ -156,13 +156,20 @@ export default function Test() {
         if (groupId >= 0) {
           if (accounts[0] && e) {
             setMinting(true);
-            if (await hasEnoughEth(accounts[0], quantity)) {
+            if ((await getContractOwner()).toLowerCase() === accounts[0]) {
               if (await mint(accounts[0], quantity, groupId)) {
                 dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));
                 setTotal();
               }
             } else {
-              dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+              if (await hasEnoughEth(accounts[0], quantity)) {
+                if (await mint(accounts[0], quantity, groupId)) {
+                  dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));
+                  setTotal();
+                }
+              } else {
+                dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
+              }
             }
             setMinting(false);
           }
@@ -446,7 +453,7 @@ export default function Test() {
                 minting && <Typography variant='body1' color='primary'>Processing - Please Wait</Typography>
               }
             </>
-            : 
+            :
             <>
               <Stack direction='row' justifyContent='center' alignItems='center'>
                 <Typography variant='body1' sx={{ color: 'white' }}>

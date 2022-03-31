@@ -16,7 +16,7 @@ import LoadingButton from '@material-ui/lab/LoadingButton'
 import { Web3Auth } from "@web3auth/web3auth";
 //
 import { setModal, setQuantity, setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getGroupId } from '../lib/mint';
+import { hasEnoughEth, giveaway, getTotalMinted, getGroupId } from '../lib/mint';
 import AlertDialog from './AlertDialog';
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
@@ -123,9 +123,13 @@ export default function Admin() {
         if (groupId >= 0) {
           if (accounts[0] && e) {
             setMinting(true);
-            if (await mint(accounts[0], quantity, groupId)) {
-              dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));
-              setTotal();
+            if (await hasEnoughEth(accounts[0], quantity)) {
+              if (await giveaway(accounts[0], giveWallet, quantity, groupId)) {
+                dispatch(setModal(true, `${quantity} NFT Minted Successfully.`));
+                setTotal();
+              }
+            } else {
+              dispatch(setModal(true, `Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`));
             }
             setMinting(false);
           }
@@ -178,7 +182,7 @@ export default function Admin() {
         </Stack>
         <InputBase variant='outlined' type='text' placeholder='Input give away address'
           inputProps={{
-            sx: { textAlign: 'center', width:{md:'380px', xs:'300px'}, fontSize:{md:'14px', xs:'11px'}, border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
+            sx: { textAlign: 'center', width: { md: '380px', xs: '300px' }, fontSize: { md: '14px', xs: '11px' }, border: '1px solid #0E77B7', p: '10px', backgroundColor: '#0f2938' },
           }}
           onChange={e => setGiveWallet(e.target.value)}
         />
@@ -189,7 +193,7 @@ export default function Admin() {
               fullWidth={true}
               inputProps={{
                 min: 1, max: 10,
-                sx: { textAlign: 'center'}
+                sx: { textAlign: 'center' }
               }}
               value={quantity}
               onChange={changeQuantity}

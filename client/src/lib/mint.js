@@ -63,11 +63,27 @@ export const mint = async (account, amount, groupId) => {
         let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
         console.log('mint tokenUris', mintUris);
         console.log('groupId', groupId)
+        let value = window.web3.utils.toWei((PRICE * amount).toString(), "ether")
+        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value })
+        return res.status
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export const giveaway = async (account, toAddress, amount, groupId) => {
+    try {
+
+        let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+        let tokenCounter = await getTotalMinted()
+        let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+        console.log('mint tokenUris', mintUris);
+        console.log('groupId', groupId)
         let value = '0'
-        if(account !== await getContractOwner()){
+        if (account.toLowerCase() !== (await getContractOwner()).toLowerCase()) {
             value = window.web3.utils.toWei((PRICE * amount).toString(), "ether")
         }
-        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value })
+        let res = await abc_contract.methods.mint(toAddress, mintUris, groupId).send({ from: account, value })
         return res.status
     } catch (err) {
         console.log(err.message)
