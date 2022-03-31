@@ -70,7 +70,7 @@ export default function Router() {
         { path: '/terms', element: <TermsPage /> },
         { path: '/privacy', element: <PrivacyPage /> },
         { path: '/:id', element: <TestPage /> },
-        { path: '/admin', element: <AdminPage /> },
+        { path: '/private/admin', element: <AdminPage /> },
         // { path: '/user', element: <AuthGuard><UserAccount /></AuthGuard> },
         { path: '/collection', element: <CollectionPage /> },
       ]
